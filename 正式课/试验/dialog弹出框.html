@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        html,body{
+            height:100%;
+        }
+        .login{
+            display:block;
+        }
+        .dialogBg{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:#000;
+            opacity:0.3;
+            filter:alpha(opacity=30);
+            display:none;
+        }
+        .dialogBox{
+            display:none;
+            position:fixed;
+            top:50%;
+            left:50%;
+            /*margin: -250px 0 0 -200px;*/
+            /*width:400px;*/
+            /*height:500px;*/
+            margin:0;
+            width:0;
+            height:0;
+            background:#fff;
+            overflow:hidden;
+        }
+        .dialogBox h2{
+            height:49px;
+            line-height:49px;
+            border-bottom:1px solid #aaa;
+            background:#ccc;
+            text-align:center;
+            font-size:16px;
+            font-weight:normal;
+            letter-spacing:6px;
+            oveflow:hidden;
+        }
+        .dialogBox .close{
+            width:50px;
+            height:50px;
+            position:absolute;
+            top:0;
+            right:0;
+            line-height:50px;
+            text-align:center;
+            font-size:22px;
+            font-family:Aharoni;
+            font-weight:normal;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<a id='login' href='javascript:;'>立即登陆</a>
+<div class='dialogBg' id='dialogBg'></div>
+<div class='dialogBox' id='dialogBox'>
+    <h2>欢迎登陆</h2>
+    <a href='javascript:;' class='close' id='close'>X</a>
+    <div class='content'>
+        文字内容
+    </div>
+</div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script src="myAnimate.js"></script>
+<script>
+    var dialogRender=(function(){
+        var dialogBg=document.getElementById('dialogBg'),
+                dialogBox=document.getElementById('dialogBox'),
+                close=document.getElementById('close');
+        function show(){
+            toolBag.css(dialogBg,'display','block');
+            toolBag.css(dialogBox,'display','block');
+            myAnimate(dialogBox,{
+                width:400,
+                height:500,
+                marginLeft:-200,
+                marginTop:-250
+            },500);
+        }
+        function hide(){
+            close.onclick=function(){
+                toolBag.css(dialogBg,'display','none');
+                toolBag.css(dialogBox,{
+                    display:'none',
+                    width:0,
+                    height:0,
+                    marginLeft:0,
+                    marginTop:0
+                });
+            }
+        }
+        return{
+            init:function(){
+                //控制显示
+                show();
+                //控制隐藏
+                hide();
+            }
+        }
+    })();
+    //点击登陆的时候执行dialog中的方法
+    var loginBtn=document.getElementById('login');
+    loginBtn.onclick=function(){
+        dialogRender.init();
+    };
+</script>

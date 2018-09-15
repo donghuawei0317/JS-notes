@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 500px;
+            height: 500px;
+            border: 10px solid #000000;
+            background: #007aff;
+            margin: 50px;
+        }
+
+        #div2 {
+            width: 200px;
+            height: 200px;
+            border: 10px solid #00a77b;
+            background: #0fa6ea;
+            position: relative;
+            top: 140px;
+            left: 140px;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>
+    <div id="div2"></div>
+</div>
+<input type="text" id="input1">
+</body>
+</html>
+<script>
+    var a = document.getElementById('div1');
+    var b = document.getElementById('div2');
+    var c = document.getElementById('input1');
+    a.onmouseenter = function (e) {
+        console.log('clientX:' + e.clientX);
+        console.log('clientY:' + e.clientY);
+        console.log('screenX:' + e.screenX);
+        console.log('screenY:' + e.screenY);
+        console.log('offsetX:' + e.offsetX);
+        console.log('offsetY:' + e.offsetY);
+        console.log('pageX:' + e.pageX);
+        console.log('pageY:' + e.pageY);
+        console.log('x:' + e.x);
+        console.log('y:' + e.y);
+    };
+    c.onkeydown = function (e) {
+        console.log(e);
+    }
+</script>

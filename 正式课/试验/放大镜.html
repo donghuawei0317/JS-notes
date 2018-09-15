@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .litImg{
+            width: 160px;
+            height: 100px;
+            float: left;
+            border:10px solid #0aeeaa;
+        }
+        .litImg img{
+            width: 100%;
+            height: 100%;
+        }
+        .litImg .mask{
+            width: 40px;
+            height: 25px;
+            background: rgba(0,0,0,0.3);
+            position: absolute;
+            display:none;
+        }
+        .bigImg{
+            width: 320px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            float: left;
+            /*display:none;*/
+            border:10px solid #0055cc;
+        }
+        .bigImg img{
+            width: 400%;
+            height: 400%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div class="litImg">
+    <img src="images/lange.jpg" alt="">
+    <div class="mask"></div>
+</div>
+<div class="bigImg">
+    <img src="images/lange.jpg" alt="">
+</div>
+</body>
+</html>
+<script>
+    var litImg=document.getElementsByClassName('litImg')[0];
+    var bigImg=document.getElementsByClassName('bigImg')[0];
+    var mask=litImg.getElementsByClassName('mask')[0];
+    var img=bigImg.getElementsByTagName('img')[0];
+    litImg.onmouseenter=function(){
+        mask.style.display='block';
+        bigImg.style.display='block';
+    };
+   /* litImg.onmouseleave=function(){
+        mask.style.display='none';
+        bigImg.style.display='none';
+    };*/
+    litImg.onmousemove=function(e){
+        e=e||window.event;
+        var tar=e.target||e.srcElement;
+        var mx=e.pageX;
+        var my=e.pageY;
+        var l=e.pageX-this.offsetLeft-mask.offsetWidth/2;
+        var t=e.pageY-this.offsetTop-mask.offsetHeight/2;
+        var maxL=this.clientWidth-mask.offsetWidth+10;
+        var maxT=this.clientHeight-mask.offsetHeight+10;
+        l=l>maxL?maxL:(l<10?10:l);
+        t=t>maxT?maxT:(t<10?10:t);
+        mask.style.left=l+'px';
+        mask.style.top=t+'px';
+        var n=mask.offsetWidth/bigImg.clientWidth;
+        console.log(n);//0.125
+        img.style.left=-l/n+80+'px';
+        img.style.top=-t/n+80+'px';
+    };
+</script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 100%;
+            height: 50px;
+            background: red;
+            text-align: center;
+            line-height: 50px;
+            font-size: 25px;
+            position: fixed;
+            display: none;
+        }
+
+        #div2 {
+            width: 100%;
+            height: 5000px;
+            background: linear-gradient(blue, green, pink, red);
+        }
+
+        .move {
+            animation: move 1s ease ;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(-50px)
+            }
+            100%{
+                transform:translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+<div id="div2"></div>
+</body>
+</html>
+<script>
+    var div1 = document.getElementById('div1');
+    window.onscroll = function () {
+        var n = document.documentElement.scrollTop;
+//        console.log(n);
+        if (n >= 500) {
+            div1.style.display = 'block';
+            div1.className='move';
+        } else {
+            div1.style.display = 'none';
+            div1.className='';
+        }
+    }
+</script>

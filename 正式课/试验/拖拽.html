@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            text-align: center;
+            line-height: 100px;
+            box-shadow: inset -5px -5px 15px 0;
+            background: linear-gradient(to bottom right, #fff 5%, #0055cc 95%);
+            user-select: none;
+            cursor: move;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById('div1');
+    //———开始———
+    oDiv.onmousedown = start;
+    function start(e) {
+        clearTimeout(this.dropTimer);
+        e = e || window.event;
+        var tar = e.target || e.srcElement;
+        //鼠标的初始位置
+        this.mX = e.pageX;
+        this.mY = e.pageY;
+        //盒子的初始位置
+        this.startX = this.offsetLeft;
+        this.startY = this.offsetTop;
+        //——————
+        document.onmousemove = move.bind(this);
+        document.onmouseup = end.bind(this);
+    }
+    //———运动———
+    function move(e) {
+        e = e || window.event;
+        //求出鼠标的移动距离
+        var x = e.pageX - this.mX;
+        var y = e.pageY - this.mY;
+        //根据鼠标的移动距离求出盒子的偏移量
+        this.style.left = this.startX + x + 'px';
+        this.style.top = this.startY + y + 'px';
+        //prevX：是上次触发move时，鼠标的pageX
+        if (!this.prevX) {
+            this.prevX = 0;
+        }
+        console.log(this.prevX);
+        this.speed = e.pageX - this.prevX;
+        this.prevX = e.pageX;
+    }
+    //———结束———
+    function end(e) {
+        document.onmousemove = null;
+        document.onmouseup = null;
+        this.maxX = (document.documentElement.clientWidth || document.body.clientWidth) - this.offsetWidth;
+        this.maxY=(document.documentElement.clientHeight||document.body.clientHeight)-this.offsetHeight;
+        if(!this.running){// ?
+            fly.call(this);
+        }
+        drop.call(this);
+    }
+    //———左右———
+    function fly() {
+        this.running=true;
+        clearTimeout(this.flyTimer);
+        this.speed *= 0.98;
+        var l = this.offsetLeft + this.speed;
+        if (l > this.maxX) {
+            l = this.maxX;
+            this.speed *= -1;
+        }
+        if(l<0){
+            l=0;
+            this.speed*=-1;
+        }
+        this.style.left = l + 'px';
+        if(Math.abs(this.speed)<0.1){
+            clearTimeout(this.flyTimer);
+            this.running=false;// ?
+        }else{
+            this.flyTimer = setTimeout(fly.bind(this), 17);
+        }
+    }
+    //———上下———
+    function drop(){
+        clearTimeout(this.dropTimer);
+        if(!this.flag){// ?
+            this.flag=0;
+        }
+        if(!this.dropSpeed){
+            this.dropSpeed=10;
+        }else{
+            this.dropSpeed+=1;
+        }
+        this.dropSpeed*=0.98;
+        var t=this.offsetTop+this.dropSpeed;
+        if(t>this.maxY){
+            t=this.maxY;
+            this.dropSpeed*=-1;
+            this.flag++;
+        }else{
+            this.flag=0;
+        }
+        this.style.top=t+'px';
+        if(this.flag>1){// ?
+            clearTimeout(this.dropTimer);
+        }else{
+            this.dropTimer=setTimeout(drop.bind(this),17);
+        }
+    }
+</script>

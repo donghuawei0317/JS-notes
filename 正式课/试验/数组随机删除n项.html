@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //从数组中随机删除n项，并把删除的n项组成一个数组返回。
+    var ary=[12,23,34,45,56,67,78,89];
+    Array.prototype.removeRan=function(n){
+        if(n>=this.length){
+            let ary=this.splice(0);
+            return ary;
+        }
+        let ary=[];
+        for(let i=0;i<n;i++){
+            let m=Math.floor(Math.random()*this.length);
+            ary.push(this.splice(m,1)[0]);
+        }
+        return ary;
+    };
+    var arr=ary.removeRan(3);
+    console.log(arr);
+</script>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .clearfix:after {
+            content: '';
+            clear: both;
+            display: block;
+        }
+
+        #tabBox {
+            width: 210px;
+            height: 220px;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        ul {
+            width: 100%;
+        }
+
+        li {
+            box-sizing: border-box;
+            width: 50px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            float: left;
+            border: 1px solid #000000;
+            margin: 0 10px;
+        }
+
+        .con {
+            box-sizing: border-box;
+            width: 210px;
+            height: 200px;
+            border: 1px solid;
+            float: left;
+            display: none;
+        }
+
+        .select {
+            display: block;
+            background-color: #00a77b;
+        }
+    </style>
+</head>
+<body>
+<div class='tabBox' id='tabBox'>
+    <ul class='tab clearfix'>
+        <li>新闻</li>
+        <li>电影</li>
+        <li>动漫</li>
+    </ul>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script>
+    /*var tabBox = document.getElementsByClassName('tabBox')[0],
+            tabList = tabBox.getElementsByTagName('li'),
+            conList = tabBox.getElementsByTagName('div');*/
+    //———方案1———
+    /*for (var i = 0; i < tabList.length; i++) {
+     var curTab = tabList[i];
+     curTab.myIndex = i;
+     curTab.onclick = function () {
+     //清除所有li和div的选中样式
+     for (var k = 0; k < tabList.length; k++) {
+     tabList[k].className = null;
+     conList[k].className = 'con';
+     }
+     //让当前操作的li和div有选中的样式
+     this.className = 'select';
+     conList[this.myIndex].className = 'con select';
+     }
+     }*/
+    //———方案2———
+   /* var _prevIndex = 0;//记录上一次选中li的索引（初始选中第一个，所以默认值是零）
+    for (var i = 0; i < tabList.length; i++) {
+        var curTab = tabList[i];
+        curTab.myIndex = i;
+        curTab.onclick = function () {
+            //先把上一个清除掉即可
+            tabList[_prevIndex].className = null;
+            conList[_prevIndex].className = 'con';
+            //当前点击的有选中
+            this.className = 'select';
+            conList[this.myIndex].className = 'con select';
+            //当前点击这一项是下一次点击的上一项
+            _prevIndex = this.myIndex;
+        }
+    }*/
+    //———方案3———
+   /* var tabBox = document.getElementById('tabBox'),
+            tab = document.getElementsByClassName('tab')[0],
+            tabList = toolBag.children(tab, 'li'),
+            conList = toolBag.children(tabBox, 'div'),
+            _prevIndex = 0;
+    console.log(tabList);
+    console.log(tab);
+    console.log(conList);
+    for (var i = 0; i < tabList.length; i++) {
+        tabList[i].myIndex = i;
+        tabList[i].onclick = function () {
+            tabList[_prevIndex].className = null;
+            conList[_prevIndex].className = 'con';
+            this.className = 'select';
+            conList[this.myIndex].className = 'con select';
+            _prevIndex = this.myIndex;
+        }
+    }*/
+    //———自执行函数———
+  /*  ~function(){
+        var tabBoxList=document.getElementsByClassName('tabBox');
+        for(var i=0;i<tabBoxList.length;i++){
+            change(tabBoxList[i]);
+        }
+        function change(tabBox){
+            var tab=document.getElementsByClassName('tab',tabBox)[0],
+                    tabList=toolBag.children(tab,'li'),
+                    conList=toolBag.children(tabBox,'div'),
+                    _prevIndex=0;
+            for(var i=0;i<tabList.length;i++){
+                tabList[i].myIndex=i;
+                tabList[i].onclick=function(){
+                    tabList[_prevIndex].className=null;
+                    conList[_prevIndex].className='con';
+                    this.className='select';
+                    conList[this.myIndex].className='con select';
+                    _prevIndex=this.myIndex;
+                }
+            }
+        }
+    }();*/
+    //———构造函数———
+    ~function(){
+        function ChangeTab(tabBox,options){
+            //参数初始化
+            var _default={
+                initIndex:0,
+                eventType:'click'
+            };
+            for(var key in options){
+                if(options.hasOwnProperty){
+                    _default[key]=options[key];
+                }
+            }
+            this.initIndex=_default.initIndex;
+            this.eventType=_default.eventType;
+            //为了保证这些值在类的任何方法中都可以调取使用，我们一般都把信息粗存放在当前实例上（this）：只要保证每个方法中的this都是当前的实例，我们就可以获取这些值了
+            this.tabBox=tabBox;
+            return this.init();
+        }
+        ChangeTab.prototype={
+            constructor:ChangeTab,
+            change:function(){
+                var	_this=this;
+                for(var i=0;i<_this.tabList.length;i++){
+                    _this.tabList[i].myIndex=i;
+                    _this.prevIndex=this.initIndex;//此处的作用：当点击事件发生时，重置的className是默认选择的元素的className；若没有此处，那么每次点击事件发生时，由于_this.prevIndex默认等于0，所以只是会重置索引为0的元素的className，这就会造成只要不点击默认选择的元素，那么该元素的className就不会被重置
+                    this.tabList[i]['on'+_this.eventType]=function(){
+                        //this：当前点击的这个li不是实例（_this是实例）
+                        _this.tabList[_this.prevIndex].className='';
+                        console.log(_this.tabList);
+                        console.log(_this.prevIndex);
+                        _this.conList[_this.prevIndex].className='con';
+                        this.className='select';
+                        _this.conList[this.myIndex].className='con select';
+                        _this.prevIndex=this.myIndex;
+                    }
+                }
+            },
+            clear:function(){
+                //清空所有的样式类
+                for(var i=0;i<this.tabList.length;i++){
+                    this.tabList[i].className='';
+                    this.conList[i].className='con';
+                }
+                //初始化默认的选中页卡
+                this.tabList[this.initIndex].className='select';
+                this.conList[this.initIndex].className='con select';
+            },
+            init:function(){
+                //获取当前页卡区域中的元素（li或div）
+                this.tab=toolBag.children(this.tabBox,'ul')[0];
+                this.tabList=toolBag.children(this.tab,'li');
+                this.conList=toolBag.children(this.tabBox,'div');
+                this.prevIndex=0;
+                //实现页卡切换
+                this.clear();
+                this.change();
+            }
+        };
+        window.CT=ChangeTab;
+    }();
+    var tabBoxList=document.getElementsByClassName('tabBox');
+    console.log(tabBoxList);
+   /* for(var i=0;i<tabBoxList.length;i++){
+        new CT(tabBoxList[0],{
+            initIndex:1,
+            eventType:'click'
+        });
+    }*/
+    new CT(tabBoxList[0],{
+        initIndex:1,
+        eventType:'click'
+    });
+</script>

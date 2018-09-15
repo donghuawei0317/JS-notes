@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>数组平均值</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var ary = [1, 2, 3, 45, 56, 7, 8, 9];
+    //1、
+    /*ary.sort(function (a, b) {
+        return a - b;
+    });
+    ary.shift();
+    ary.pop();
+    var num = eval(ary.join('+')) / ary.length;
+    console.log(typeof num);
+    console.log(typeof num.toFixed(2));*/
+    //2、扩展运算符
+    /*function fn(...args) {
+        console.log(args);
+        args.sort((a,b)=>{return a-b;});
+        args.shift();
+        args.pop();
+        return eval(args.join('+'))/args.length;
+    }
+    console.log(fn(1,2,3));*/
+    //3、
+    /*function fn(){
+        var ary=[];
+        for(let i=0;i<arguments.length;i++){
+            ary.push(arguments[i]);
+        }
+        ary.shift();
+        ary.pop();
+        return eval(ary.join('+'))/ary.length;
+    }
+    console.log(fn(1, 2, 3));*/
+    //4、
+    /*function fn(){
+        arguments.__proto__=Array.prototype;
+        arguments.sort((a,b)=>{return a-b});
+        arguments.shift();
+        arguments.pop();
+        return eval(arguments.join('+'))/arguments.length;
+    }
+    console.log(fn(4, 5, 6));*/
+    //5、
+    function fn(){
+        var ary=[].slice.call(arguments);
+        ary.sort((a,b)=>{return a-b});
+        ary.shift();
+        ary.pop();
+        return eval(ary.join('+'))/ary.length;
+    }
+    console.log(fn(7, 8, 9));
+</script>

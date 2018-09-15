@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style rel="stylesheet/less" type="text/less">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 500px;
+            height: 500px;
+            background: #0aeeaa;
+            margin: 100px auto;
+            position: relative;
+            border: 1px solid #33ff1d;
+            text-align: center;
+            perspective: 1500px;
+            ul.inner {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                position: relative;
+                transform-style: preserve-3d;
+                margin-top: 200px;
+                transition:all 1s linear;
+                /*animation: rotate 5s linear infinite;*/
+                transform-origin: 50px 50px -50px;
+                /*border:1px solid red;*/
+                li {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    box-sizing: border-box;
+                    text-align: center;
+                    line-height: 100px;
+                    font-size: 50px;
+                    border: 1px solid red;
+                    background: rgba(114, 208, 10, .5);
+                }
+                li:nth-child(1) {
+                    transform: translateY(-100px) rotateX(90deg);
+                    transform-origin: bottom;
+                }
+                li:nth-child(2) {
+                    transform: translateY(100px) rotateX(-90deg);
+                    transform-origin: top;
+                }
+                li:nth-child(3) {
+                    transform: translateX(-100px) rotateY(-90deg);
+                    transform-origin: right;
+                }
+                li:nth-child(4) {
+                    transform: translateX(100px) rotateY(90deg);
+                    transform-origin: left;
+                }
+                li:nth-child(5) {
+                    transform: translateZ(-100px) rotateY(180deg);
+                }
+            }
+            ul.outer {
+                width: 200px;
+                height: 200px;
+                position: absolute;
+                display: inline-block;
+                top: 150px;
+                left: 150px;
+                transform-style:preserve-3d;
+                transform-origin: 100px 100px -100px ;
+                li {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    line-height: 200px;
+                    text-align: center;
+                    font-size: 50px;
+                    color: #fff;
+                    background: rgba(238, 238, 238, 0.2);
+                    border:1px solid rgba(0,0,0,0.3);
+                    transition:all .5s linear;
+                }
+                li:nth-child(1) {
+                    transform: translateY(-200px) rotateX(90deg);
+                    transform-origin: bottom;
+                }
+                li:nth-child(2) {
+                    transform: translateY(200px) rotateX(-90deg);
+                    transform-origin: top;
+                }
+                li:nth-child(3) {
+                    transform: translateX(-200px) rotateY(-90deg);
+                    transform-origin: right;
+                }
+                li:nth-child(4) {
+                    transform: translateX(200px) rotateY(90deg);
+                    transform-origin: left;
+                }
+                li:nth-child(5){
+                    transform:translateZ(-200px) rotateY(180deg);
+                }
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+        .box:hover ul.inner{
+            animation: rotate 5s linear infinite;
+        }
+
+        .box:hover ul.outer{
+            li:nth-child(1){
+                transform:translateY(-300px) rotateX(90deg);
+                transform-origin:bottom ;
+            }
+            li:nth-child(2){
+                transform:translateY(300px) rotateX(-90deg);
+                transform-origin:top ;
+            }
+            li:nth-child(3){
+                transform:translateX(-300px) rotateY(-90deg);
+                transform-origin:right ;
+            }
+            li:nth-child(4){
+                transform:translateX(300px) rotateY(90deg);
+                transform-origin: left;
+            }
+            li:nth-child(5){
+                transform:translateZ(-300px) rotateY(180deg);
+                /*transform-origin: ;*/
+            }
+            li:nth-child(6){
+                transform:translateZ(100px) rotateX(0deg);
+                /*transform-origin: ;*/
+            }
+            animation:rotate2 15s  linear infinite
+        }
+
+        @keyframes rotate2 {
+            0%{
+                transform:rotateX(0deg) rotateY(0deg);
+            }
+            100%{
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+    </style>
+    <script src="less.js"></script>
+</head>
+<body>
+<div class="box">
+    <ul class="inner">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <ul class="outer">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    var ul = document.getElementsByTagName('ul')[0];
+    console.log(ul.style.transformOrigin);
+</script>

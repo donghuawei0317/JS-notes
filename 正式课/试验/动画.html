@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 50px;
+            height: 50px;
+            border: 1px dashed red;
+            position: relative;
+            text-align: center;
+            line-height: 50px;
+            background: #00ae66;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script src="myAnimate.js"></script>
+<script>
+    function getCss(curEle, attr) {
+        var value = null;
+        var reg = null;
+        if ('getComputedStyle' in window) {
+            value = window.getComputedStyle(curEle, null)[attr];
+        } else {
+            if (attr === 'opacity') {
+                value = curEle.currentStyle['filter'];
+                //把获取的结果转化为和opacity一样的结果
+                var reg = /^alpha\(opacity=(.+)\)$/;
+                reg.test(value) ? value = reg.exec(value)[1] / 100 : value = 1;
+            } else {
+                value = curEle.currentStyle[attr];
+            }
+        }
+        reg = /^-?\d+(\.\d+)?(px|pt|rem|em)?$/i;
+        reg.test(value) ? value = parseFloat(value) : null;
+        return value;
+    }
+    var oDiv = document.getElementById('div1');
+    console.log(oDiv);
+    console.log(getCss(oDiv, 'width'));
+    console.log(toolBag.getCss(oDiv,'width'));
+</script>

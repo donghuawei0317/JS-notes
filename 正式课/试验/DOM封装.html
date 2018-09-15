@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>DOM封装</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='box'>
+    <p></p>
+    <p></p>
+    <p></p>
+    <!--注释-->
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+<div class='box1 box2'>1</div>
+<div class='box2 box3'>2</div>
+<div class='box1 box2 box3' id="box4">3 <p class="box1"></p></div>
+<div class='box1 box3'>4</div>
+<div class='box3'>5</div>
+<div class='box2'>6</div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script>
+    var oDiv=document.getElementById('box');
+    var box4=document.getElementById('box4');
+    //——获取当前元素下的所有元素子节点——
+    function children(curEle, tagName) {
+        var result = [],
+                childList = curEle.childNodes;
+        for (var i = 0; i < childList.length; i++) {
+            var item = childList[i];
+            if (item.nodeType == 1) {
+                if (typeof tagName !== 'undefined') {
+                    if (item.tagName.toLowerCase() === tagName.toLowerCase()) {
+                        result.push(item);
+                    }
+                    continue;
+                }
+                result.push(item);
+            }
+        }
+        return result;
+    }
+    /*console.log(children(oDiv, 'span'));
+    console.log(toolBag.children(oDiv, 'span'));
+    console.log(children(oDiv));
+    console.log(toolBag.children(oDiv));*/
+    //——获取所有含有某className的元素——
+    function getEleByClass(strClass,context){
+        context=context||document;
+        var result=[],
+                nodeList=context.getElementsByTagName('*');
+        strClass=strClass.replace(/^\s+|\s+$/g,'');
+        for(var i=0;i<nodeList.length;i++){
+            var item=nodeList[i];
+            var reg=new RegExp('(^| +)'+strClass+'( +|$)');
+            if(reg.test(item.className)){
+                result.push(item);
+            }
+        }
+        return result;
+    }
+//    console.log(getEleByClass('box1'),document.getElementsByClassName('box1'));
+    //——————
+    function getEleByClass2(strClass,context){
+        context=context||document;
+        var result=[],
+                nodeList=context.getElementsByTagName('*');
+        strClass=strClass.replace(/^\s+|\s+$/g,'').split(/ +/);
+        for(var i=0;i<nodeList.length;i++){
+            var item=nodeList[i],
+                    itemClass=item.className,
+                    flag=true;
+            for(var k=0;k<strClass.length;k++){
+                var reg=new RegExp('(^| +)'+strClass[k]+'( +|$)');
+                if(!reg.test(itemClass)){
+                    flag=false;
+                    break;
+                }
+            }
+            flag?result.push(item):null
+        }
+        return result;
+    }
+    /*console.log(getEleByClass2('  box1    box2'));
+    console.log(toolBag.getEleByClass('  box1    box2'));
+    console.log(getEleByClass2('  box1  '));
+    console.log(toolBag.getEleByClass('  box1  '));
+    console.log(getEleByClass2('  box1  ',box4));
+    console.log(toolBag.getEleByClass('  box1  ',box4));*/
+    //———方案3：排除法———
+    function getEleByClass3(strClass,context){
+        context=context||document;
+        var nodeList=context.getElementsByTagName('*');
+        strClass=strClass.replace(/^ +| +$/g,'').split(/ +/);
+        nodeList=toolBag.toArray(nodeList);
+        console.log(nodeList);
+        for(var i=0;i<strClass.length;i++){
+            var reg=new RegExp('(^| +)'+strClass[i]+'( +|$)');
+            for(var k=0;k<nodeList.length;k++){
+                if(!reg.test(nodeList[k].className)){
+                    nodeList.splice(k,1);
+                    k--;
+                }
+            }
+        }
+        return nodeList;
+    }
+    console.log(getEleByClass3('   box1  box2'));
+</script>

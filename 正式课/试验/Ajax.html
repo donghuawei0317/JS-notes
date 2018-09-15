@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    //———xml———
+    var xhr =new XMLHttpRequest();
+//    xhr.open('get','1.xml',false);//readyState：4；status：200
+//    xhr.open('get','1.xml',true);//readyState：2 → 3 → 4；status：200 → 200 → 200
+    xhr.onreadystatechange=function(){
+        console.log(xhr.readyState);
+        console.log(xhr.status);
+    };
+    xhr.open('get','1.xml',false);//readyState：1 → 4；status：0 → 200
+//    xhr.open('get','1.xml',true);//resdyState：1 → 2 → 3 → 4；status：0 → 200 → 200 → 200
+    xhr.send('a=1');//get方式不能在此传参
+</script>

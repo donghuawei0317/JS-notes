@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 500px;
+            height: 355px;
+            margin: 50px auto;
+        }
+
+        .titleBox {
+            margin-bottom: -5px;
+            float: left;
+        }
+
+        .titleBox li {
+            width: 100px;
+            height: 40px;
+            border-radius: 5px;
+            background: #0aeeaa;
+            margin-bottom: 5px;
+            text-align: center;
+            line-height: 40px;
+            box-sizing: border-box;
+            border: 2px solid red;
+            user-select: none;
+        }
+
+        .content {
+            width: 390px;
+            height: 100%;
+            float: right;
+            border: 1px solid #0aeeaa;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 355px;
+        }
+
+        .titleBox li.current {
+            box-sizing: border-box;
+            background: red;
+            border: 2px solid #0aeeaa;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul class="titleBox">
+        <li class="current">导航1</li>
+        <li>导航2</li>
+        <li>导航3</li>
+        <li>导航4</li>
+        <li>导航5</li>
+        <li>导航6</li>
+        <li>导航7</li>
+        <li>导航8</li>
+    </ul>
+    <div class="content">导航1内容</div>
+</div>
+</body>
+</html>
+<script>
+    var titleBox = document.getElementsByClassName('titleBox')[0];
+    var content = document.getElementsByClassName('content')[0];
+    var box=document.getElementsByClassName('box')[0];
+    var li=document.getElementsByTagName('li');
+    box.onclick=function(e){
+        e=e||window.event;
+        var tar=e.target||e.srcElement;
+        if(tar.nodeName.toLowerCase()==='li'){
+            [...li].forEach((item)=>{item.className=''});
+            tar.className='current';
+            var str=tar.innerHTML+'内容';
+            content.innerHTML=str;
+        }
+    }
+</script>

@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.box{
+    width: 600px;
+    height: 300px;
+    position: relative;
+    border:1px solid #0fa6ea;
+    border-radius: 10px;
+    margin: 100px auto;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 10px 10px 5px 0;
+}
+.img_box{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    /*overflow: hidden;*/
+}
+.img_box li{
+    width: 600px;
+    height: 300px;
+    float: left;
+    position: relative;
+    background: #eee url("../img/default.gif") no-repeat center center;
+}
+.img_box li img{
+    width: 100%;
+    height: 100%;
+}
+.img_box li p{
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 20px;
+}
+.btn_box{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+}
+.btn_box .leftBtn,.btn_box .rightBtn{
+    position: absolute;
+    width: 30px;
+    height: 50px;
+    right:0;
+    top: 125px;
+    text-align: center;
+    line-height: 50px;
+    background: rgba(0,0,0,0.5);
+    font-size: 20px;
+    color:#fff;
+    display:none;
+    cursor: pointer;
+}
+.btn_box .leftBtn{
+    left: 0;
+    border-radius: 0 5px 5px 0;
+}
+.btn_box .rightBtn{
+    border-radius:5px 0 0 5px;
+}
+.tip_box{
+    background: rgba(0,0,0,0.2);
+    height: 30px;
+    display: inline-block;
+    position: relative;
+    top: -85px;
+    border-radius: 15px;
+}
+.tip_box .tip{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 5px;
+    background: #fff;
+    line-height: 20px;
+    text-align: center;
+    display:inline-block;
+    cursor: pointer;
+}
+.tip_box .tip.current{
+    background: red;
+}

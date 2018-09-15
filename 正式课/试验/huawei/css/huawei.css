@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.all{
+    margin: 0 auto;
+    width: 1080px;
+    height: 100%;
+}
+.top{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #000000;
+}
+.top .paixu,.top ul li{
+    float: left;
+}
+.paixu{
+    font-size: 15px;
+    height: 50px;
+    line-height: 50px;
+    margin-right: 10px;
+}
+.top ul li{
+    height: 50px;
+    line-height: 50px;
+    margin-right: 10px;
+}
+.bottom{
+    width: 100%;
+    height: 500px;
+    border: 1px solid #2a70be;
+}
+.bottom ul li{
+    width: 200px;
+    height: 500px;
+    margin-right: 4px;
+    border: 1px solid #00ae66;
+    box-sizing: border-box;
+}
+.bottom ul li img{
+    width: 198px;
+}
+.bottom ul li div{
+
+}

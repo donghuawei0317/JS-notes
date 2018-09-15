@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #a{
+            width: 200px;
+            height: 200px;
+            margin:50px auto;
+            background: #00ae66;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        #b{
+            width: 100px;
+            height: 100px;
+            background: #0aeeaa;
+            margin: 50px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id='a'>
+    <div id="b"></div>
+</div>
+</body>
+</html>
+<script>
+    var a=document.getElementById('a');
+    var b=document.getElementById('b');
+    var body=document.body;
+    //DOM 0级事件绑定
+    /*a.onclick=function(){
+        console.log('a');
+    };
+    a.onclick=function(){
+        console.log('a1');
+    };
+    b.onclick=function(){
+        console.log('b');
+    };
+    body.onclick=function(){
+        console.log('body');
+    };*/
+    //DOM 2级事件绑定
+   /* a.addEventListener('click',function(){
+        console.log('a冒泡');
+    },false);
+    b.addEventListener('click',function(){
+        console.log('b冒泡');
+    },false);
+    body.addEventListener('click',function(){
+        console.log('body冒泡');
+    },false);
+    a.addEventListener('click',function(){
+        console.log('a冒泡2');
+    },false);
+    b.addEventListener('click',function(){
+        console.log('b冒泡2');
+    },false);
+    body.addEventListener('click',function(){
+        console.log('body冒泡2');
+    },false);*/
+    /*a.addEventListener('click',function(){
+        console.log('a捕获');
+    },true);
+    b.addEventListener('click',function(){
+        console.log('b捕获');
+    },true);
+    body.addEventListener('click',function(){
+        console.log('body捕获');
+    },true);
+    a.addEventListener('click',function(){
+        console.log('a捕获2');
+    },true);
+    b.addEventListener('click',function(){
+        console.log('b捕获2');
+    },true);
+    body.addEventListener('click',function(){
+        console.log('body捕获2');
+    },true);*/
+    /*a.addEventListener('click',function(){
+        console.log('a捕获');
+    },true);
+    b.addEventListener('click',function(){
+        console.log('b捕获');
+    },true);
+    body.addEventListener('click',function(){
+        console.log('body捕获');
+    },true);
+    a.addEventListener('click',function(){
+        console.log('a冒泡');
+    },false);
+    b.addEventListener('click',function(){
+        console.log('b冒泡');
+    },false);
+    body.addEventListener('click',function(){
+        console.log('body冒泡');
+    },false);*/
+    //attachEvent
+    /*a.attachEvent('onclick',function(){
+        console.log('a');
+    });
+    a.attachEvent('onclick',function(){
+        console.log('b');
+    });*/
+    //阻止冒泡
+    a.addEventListener('click',function(e){
+        console.log('a冒泡');
+        e.cancelBubble=true;
+    },false);
+    b.addEventListener('click',function(e){
+        console.log('b冒泡');
+    },false);
+    body.addEventListener('click',function(e){
+        console.log('body冒泡');
+    },false);
+    /*a.addEventListener('click',function(e){
+        console.log('a捕获');
+        e.stopPropagation();
+    },true);
+    b.addEventListener('click',function(e){
+        console.log('b捕获');
+    },true);
+    body.addEventListener('click',function(e){
+        console.log('body捕获');
+    },true);*/
+    /*a.attachEvent('onclick',function(e){
+        console.log('a');
+        e.cancelBubble=true;
+    });
+    b.attachEvent('onclick',function(){
+        console.log('b');
+    });
+    body.attachEvent('onclick',function(){
+        console.log('body');
+    });*/
+    //移除绑定的事件
+    /*a.attachEvent('onclick',function fn(e){
+        a.detachEvent('onclick',fn);
+        console.log('a');
+    });
+    b.attachEvent('onclick',function(e){
+        console.log('b');
+    });
+    body.attachEvent('onclick',function(e){
+        console.log('body');
+    });*/
+    /*a.addEventListener('click',function fn(e){
+        console.log('a冒泡');
+        a.removeEventListener('click',fn)
+    },false);
+    b.addEventListener('click',function(e){
+        console.log('b冒泡');
+    },false);
+    body.addEventListener('click',function(e){
+        console.log('body冒泡');
+    },false);*/
+</script>

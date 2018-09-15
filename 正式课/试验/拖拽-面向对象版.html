@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>拖拽-面向对象版</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1,#div2,#div3{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background:#0aeeaa;
+            position:absolute;
+            cursor:move;
+            text-align: center;
+            line-height: 100px;
+            font-size: 20px;
+            color:#fff;
+            user-select:none;
+        }
+        #div2{
+            background:#00a77b;
+        }
+        #div3{
+            background:#0055cc;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>1</div>
+<div id='div2'>2</div>
+<div id='div3'>3</div>
+</body>
+</html>
+<script>
+    var n=0;
+
+    class Drag{
+        constructor(ele){
+            this.ele=ele;
+            ele.onmousedown=this.start.bind(this);
+        }
+        start(e){
+            e=e||window.event;
+            var tar=e.target||e.srcElement;
+            //———盒子的位置———
+            this.startX=this.ele.offsetLeft;
+            this.startY=this.ele.offsetTop;
+            //———鼠标的位置———
+            this.mx=e.pageX;
+            this.my=e.pageY;
+            //———绑定函数———
+            document.onmousemove=this.move.bind(this);
+            document.onmouseup=this.end.bind(this);
+            this.ele.style.zIndex=n++;
+        }
+        move(e){
+            e=e||window.event;
+            var tar=e.target||e.srcElement;
+            var l=e.pageX-this.mx+this.startX;
+            var t=e.pageY-this.my+this.startY;
+            this.ele.style.left=l+'px';
+            this.ele.style.top=t+'px';
+        }
+        end(e) {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    }
+    var oDiv1=document.getElementById('div1');
+    var oDiv2=document.getElementById('div2');
+    var oDiv3=document.getElementById('div3');
+    var drag1=new Drag(oDiv1);
+    var drag2=new Drag(oDiv2);
+    var drag3=new Drag(oDiv3);
+    console.log(oDiv1.style.zIndex);
+    console.log(oDiv2.style.zIndex);
+    console.log(oDiv3.style.zIndex);
+</script>

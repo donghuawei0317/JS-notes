@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <input type="text" v-model="name">
+    <h3>{{msg}}</h3>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name:''
+        },
+        computed:{
+            msg:{
+                get(){
+                    let str=this.name.split('').reverse().join('');
+                    return str;
+                },
+                set(){
+
+                }
+            }
+        }
+    })
+</script>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>0</title>
+    <link rel="icon" href="">
+    <style>
+        #div1 {
+            width: 50px;
+            height: 50px;
+        }
+
+        #div2 {
+            /*border-right:10px solid #000000;
+            border-top:10px solid transparent;
+            border-bottom: 10px solid transparent;*/
+            border-width: 10px 10px 10px 0;
+            border-style: solid;
+            border-color: transparent #000 transparent transparent;
+            /*border: 50px solid transparent;
+            border-right-color:#000000;*/
+            /*box-shadow: 0 0 5px 10px #007aff;*/
+            /*font-size: 0;*/
+            /*line-height: 0;*/
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id=div1>
+    <div id="div2"></div>
+</div>
+
+
+</body>
+</html>
+<script>
+    //———reduce———
+     var ary=[2,4,6,8];
+    var a=ary.reduce((prev,next,index,arr)=>{
+     console.log(prev, next, index, arr);
+        return 10
+     },2);
+     console.log(a);
+    //———filter———
+    /*let ary = [1, 2, 3, 4, 5];
+    let arr = ary.filter((item, index)=> {
+        let t = Math.random();
+        console.log(t);
+        return t > 0.5;
+    });
+    console.log(arr);*/
+    //———some———
+//    let ary = [1, 2, 3, 4, 5];
+    /*let arr=ary.some((item,index)=>{
+        let t=Math.random();
+        return t>0.5;
+    });
+    console.log(arr,ary);*/
+    //———every———
+    /*let arr=ary.every((item,index)=>{
+        console.log(item, index);
+        let t=Math.random();
+        return t>0.5;
+    });
+    console.log(arr,ary);*/
+    //———find———
+    /*let number=ary.find((item,index)=>{
+        let t=Math.random();
+        return item>3;
+    });
+    console.log(number, ary);*/
+    //———includes———
+    /*let boolean_1=ary.includes(3,0);
+    console.log(boolean_1);
+    let boolean_2=ary.includes(3,3);
+    console.log(boolean_2);*/
+</script>

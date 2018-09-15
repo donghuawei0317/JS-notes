@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #a{
+            width: 50px;
+            height: 25px;
+            background: #33ff1d;
+            border-radius: 12.5px;
+            margin: 10px;
+            text-align: center;
+            line-height: 25px;
+            cursor: pointer;
+        }
+        #b{
+            width: 50px;
+            height: 25px;
+            background: #007aff;
+            border-radius: 12.5px;
+            text-align: center;
+            line-height: 25px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id='a'>A</div>
+<div id="b">B</div>
+</body>
+</html>
+<script src="照片墙1/js/jquery-3.3.1.js"></script>
+<script>
+    var a=document.getElementById('a');
+    var b=document.getElementById('b');
+    $(a).on('click',function(){
+        console.log('A');
+    });
+    b.onclick=function(){
+        console.log('B');
+    }
+</script>

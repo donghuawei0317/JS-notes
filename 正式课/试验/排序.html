@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            list-style: none;
+        }
+
+        ol li {
+            float: left;
+            margin: 10px;
+        }
+
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<ol class="clearfix">
+    <li>姓名</li>
+    <li>年龄</li>
+    <li>爱好</li>
+    <li>出生日期</li>
+</ol>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>
+<script>
+    var ary = [
+        {name: '小红', age: 5, hobby: 'play', birth: '2000/8/8'},
+        {name: '小明', age: 3, hobby: 'sleep', birth: '2000/7/7'},
+        {name: '小李', age: 2, hobby: 'eat', birth: '2000/9/9'}
+    ];
+    var oUl = document.getElementsByTagName('ul')[0];
+    var oLi = oUl.getElementsByTagName('li');
+    var oOl = document.getElementsByTagName('ol')[0];
+    var oLs = oOl.getElementsByTagName('li');
+    for (let i = 0; i < oLi.length; i++) {
+        oLi[i].innerHTML = `姓名：${ary[i].name}，年龄：${ary[i].age}，爱好：${ary[i].hobby}，出生日期：${ary[i].birth}`
+    }
+    var flag = 0;
+    //按照姓名排序：
+     oLs[0].onclick = function () {
+     if (flag == 0) {
+     ary.sort(function (a, b) {
+     return a.name.localeCompare(b.name, 'zh');
+     });
+     flag = 1;
+     } else {
+     ary.sort(function (a, b) {
+     return b.name.localeCompare(a.name, 'zh');
+     });
+     flag = 0;
+     }
+     for (let i = 0; i < oLi.length; i++) {
+     oLi[i].innerHTML = `姓名：${ary[i].name},年龄：${ary[i].age}，爱好：${ary[i].hobby}，出生日期：${ary[i].birth}`
+     }
+     };
+     //按照年龄排序：
+     oLs[1].onclick = function () {
+     if (flag == 0) {
+     ary.sort(function (a, b) {
+     return a.age - b.age;
+     });
+     flag = 1;
+     } else {
+     ary.sort(function (a, b) {
+     return b.age - a.age;
+     });
+     flag = 0;
+     }
+     for (let i = 0; i < oLi.length; i++) {
+     oLi[i].innerHTML = `姓名：${ary[i].name},年龄：${ary[i].age}，爱好：${ary[i].hobby}，出生日期：${ary[i].birth}`
+     }
+     };
+     //按照爱好排序：
+     oLs[2].onclick = function () {
+     if (flag == 0) {
+     ary.sort(function (a, b) {
+     return a.hobby.localeCompare(b.hobby);
+     });
+     flag = 1;
+     } else {
+     ary.sort(function (a, b) {
+     return b.hobby.localeCompare(a.hobby);
+     });
+     flag = 0;
+     }
+     for (let i = 0; i < oLi.length; i++) {
+     oLi[i].innerHTML = `姓名：${ary[i].name},年龄：${ary[i].age}，爱好：${ary[i].hobby}，出生日期：${ary[i].birth}`
+     }
+     };
+     //按照出生日期排序：
+     oLs[3].onclick = function () {
+     if (flag == 0) {
+     ary.sort(function (a, b) {
+     //                return new Date(a.birth) - new Date(b.birth);
+     return a['birth'].toString().replace(/\//g, '') - b['birth'].toString().replace(/\//g, '');
+     });
+     flag = 1;
+     } else {
+     ary.sort(function (a, b) {
+     //                return new Date(b.birth) - new Date(a.birth);
+     return b.birth.toString().replace(/\//g, '') - a.birth.toString().replace(/\//g, '');
+     });
+     flag = 0;
+     }
+     for (let i = 0; i < oLi.length; i++) {
+     oLi[i].innerHTML = `姓名：${ary[i].name},年龄：${ary[i].age}，爱好：${ary[i].hobby}，出生日期：${ary[i].birth}`
+     }
+     };
+    //只能用于数字都是数字类型的，当前案例不可用
+  /*  var arr = ['name', 'age', 'hobby', 'birth'];
+    for (let i = 3; i < oLs.length; i++) {
+        oLs[i].onclick = function () {
+            if (flag == 0) {
+                ary.sort(function (a, b) {
+                    return a[arr[i]].toString().replace(/\//g, '') - b[arr[i]].toString().replace(/\//g, '');
+                });
+                flag = 1;
+            } else {
+                ary.sort(function (a, b) {
+                    return b[arr[i]].toString().replace(/\//g, '') - a[arr[i]].toString().replace(/\//g, '');
+                });
+                flag = 0;
+            }
+            for (let i = 0; i < oLi.length; i++) {
+                oLi[i].innerHTML = `姓名：${ary[i].name}，年龄：${ary[i].age}，爱好：${ary[i].hobby}，出生日期：${ary[i].birth}`
+            }
+        };
+    }*/
+</script>

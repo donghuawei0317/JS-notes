@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .clearfix:after{
+            clear: both;
+            content: '';
+            display:block;
+        }
+    .container{
+        position:relative;
+        width:1000px;
+        margin:10px auto;
+        text-align:center;
+    }
+    .wrapper{
+        position:relative;
+        height:300px;
+        background:url('实现轮播图/img/default.gif') no-repeat center center #eee;
+    }
+    .wrapper .slide{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+
+        opacity:0;
+        filter:alpha(opacity=0);
+        z-index:0;
+    }
+    .wrapper .slide img{
+        display:none;
+        width:100%;
+        height:100%;
+    }
+    .focusBox{
+        display:inline-block;
+        height:12px;
+        padding:4px 8px;
+        background:rgba(0,0,0,0.2);
+        position:relative;
+        top:-40px;
+        border-radius:12px;
+        z-index:99
+    }
+    .focusBox li{
+        width:12px;
+        height:12px;
+        border-radius:50%;
+        float:left;
+        margin:0 10px;
+        background:#fff;
+        cursor:pointer;
+    }
+    .last{
+        margin-right:0;
+    }
+    .select{
+        background:#db192a;
+    }
+    .arrow{
+        display:none;
+        width:30px;
+        height:60px;
+        position:absolute;
+        top:50%;
+        margin-top:-30px;
+        background:url('实现轮播图/img/1.jpg') no-repeat;
+        opacity:0.2;
+        filter:alpha(opacity=20);
+        z-index:99
+    }
+    .arrow:hover{
+        opacity:1;
+        filter:alpha(opacity=100);
+    }
+    .arrowLeft{
+        left:0;
+        background-position:0 0;
+    }
+    .arrowRight{
+        right:0;
+        background-position:-48px 0;
+    }
+</style>
+</head>
+
+<body>
+<div class='container' id='container'>
+    <!--wrapper控制轮播图切换的区域-->
+    <ul class='wrapper'>
+        <li class='slide'>
+            <img src='' data-img='img/1.jpg' alt=''>
+        </li>
+    </ul>
+    <!--focus控制焦点-->
+    <ul class='focusBox clearfix'>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <!--arrow控制切换的箭头-->
+    <a href='javascripr:;' class='arrow arrowLeft'></a>
+    <a href='javascripr:;' class='arrow arrowRight'></a>
+</div>
+</body>
+</html>
+<script>
+</script>

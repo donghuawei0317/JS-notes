@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<ul id="box">
+    <li>
+        <span>一级菜单1</span>
+        <ul>
+            <li>
+                <span>二级菜单1</span>
+                <ul>
+                    <li><span>三级菜单1</span></li>
+                    <li><span>三级菜单2</span></li>
+                    <li><span>三级菜单3</span></li>
+                </ul>
+            </li>
+            <li>
+                <span>二级菜单2</span>
+                <ul>
+                    <li><span>三级菜单1</span></li>
+                    <li><span>三级菜单2</span></li>
+                    <li><span>三级菜单3</span></li>
+                </ul>
+            </li>
+            <li>
+                <span>二级菜单3</span>
+                <ul>
+                    <li><span>三级菜单1</span></li>
+                    <li><span>三级菜单2</span></li>
+                    <li><span>三级菜单3</span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span>一级菜单2</span>
+        <ul>
+            <li>
+                <span>二级菜单1</span>
+                <ul>
+                    <li><span>三级菜单1</span></li>
+                    <li><span>三级菜单2</span></li>
+                    <li><span>三级菜单3</span></li>
+                </ul>
+            </li>
+            <li>
+                <span>二级菜单2</span>
+                <ul>
+                    <li><span>三级菜单1</span></li>
+                    <li><span>三级菜单2</span></li>
+                    <li><span>三级菜单3</span></li>
+                </ul>
+            </li>
+            <li>
+                <span>二级菜单3</span>
+                <ul>
+                    <li><span>三级菜单1</span></li>
+                    <li><span>三级菜单2</span></li>
+                    <li><span>三级菜单3</span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span>一级菜单3</span>
+        <ul>
+            <li>
+                <span>二级菜单1</span>
+                <ul>
+                    <li><span>三级菜单1</span></li>
+                    <li><span>三级菜单2</span></li>
+                    <li><span>三级菜单3</span></li>
+                </ul>
+            </li>
+            <li>
+                <span>二级菜单2</span>
+                <ul>
+                    <li><span>三级菜单1</span></li>
+                    <li><span>三级菜单2</span></li>
+                    <li><span>三级菜单3</span></li>
+                </ul>
+            </li>
+            <li>
+                <span>二级菜单3</span>
+                <ul>
+                    <li><span>三级菜单1</span></li>
+                    <li><span>三级菜单2</span></li>
+                    <li><span>三级菜单3</span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
+<script>
+    var box = document.getElementById('box');
+    var oSpan = document.getElementsByTagName('span');
+    //———设置菜单默认折起———
+    [...oSpan].forEach((item)=> {
+        var oUl = item.nextElementSibling;
+        if (oUl && oUl.nodeName.toLowerCase() === 'ul') {
+            oUl.style.display = 'none';
+        }
+    });
+    //———给大盒子绑定点击事件———
+    box.onclick = function (e) {
+        e = e || window.event;
+        var tar = e.target || e.srcElement;
+        if (tar.nodeName.toLowerCase() === 'span') {
+            var oul = tar.nextElementSibling;
+            if (oul && oul.nodeName.toLowerCase() === 'ul') {
+                if (oul.style.display === 'none') {
+                    oul.style.display = 'block';
+                } else {
+                    oul.style.display = 'none';
+                    var ulList = oul.getElementsByTagName('ul');
+                    [...ulList].forEach((item)=> {
+                        item.style.display = 'none';
+                    })
+                }
+            }
+        }
+    }
+</script>

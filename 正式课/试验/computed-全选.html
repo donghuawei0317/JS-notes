@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <input type="checkbox" v-model="checkAll">全选
+    <input type="checkbox" v-for="i in ary" v-model="i.a">
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            ary:[{a:true},{a:true},{a:true}]
+        },
+        computed:{
+            checkAll:{
+                get(){
+                    return this.ary.every((item)=>{
+                        return item.a;
+                    })
+                },
+                set(val){
+                    this.ary.forEach((item)=>{
+                        item.a=val;
+                    });
+                    console.log(val);
+                }
+            }
+        }
+    });
+</script>
