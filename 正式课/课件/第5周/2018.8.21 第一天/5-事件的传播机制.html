@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <style>
+        #outer,#outer2{
+            width: 300px;
+            height: 300px;
+            background: #24ccc8;
+            margin: auto;
+        }
+        #center{
+            width: 200px;
+            height: 200px;
+            background: orange;
+            margin: auto;
+        }
+        #inner,#inner2{
+            width: 100px;
+            height: 100px;
+            background: #3059fa;
+            margin: auto;
+            position: relative;
+            top: 400px;
+            z-index: 30;
+        }
+        #outer2{
+            position: relative;
+        }
+        #inner2{
+            position: absolute;
+            top: 400px;
+            left: 20px;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">outer
+        <div id="center">center
+            <div id="inner">inner</div>
+        </div>
+    </div>
+
+    <div id="outer2">
+        outer2
+    </div>
+    <div id="inner2">
+        inner2
+    </div>
+</body>
+</html>
+<!--<script src="js/jquery-3.3.1.js"></script>-->
+<script>
+    /*
+    * 事件的传播机制，分为两个阶段
+    *  第一个阶段是  捕获阶段
+    *  第二个阶段是  冒泡阶段
+    *
+    *  DOM 0级事件； 执行是在冒泡阶段执行的
+    * */
+    /*window.ondblclick = function () {
+        console.log('window');
+    };
+    var outer = document.getElementById('outer'),
+        center = document.getElementById('center'),
+        inner = document.getElementById('inner');
+    outer.onclick = function () {
+        console.log('outer');
+    };
+    center.onclick = function () {
+        console.log('center');
+    };
+    inner.onclick = function (e) {
+        e = e || window.event;
+        var tar = e.target || e.srcElement;
+        e.stopPropagation();
+        e.cancelBubble = true;
+        /!*
+        * 取消冒泡传播
+        * e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true
+        * *!/
+        console.log('inner');
+    };
+
+    // outer2.onclick = function () {
+    //     console.log('outer2');
+    // };
+    // inner2.onclick = function () {
+    //     console.log('inner2');
+    // }
+
+    $('#outer').on('click',function (ev) {
+        console.log(ev);
+    })*/
+
+    outer.onmouseenter = function () {
+        console.log('outer');
+    };
+    inner.onmouseenter = function () {
+        console.log('inner');
+    };
+    // mouseenter 是在捕获阶段触发  mouseover 是在 冒泡阶段触发
+
+
+    // outer.onmouseover = function () {
+    //     console.log('outer');
+    // };
+    // inner.onmouseover = function () {
+    //     console.log('inner');
+    // };
+
+
+
+
+</script>  
