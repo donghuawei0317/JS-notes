@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * 捕获：获取字符串中满足正则条件的字符或字符串
+    * */
+    var reg=/\d+/;
+    var str='珠峰2018培训2019';
+    console.log(reg.exec(str));
+    /*
+    * ["2018", index: 2, input: "珠峰2018培训2019", groups: undefined]
+    * 第一项：捕获的内容，
+    * 第二项开始是每个分组捕获的内容
+    * index：捕获的项开始的索引，
+    * input：原字符串
+    * */
+
+    var reg2=/\d+/;
+    var reg3=/\d+/g;
+    /*
+    * 正则捕获的懒惰性：只捕获字符串中第一个符合规则的部分，即使多次执行，也不会再去捕获后边的内容
+    * 解决这个问题，我们需要在正则的后边加上修饰符g。
+    * 有全局修饰符的时候，lastIndex属性记录的是下次开始查找的索引；
+    * 没有全局修饰符的时候，每次都从索引0开始查找
+    * */
+
+    //获取到字符串中所有满足条件的字符或字符串
+    //思路：利用全局修饰符的特性，一直查找，直到返回null的时候，停止查找，返回数组。
+    RegExp.prototype.execAll=function(str){
+        var temp;
+        if(!this.global){
+            temp=this.exec(str)||[];
+            temp.errorReason='你没加全局修饰符';
+            return temp;
+        }
+        var ary=[];
+        temp=this.exec(str);
+        while(temp){
+            ary.push(temp[0]);
+            temp=this.exec(str);
+        }
+        return ary;
+    };
+    var a=reg3.execAll(str);
+    console.log(a);
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //匹配10-29年龄段
+    var reg=/^[12]\d/;
+    //匹配18-65年龄段(分为三个阶段：18-19，20-59，60-65)
+    var reg2=/^(1[89]|[2-5]\d|6[0-5])$/;
+    //匹配有效数字（正数，负数，小数）
+    var reg3=/^[+-]?(\d|[0-9]\d+)(\.\d+)?$/;
+    //验证手机号
+    var reg4=/^1\d{10}/;
+    var reg5=/^1[89]9\d{8}/;//188或189开头的号码
+    //匹配邮箱：
+    /*
+    * qq：最小5位，最大11位
+    * 126：数字、字母下划线都行，最小6位，最大18位
+    * 163：数字、字母下划线都行，最小6位，最大18位
+    * */
+    var reg6=/^(([1-9]\d{4,9}@qq)|(\w{6,18})@(126|163))\.com/;
+</script>

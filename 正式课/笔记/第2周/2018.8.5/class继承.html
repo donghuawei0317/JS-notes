@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    class A{
+        //class声明的类，只能通过new执行
+        constructor(){
+            //私有属性
+            this.a=12;
+            this.b=13;
+        }
+        getName(){
+            console.log(12);
+        }
+        getAge(){
+            console.log(13);
+        }
+    }
+    class B extends A{
+        constructor(){
+            super();//把父类的属性继承过来
+            this.c=12;
+            this.d=13;
+        }
+        getSex(){
+            console.log('sex');
+        }
+        static getName2(){
+            console.log('getName2');
+        }//把B当作对象添加属性
+    }
+    var b=new B;
+    console.log(b);
+</script>

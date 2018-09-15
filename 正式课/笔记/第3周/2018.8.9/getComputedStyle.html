@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //getComputedStyle()
+    var oDiv=document.getElementById('div1');
+    oDiv.style;//这种方式只可以获取行内设置的样式
+
+    //怎么获取oDiv的宽高
+    oDiv.clientWidth
+
+    window.getComputedStyle(oDiv,null);
+    //window.getComputedStyle(ele,null)；获取到的是个对象，存储了当前对象所有的样式(IE6-8不支持)
+    //ele是要获取样式的元素，第二个参数是当前元素对应的伪类（可以省略）
+    //ele.currentStyle
+    var styleObj=window.getComputedStyle(oDiv);
+    styleObj.height;
+    styleObj.width;
+
+    //函数功能：获取某个元素对应的样式的样式值
+    function getCss(ele,attr) {
+        return window.getComputedStyle(ele)[attr];
+    }
+
+    function getCss(ele,attr) {
+        var res=null;
+        try{
+            res=window.getComputedStyle(ele)[attr];
+        }catch(err){
+            res=ele.currentStyle[attr];//仅支持IE6-8
+        }
+        return res;
+    }
+
+    function getCss(ele,attr) {
+        var res=null;
+        if(window.getComputedStyle()){
+            res=window.getComputedStyle(ele)[attr];
+        }else{
+            res=ele.currentStyle[attr];
+        }
+        return res;
+    }
+
+    function getCss(ele,attr) {
+        var res=null;
+        if(typeof window.getComputedStyle=='undefined'){
+            res=window.getComputedStyle(ele)[attr];
+        }else{
+            res=ele.currentStyle[attr];
+        }
+        return res;
+    }
+
+    //使用浏览器版本判断是否是ie浏览器
+    //"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; McAfee)"
+    function getCss(ele,attr) {
+        var res=null;
+
+    }
+
+    /*
+    * 提高函数适用率
+    * 返回值是数字加单位的，直接处理
+    * */
+    function getCss(ele,attr) {
+        var res=null;
+        try{
+            res=window.getComputedStyle(ele)[attr];
+        }catch(err){
+            res=ele.currentStyle[attr];
+        }
+        var reg=/[+-]?(\d|[1-9]\d+)(\.\d+)?(px|rem|em|pt)?/;
+        if(!isNaN(parseFloat(res))){
+            res=parseFloat(res);
+        }
+        return res;
+    }
+
+    var utils=(function () {
+        function getCss(ele,attr) {
+            var res=null;
+            try{
+                res=window.getComputedStyle(ele)[attr];
+            }catch(err){
+                res=ele.currentStyle[attr];
+            }
+            var reg=/[+-]?(\d|[1-9]\d+)(\.\d+)?(px|rem|em|pt)?/;
+            if(!isNaN(parseFloat(res))){
+                res=parseFloat(res);
+            }
+            return res;
+        }
+    })();
+
+    function getGroup(ele,attr) {
+
+    }
+    getGroup(oDiv,['width','height']);
+
+    function setCss(ele,attr,value) {
+        /*
+        * 需要先判断attr是否需要加单位
+        * */
+        ele.style[attr]=value;
+
+    }
+
+    function setGroup(ele,obj){
+        if(Object.prototype.toString.call(obj)!=='[object Object]'){ return; }
+        for(var k in obj){
+            if(obj.hasOwnProperty((k))){
+                setCss(ele,k,obj[k]);
+            }
+        }
+    }
+    setGroup(oDiv,{width:400,height:400,color:'red'});
+
+    function css() {
+        if(arguments.length==2){
+            if(typeof arguments[1]=='string'){
+                return getCss(arguments[0],arguments[1]);
+            }
+            setGroup(arguments[0],arguments[1]);
+        }else{
+            setCss(arguments[0],arguments[1],arguments[2]);
+        }
+    }
+    css(oDiv,'width');//获取
+    css(oDiv,'width',300);//设置
+    css(oDiv,{width:100,color:'#ccc'});//批量设置
+</script>

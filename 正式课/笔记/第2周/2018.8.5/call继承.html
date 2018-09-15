@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //call继承可以把父类的私有属性继承过来，但是不能继承公有属性
+    function Person(){
+        this.name='zf';
+        this.age=9;
+    }
+    function Person2(){
+        Person.call(this);
+        this.name='中国';
+        this.age=5000;
+    }
+    Person2.prototype.getAge=function () {
+        console.log(this.age);
+    };
+    var per2=new Person2()
+</script>

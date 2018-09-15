@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #div1{
+            width: 800px;
+            height: 200px;
+            margin: 100px auto;
+            border:1px dashed red;
+            overflow: hidden;
+        }
+        ul{
+            width: 1600px;
+        }
+        li{
+            float: left;
+        }
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id='div1' class="box">
+    <ul>
+        <li><img src="img/1.jpg" alt=""></li>
+        <li><img src="img/2.jpg" alt=""></li>
+        <li><img src="img/3.jpg" alt=""></li>
+        <li><img src="img/4.jpg" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    var oDiv=document.getElementsByClassName('box')[0];
+    var oUl=document.getElementsByTagName('ul')[0];
+    oUl.innerHTML+=oUl.innerHTML;
+    var timer=window.setInterval(function(){
+        var n=oDiv.scrollLeft++;
+        if(n==oDiv.scrollLeft){
+            oDiv.scrollLeft=0;
+        }
+    },20);
+</script>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //获取可视窗口的宽度
+    window.onresize=function(){
+        console.log(document.documentElement.clientWidth || document.body.clientWidth);
+    };
+    //获取整个文档的高度
+    document.documentElement.scrollHeight||document.body.scrollHeight;
+    //求当前盒子外边框到body内边框的距离
+    function offset(ele) {
+        var l=ele.offsetLeft;
+        var t=ele.offsetTop;
+        var temp=ele.offsetParent;
+        while(ele){
+
+        }
+    }
+</script>

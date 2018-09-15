@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * fn.apply(obj,xxx);xxx是个数组或者类数组
+    *
+    * 虽然后边的是数组或者类数组，但是传给前边的函数时，是把数组拆开一项一项的传进去的
+    * */
+    function fn(n,m){
+        console.log(this);
+        console.log(arguments);
+    }
+    var obj={name:'abc'};
+    fn.call(obj,1,2,3);
+    fn.apply(obj,[1,2,3]);
+    //----------
+    function f2(){
+        console.log(2);
+    }
+    function f3(){
+        console.log(3);
+    }
+    f2.call(f3);
+    /*
+    * f2中的this指向f3，让f2执行
+    *
+    * call执行：
+    * call执行时，里边的this指向f2，
+    * 让this（）也就是f2执行
+    * 以上说的this都是call中的this
+    *
+    * 把call中的this（也就是f2）中的this改为f3，然后让this（也就是f2）执行
+    * */
+    f2.call.call(f3);
+    /*
+    * 把f2.call视为一个函数FN；
+    * FN.call(f3),FN中的this换成f3，FN执行；
+    * FN f2，把f2.call中的this换成f3，让f2.call执行
+    * f2.call执行，call中的this（f3）执行
+    * */
+
+</script>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * 单例模式：
+    *    var obj={},obj在单例模式中，叫做‘命名空间’；多个命名空间相互独立
+    *    *高级单例模式：具有一定的隐私空间，外界智能访问到自执行函数返回的内容
+    *    var obj=(function(){
+    *       var name='123';
+    *       return{};
+    *    })
+    *    通过单例模式可以实现简单的模块化开发
+    *
+    * 工厂模式：利用函数去批量生产命名空间
+    *    var obj={name:'mn1',age:12};
+    *    var obj={name:'mn2',age:12};
+    *    var obj={name:'mn3',age:12};
+    *    ...
+    *    function factory(name.age){
+    *       var obj={name:name,age:age}
+    *       return obj;
+    *    }
+    *    var obj=factory('mn',13);
+    *
+    * 构造函数：
+    *    function Person(name,age){
+    *       this.name=name;
+    *       this.age=age;
+    *    };
+    *    var obj1=Person('mn',15);
+    *
+    *    var obj2=new Person('xy',16);
+    *    ·new 执行，第一步与普通函数执行一样，先形参赋值，再变量提升；在代码执行之前，又添加了一步：开辟一个堆内存
+    *    把函数执行的主体this指向这个堆内存。然后代码再去执行，执行完成后，默认把创建的对象返回。在这里，我们把
+    *    Person成为一个类，把obj2成为Person的一个实例。
+    *    ·构造函数省略了普通函数var和return两步。
+    *
+    * 原型模式：利用构造函数
+    * 原型（prototype）
+    *
+    * 每一个函数都有一个属性：prototype，这个属性指向函数自己的原型对象；
+    * 每一个对象都有一个__proto__的属性，指向所属类的原型对象；
+    * 每一个默认的原型对象都有一个属性constructor，指向所属的函数本身；
+    *
+    * 所有实例都是一个对象；
+    * 所有类都是一个函数；
+    *    function Person(){
+    *       this.name='zxc';
+    *       this.age=1;
+    *    }
+    *    console.log(Percon.prototype,Percon.prototype.constructor);
+    *       Person.prototype.getName=function(){
+    *       console.log(this.name);
+    *    }
+    *    console.log(Person.prototype.getName());
+    *
+    *    var per1=new Person();//per1被称为Person这个类的一个实例；同时他也是一个对象。
+    *    当构造函数不需要参数时，后边的括号可以省略
+    *    console.log(per1.__proto__)
+    *
+    * function Person(name,age){
+    *    this.name=name;
+    *    this.age=age;
+    * }
+    * var per1=new Person('abc',1);
+    * var per2=new Person('def',2);
+    *
+    * JS中的内置类对应的实例有两种创建方式：
+    *    ·字面量（直接量）var ary=[1,2];var obj={};
+    *    ·通过构造函数 var ary2=new Array(1,2);var obj2=new Object();
+    * */
+</script>

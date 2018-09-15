@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    let ary=[{age:1,name:'小红'},{age:2,name:'小明'},{age:3,name:'小刚'}];
+    //数组按照年龄升序排
+    ary.sort((a,b)=>{return a.age-b.age;});
+    //按照姓名排序：
+    ary.sort((a,b)=>{return a.name.localeCompare(b.name,'zh')});
+
+</script>

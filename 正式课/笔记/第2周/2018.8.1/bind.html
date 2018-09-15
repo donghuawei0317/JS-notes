@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*bind
+    * var f2=f1.bind(obj,1,2,3)
+    * 改变this指向，并把改变后的函数返回出去，
+    * f2执行时，再传参，会跟bind传的参数（除了第一个参数）结合
+    * */
+    function f1(){
+        console.log(arguments);
+    }
+    var obj={name:'abc'};
+    var f2=f1.bind(obj,1,2,3);
+    console.log(f2);
+    //----------
+    Function.prototype.mrBind=function meBind(){
+
+    }
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * 获取元素的方法：
+    * ·getElementById：元素本身；
+    * ·getElementsByClassName：元素集合
+    * ·getElementsByTagName：元素集合
+    * css选择器：
+    * ·querySelector
+    * ·querySelectorAll
+    * -----
+    * 把元素放到页面上：
+    * appendChild：把元素放到父元素的结束标签前
+    * insertBefore(new,old)：把new放到old的前边
+    * -----
+    * DOM映射：通过getElementsxxx方法获取的元素集合存在DOM映射
+    * 通过querySelectorxxx获取的元素集合不存在dom映射
+    * -----
+    * 文档碎片↓
+    * */
+    var frag=document.createDocumentFragment();
+    liAry.forEach((item)=>{frag.appendChild(item)});
+    oUl.appendChild(frag);
+    frag=null;
+</script>

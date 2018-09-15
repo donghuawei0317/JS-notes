@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #div1{
+            width: 800px;
+            height: 200px;
+            border:1px dashed #000000;
+            overflow: hidden;
+        }
+        ul{
+            width: 1600px;
+        }
+        li{
+            float: left;
+        }
+        li img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id=div1>
+    <ul>
+        <li>
+            <img src="img/1.jpg" alt="">
+        </li>
+        <li>
+            <img src="img/2.jpg" alt="">
+        </li>
+        <li>
+            <img src="img/3.jpg" alt="">
+        </li>
+        <li>
+            <img src="img/4.jpg" alt="">
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    var oUl=document.getElementsByTagName('ul')[0];
+    var oDiv=document.getElementsByTagName('div')[0];
+    oUl.innerHTML+=oUl.innerHTML;
+    var timer=window.setInterval(function(){
+        var n=oDiv.scrollLeft++;
+        if(n==oDiv.scrollLeft){
+            oDiv.scrollLeft=0;
+        }
+    },20)
+</script>

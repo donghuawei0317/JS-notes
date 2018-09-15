@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var ary=[{name:'小红',age:1,hobby:'paly'},{name:'张三',age:2,hobby:'sleep'},{name:'李四',age:3,hobby:'eat'}];
+    //根据age排序：
+    var arr=ary.sort(function(a,b){
+        return a.age-b.age;
+    });
+    //根据hobby排序：
+    var arr2=ary.sort((a,b)=>{
+        return a.hobby.localeCompare(b.hobby);
+    });
+    //根据name排序：
+    var arr3=ary.sort((a,b)=>{
+        return a.name.localeCompare(b.name,'zh');//'zh'按照拼音排序
+    })
+</script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //unique
+ /*   Array.prototype.myUnique=function unique(){
+        let obj={};
+        //循环数组，然后判断数组的这一项在不在原来的对象中；
+        //如果在，就把该项删除
+        //如果不在，就把这项添加到obj中
+        for(let i=0;i<this.length;i++){
+            if(obj.hasOwnProperty(this[i])) {
+                this.splice(i,1);
+                i--;
+            }else{
+                obj[this[i]]=this[i];
+            }
+        }
+    };*/
+
+    /*
+    * 这种能通过连续打点的方式调用的形式，我们称为链式调用；
+    * 实现链式调用的关键是看返回值是否仍然是该类的一个实例；
+    * 若每个函数返回值都是this，那么我们就能实现连续的链式调用。
+    * */
+
+
+    Number.prototype.add=function add(n){
+        return this+n;
+    };
+    Number.prototype.minus=function minus(m){
+        return this-m;
+    };
+    var a=12;
+    console.log(a.add(2));
+    //this不是变量，不能进行‘this++’。
+</script>

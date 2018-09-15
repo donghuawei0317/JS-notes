@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    *
+    * */
+    function Person(name,age) {
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.getName = function () {
+        console.log(this.name)
+    };
+    Person.prototype.name = '珠峰培训';
+    var per1 = new Person('小明',18);
+    per1.__proto__.getName = function () {
+        console.log(12);
+    };
+    per1.getName();
+    var per2 = new Person('小红',20);
+    per2.getName();
+
+    Person.prototype = {
+        name:'珠峰',
+        getName: function () {
+            console.log('www.zhufengpeixun.com')
+        }
+    };
+    var per3 = new Person();
+    per3.getName();
+    per2.getName2();
+    per1.getName();
+    /*
+    * ·per1和per2是在修改Person原型指向之前创建的实例，所以它们的__proto__仍然指向原有默认的Person的原型对象；per3是在修改之
+    * 后建立的实例，所以它的__proto__会指向新的所属类的原型对象。
+    * ·当我们把自定义类的原型对象指向更改后，要注意constructor的指向问题，默认类的默认原型指向是不能修改的。
+    * */
+    //----------
+    var name = '中国',age = 5000;
+    function Person() {
+        getName = function () {
+            console.log(this.name)
+        };
+        this.name = 'zfpx';
+        this.age = 9;
+
+    }
+    Person.name = '珠峰';
+    Person.getName = function () {
+        console.log(this.name);
+    };
+    Person.prototype.getName = function () {
+        console.log(this.name);
+    };
+    var obj = {name:'培训',f:Person};
+    var per = new Person();
+    per.getName = function(){
+        console.log(12)
+    };
+    var per2 = new Person();
+    obj.f();
+    Person();
+    per.getName();
+    per2.getName();
+    /*
+    * 普通函数执行：obj.f();Person();
+    * 构造函数执行：var per = new Person();var per2 = new Person();
+    * */
+    //----------
+    function Foo() {
+        getName = function () {console.log(1);};
+        return this;
+    }
+    Foo.getName = function () {console.log(2);}; // 当作对象
+    Foo.prototype.getName = function () {console.log(3);};
+    var getName = function () {console.log(4);};
+    function getName() {console.log(5);}
+
+    Foo.getName();//2
+    getName();//4
+    Foo().getName();//1
+    getName();//1
+    var a = new Foo.getName();
+    var b = new Foo().getName();
+    var c = new new Foo().getName();
+</script>

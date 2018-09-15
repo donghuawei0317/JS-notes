@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>ajax</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+<div class="btn">排序</div>
+<ul>
+    <li>姓名：小红2</li>
+    <li>姓名：小明2</li>
+    <li>姓名：小李2</li>
+</ul>
+</body>
+</html>
+<script>
+    /*
+    * JSON：
+    * 它是一种数据格式，引用数据类型里边只包含数据和对象；字符串出现时，需要双引号包住；字符串属性名都要用双引号包住
+    *     最后一项的后边不能有逗号
+    * */
+    var obj={name:'abc'};
+    var json={"name":"abc"};
+    //var a=JSON.parse(json);//把json数据转化成普通对象
+    //var b=JSON.stringify(a);//把json数据转化成json字符串
+
+    //Ajax是一门技术，用来实现局部数据请求
+    var xhr=new XMLHttpRequest();//创建一个Ajax实例
+    xhr.open('get','huawei/data.json',false);
+    //第一个参数是获取数据的请求类型get\post\put\delet
+    //第二个参数是获取数据的路径（平时说的接口）
+    //第三个参数是同步异步，false是异步，true是同步
+    var data=null;
+    xhr.onreadystatechange=function(){
+        /*
+        xhr.readyState 请求状态码
+        0，未发送请求
+        1，发送请求
+        2，接收响应头
+        3，接收响应体
+        4，请求成功
+        */
+
+        /*
+        * xhr.status 网络状态码
+        * 2开头的一般代表成功
+        * 3开头的代表重定向
+        * 4开头的代表路径错误
+        * 5开头的一般代表服务器错误
+        * */
+        if(xhr.readyState==4&&xhr.status==200){
+            //xhr.responseText 是一个json字符串，需要用Json.parse()转换成json对象
+            data=JSON.parse(xhr.responseText);
+            console.log(xhr.responseText);
+        }
+    };
+    xhr.send();//发送出去
+    console.log(data);
+    //接下来要把数据放到页面上展示
+    var btn=document.getElementsByClassName('btn')[0];
+    var oLis=document.getElementsByTagName('li');
+    /*for(let i=0;i<oLis.length;i++){
+        oLis[i].innerHTML='姓名：'+ data.data[i].name;
+    }*/
+    //点击按钮排序
+
+    /*btn.onclick=function(){
+        data.data.sort(function(a,b){
+            return a.name.localeCompare(b.name,'zh');
+        });
+        for(let i=0;i<oLis.length;i++){
+            oLis[i].innerHTML='姓名：'+ data.data[i].name;
+        }
+    };*/
+    //点击按钮，反向排序
+    var flag=0;
+    btn.onclick=function(){
+        if(flag==0){
+            data.data.sort(function(a,b){
+                return a.name.localeCompare(b.name,'zh');
+            });
+            flag=1;
+        }else{
+            data.data.sort(function(a,b){
+                return b.name.localeCompare(a.name,'zh');
+            });
+            flag=0;
+        }
+        for(let i=0;i<oLis.length;i++){
+            oLis[i].innerHTML='姓名：'+ data.data[i].name;
+        }
+    }
+
+</script>

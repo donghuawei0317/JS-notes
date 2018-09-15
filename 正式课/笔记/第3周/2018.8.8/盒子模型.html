@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        /*#div1{*/
+        /*height: 2000px;*/
+        /*background-color: #f4f4f4;*/
+        /*}*/
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            padding: 20px;
+            border: 10px solid red;
+            margin: auto;
+            background-color: #24ccc8;
+        }
+        #center{
+            position: relative;
+            width: 350px;
+            height: 350px;
+            padding: 10px;
+            margin: auto;
+            border: 10px solid salmon;
+            background-color: palegoldenrod;
+        }
+        #inner{
+            width: 200px;
+            height: 200px;
+            padding: 10px;
+            margin: auto;
+            border: 10px solid #3059fa;
+            background-color: #ee2ad6;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">珠峰培训</div>
+<div id="outer">
+    outer
+    <div id="center">center
+        <div id="inner">inner</div>
+    </div>
+</div>
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+</body>
+</html>
+<script>
+    /*
+    * css盒子模型 width,height,padding,margin,border
+    * display:flex弹性盒模型
+    * -----
+    * js盒子模型
+    * 通过ele.style.xxx这种方法
+    * ·client
+    *     clientWidth=盒子宽度+padding-right/left
+    *     clientHeight=盒子高度+padding-tio/bottom
+    *     clientLeft=盒子左边框的宽度
+    *     clientTop=盒子上边框的宽度
+    * ·offset
+    *     offsetWidth=clientWidth+border-left/right
+    *     offsetHeight=clientHeight+border-top/bottom
+    *     offsetLeft=元素距离上级参照物的left值
+    *     offsetRight=元素的外边框距离上级参照物的right值
+    *     offsetTop=元素的外边框距离上级参照物的内边框的top值
+    *     offsetParent=上级参照物（有定位的父级元素）
+    *     ! 在table标签中，需要注意的特殊情况：没有定位时，td的offsetParent是table，td里边的标签的offsetParent是td！
+    * （结合client和offset）
+    *·scroll
+    *     scrollWidth：当元素没有溢出时，等同于clientWidth；当元素内容溢出时，结果是padding-left+内容宽度，此时若设置了overflow，则结果是padding-left/right+内容宽度
+    *     scrollHeight：内容高度
+    *     scrollTop：卷上去的高度
+    *     scrollLeft：卷过去的宽度
+    *（以上属性中，只有scrollTop和scrollLeft可以修改，其他属性是只读的。）
+    * -----
+    * 获取浏览器一屏的高度：
+    * document.documentElement.clientHeight||document.body.clientHeight
+    * ！有文档声明（<!DOCTYPE html>）时，！
+    * */
+    var oDiv=document.getElementById('div1');
+    console.log(oDiv.clientWidth);
+
+    function offset(ele){
+        var l=ele.offsetLeft;
+        var t=ele.offsetTop;
+        var temp=ele.offsetParent;
+        while(temp&&temp.nodeName!=='BODY'){
+            l+=temp.offsetLeft+temp.clientLeft;
+            t+=temp.offsetTop+temp.clientTop;
+            temp=temp.offsetParent;
+        }
+        return {
+            top:t,
+            left:l
+        }
+    }
+    offset(inner);
+</script>

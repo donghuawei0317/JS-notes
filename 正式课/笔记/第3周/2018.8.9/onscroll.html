@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+
+        }
+        #top{
+            height: 2000px;
+        }
+        img{
+            width: 200px;
+            height: 200px;
+        }
+        #bottom{
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id='top'>top</div>
+<img src="img/1.jpg" alt="">
+<div id="bottom">bottom</div>
+</body>
+</html>
+<script>
+    /*
+    * window.onresize:监听浏览器可视窗口的变化
+    * window.onscroll：监听页面滚动事件
+    *
+    * 图片懒加载：
+    *     ·只有当页面滚动到图片位置显示的时候，才会去加载图片，一开始图片的位置可以放一张小的默认图
+    *     ·优势：提升页面的加载速度；在移动端省流量。
+    *     ·实现原理：监听页面滚动，当页面划到图片位置的时候，再让图片去加载
+    * */
+
+    function imgLoad(ele){
+        var tarT=ele.offsetTop;
+        var cliH=document.documentElement.clientHeight||document.body.clientHeight;
+        var scrH=document.documentElement.scrollTop;
+        if(scrH+cliH>tarT+200){
+            ele.src='img/3.jpg';
+        }
+    }
+    var img=document.getElementsByTagName('img')[0];
+    window.onscroll=function(){
+        imgLoad(img);
+    }
+</script>

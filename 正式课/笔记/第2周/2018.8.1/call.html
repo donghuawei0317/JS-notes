@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * call：改变this，关键字用的
+    *     f1.call(obj);先把f1中的this指向改为obj，再让f1执行
+    * */
+    'use strict';//严格模式
+    function f1(){
+        console.log(this);
+    }
+    var obj={
+        name:'abc',
+    };
+    f1.call(obj);
+    f1.call();
+    f1.call(null);
+    f1.call(undefined);
+    /*
+    * 严格模式下：
+    *     ·属性名不能重复；
+    *     ·this的指向必须注明，否则为‘undefined’；
+    *     ·写道JS文件中，就只对当前JS文件起作用；写道某个函数中，就只对当前函数起作用；
+    *     ·不存在arguments的映射。
+    * */
+    //fn.call(obj,x,y,z...);
+    //第一个参数是改变函数中this指向，后边的是实参。
+</script>

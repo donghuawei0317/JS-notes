@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * hasOwnProperty：查看某属性是否是私有属性。
+    * in：查看某属性是否在原型链中，不区分私有属性和公有属性。
+    * a instanceof b：查看类b是否在实例a的原型链上。
+    * */
+    //检测某属性是否为共有属性：
+    function fn(a){
+        return a in this&&!this.hasOwnProperty(a);
+    }
+    Object.prototype.hasPublicProperty=fn;
+</script>

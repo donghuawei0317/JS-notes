@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>scrollTop</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            border:5px solid #007aff;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id=div1>
+    同学，祝贺你喜提彩蛋~
+    或许你们还在犹豫是否加入，我会坦诚的告诉你我们超酷；
+    在这里大家都用无人车代步，AI音箱不仅播放还可以交互；
+    人工智能是发展的核心技术，做自己让未来不只领先几步；
+    在这里做自己，欢迎来到百度！
+    同学，祝贺你喜提彩蛋~
+    或许你们还在犹豫是否加入，我会坦诚的告诉你我们超酷；
+    在这里大家都用无人车代步，AI音箱不仅播放还可以交互；
+    人工智能是发展的核心技术，做自己让未来不只领先几步；
+    在这里做自己，欢迎来到百度！
+</div>
+</body>
+</html>
+<script>
+    var oDiv=document.getElementById('div1');
+    /*
+    * oDiv.scrollHeight  →内容+上下padding/整个内容的高度
+    * oDiv.clientHeight  →盒子高度（不含边框）
+    * 最大卷去高度maxH=oDiv.scrollHeight-oDiv.clientHeight
+    * */
+    //1、
+   /* var maxH=oDiv.scrollHeight-oDiv.clientHeight;
+    var timer=window.setInterval(()=>{
+        if(oDiv.scrollTop>=maxH){
+            oDiv.scrollTop=0;
+        }else{
+            oDiv.scrollTop++;
+        }
+    },20);*/
+    //2、利用scrollTop有最大值，超过最大值时，scrollTop仍然是最大值
+  /*  var timer=window.setInterval(()=>{
+        var h=oDiv.scrollTop++;//让内容向上滚动/ h是scrollTop的值，然后scrollTop+1
+        if(h==oDiv.scrollTop){  //此处是说最大值+1之后仍然是最大值
+            oDiv.scrollTop=0;
+        }
+    },20);*/
+    //3、
+    var timer=null;
+    var fn=function(){
+        clearTimeout(timer);
+        var h=oDiv.scrollTop++;
+        if(h==oDiv.scrollTop){
+            oDiv.scrollTop=0;
+        }
+        timer=window.setTimeout(function(){
+            fn();
+        },20);
+    };
+    fn();
+</script>

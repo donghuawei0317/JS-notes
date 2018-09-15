@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+
+    //数组中的最大值和最小值
+    var ary=[1,2,3,4,5,6,12,7,8,9];
+    //1、先排序，再取首尾：
+    ary.sort(function(a,b){
+        return a-b;
+    });
+    var max=ary[ary.length-1],min=ary[0];
+    //2、假设法：先假设第一个是最大的，然后循环数组，挨个比较
+    var max=ary[0];
+    for(let i=1;i<ary.length;i++){
+        if(ary[i]>max){
+            max=ary[i];
+        }
+    }
+    //3、
+    var str=ary.toString();
+    Math.max=eval('Math.max('+str+')');
+
+    var max=Math.max.apply(null,ary);
+
+    var max=Math.max(...ary);//‘...’扩展运算符
+
+    //箭头函数:没有this，会往上级作用域查找this；箭头函数不能作为构造函数
+    ary.sort(function(a,b){return a-b});
+    ary.sort((a,b)=>{return a-b;});
+
+    var myBind=function(...arg){
+        var _this=arg[i];
+        arg.shift();
+        return (...arg2)=>{
+            this.apply(_this,arg.concat(arg2));
+        }
+    }
+</script>

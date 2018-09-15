@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * window.getComputedStyle(ele,':after')
+    *     第一个参数是要获取样式的元素；
+    *     第二个参数是查看该元素的某个伪类的样式，可以不写，也可以写null
+    *     通过这个函数获取到的对象，不能修改样式
+    *     ！不兼容IE6-8，在ie6-8中，可以使用currentStyle来获取样式！
+    * */
+    function getCss(ele,attr){
+        var res=null;
+        if(window.getComputedStyle){
+            res=window.getComputedStyle(ele)[attr];
+        }else{
+            res=ele.currentStyle[attr];
+        }
+        return res;
+    }
+    //navigator.userAgent 查看浏览器信息
+    function getCss(ele,attr){
+        var str=navigator.userAgent;
+        var res=null;
+        if(/MSIE *[6-8]/.test(str)){
+            res=ele.currentStyle[attr];
+        }else{
+            res=getComputedStyle(ele)[attr];
+        }
+        return res;
+    }
+    //目前返回的都是字符串
+    function getCss(ele,attr){
+        var str=navigator.userAgent;
+        var res=null;
+        if(/MSIE *[6-8]/.test(str)){
+            res=ele.currentStyle[attr];
+        }else{
+            res=getComputedStyle(ele)[attr];
+        }
+        //先用parseFloat这里这个字符串，若是NaN，则直接返回之前的字符串
+        //用isNaN处理
+        /*if(!isNaN(parseFloat(res))){
+            res=parseFloat(res);
+        }*/
+        //用正则处理
+        var reg=/^[+-]?(\d|[1-9]\d+)(\.\d+)?(px|rem|em|pt)?$/;
+        res=reg.test(res)?parseFloat(res):res;
+        return res;
+    }
+
+    function setCss(ele,attr,value){
+        var reg=/width|height|padding|margin|left|right|top|bottom|fontsize/i;
+        if(reg.test(attr)){
+            value=parseFloat(value)+'px';
+        }
+        ele.style[attr]=value;
+    }
+
+    function setGroup(ele,obj){
+        if(Object.prototype.toString.call(obj)=='[object Object]'){
+            for(var k in obj){
+                if(obj.hasOwnProperty(k)){
+                    setCss(ele,k,obj[k]);
+                }
+            }
+        }
+    }
+    function css(...arg){
+        //把传进来的实参放进arg这个数组中
+        if(arg.length==2){
+            if(typeof arg[1]=='string'){
+                return getCss(arg[0],arg[1]);
+            }
+            setGroup(arg[0],arg[1]);
+        }else{
+            setCss(arg[0],arg[1],arg[2]);
+        }
+    }
+</script>

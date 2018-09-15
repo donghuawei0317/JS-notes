@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 1000px;
+            border: 1px solid red;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        #div2 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+<img src="img/1.jpg" realSrc='img/2.jpg' alt="">
+<div id="div2"></div>
+</body>
+</html>
+<script src="js/toolBag.js"></script>
+<script>
+    var pic = document.getElementsByTagName('img')[0];
+    function loadImg(ele) {
+        if (ele.loaded) {
+            return
+        }
+        var ssh = toolBag.screenScrollH();//页面卷去的高度
+        var sh = toolBag.screenHeight();//一屏的高度
+        var off = toolBag.offset(ele).t;//img盒子边框到body的距离
+        if (ssh + sh > off + 50) {
+            var realSrc = ele.getAttribute('realSrc');
+            var temp = document.createElement('img');
+            temp.src = realSrc;
+            temp.onload = function () { //图片加载完成 的一个事件
+                // ele.style.opacity = 0;
+                ele.src = realSrc;
+                ele.loaded = true;
+                // setTimeout(()=>{
+                //     ele.style.opacity = 1;
+                // },200);\
+                fadeIn(ele);
+            }
+        }
+    }
+    window.onscroll = function () {
+        loadImg(pic);
+    };
+    function fadeIn(ele) {
+        ele.style.opacity = 0;
+        var opa = 0.1;
+        var timer = setInterval(function () {
+            opa += 0.1;
+            ele.style.opacity = opa;
+            if (opa >= 1) {
+                ele.style.opacity = 1;
+                clearInterval(timer);
+            }
+        }, 200)
+    }
+</script>
