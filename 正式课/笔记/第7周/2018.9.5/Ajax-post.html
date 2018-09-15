@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    var xhr = new XMLHttpRequest();//readyState=0
+    xhr.onreadystatechange = function () {
+    console.log(xhr.readyState);
+        if(xhr.readyState==4&&/^2\d{2}/.test(xhr.status)){
+            console.log(xhr.getResponseHeader('date'));//获取响应头中对应项的值
+            console.log(xhr.getAllResponseHeaders());//获取所有的响应头，是一个大字符串
+            /*
+            * readyStates:
+            * 0 → UNSENT
+            * 1 → OPENED
+            * 2 → HEADER-RECEIVED
+            * 3 → LOADING
+            * 4 → DONE
+            * status：
+            * 2XX →
+            * 301 → 永久重定向
+            * 302 → 临时重定向
+            * 304 → 从缓存区去获取数据
+            * 400 → 参数错误
+            * 404 → 路径错误
+            * 405 → 请求方式与后台要求的不一样（get/post）
+            * 5XX → 都是后台问题
+            * */
+        }
+    };
+    xhr.open('post', '1.xml?name="珠峰"', false);//在路径后边
+    var str = encodeURIComponent('珠峰');
+    xhr.setRequestHeader('name', 'str');
+    xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+    xhr.send('name=12');
+    //目前发送给后台的是字符串，怎么把它转成key value的形式：
+    //这就需要我们设置请求头：content-type:application/x-www-form-urlencoded
+    /*
+    * xhr.open();
+    * xhr.setRequsetHeader(key,value);设置相应的请求头
+    * xhr.getResponseHeader(key);
+    * xhr.getAllResponseHeaders();
+    * xhr.send('name-12');
+    *
+    * xhr.abort();
+    * */
+</script>

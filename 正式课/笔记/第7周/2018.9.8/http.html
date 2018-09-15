@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * 从浏览器地址栏输入地址，调完回车，经历的过程：
+    * 敲完回车，是要根据对应的服务器去获取对应的内容；
+    * 服务器的地址都是IP地址,一个IP地址可以对应多个域名；
+    * 在地址栏输入的都是域名，通过域名查找IP尽力的过程：
+    *   ·现在浏览器的缓存区查找对应的IP
+    *   ·若缓存区没有，则去操作系统中查找
+    *   ·去本地区的DNS（domain name system）服务器中查找（分布式系统）
+    *   ·...
+    *   ·最后到顶级域名服务器中查找，在顶级域名服务器中，根据自己的机制，查找到了相应的IP，然后把IP地址返回缓存
+    *   ·浏览器根据查找到的IP地址，去对应的服务器获取内容（获取到的是源代码）
+    *   ·浏览器先渲染DOM树，然后根据css渲染样式，根据js修改或添加DOM结构
+    * ——————
+    * http事务：
+    * 一个完整的 请求+响应
+    * 一般情况下，一个页面需要经历很多次http事务；.js/.css/img 都会进行一次http事务
+    * 一个页面的http越少越好，减少页面的http请求次数
+    * 雪碧图，合并压缩js和css文件
+    * ——————
+    * 常用的顶级域名：
+    *   .com
+    *   .cn
+    *   .net
+    *   .gov
+    *   .edu
+    *   .org
+    *   ...
+    * ——————
+    * http的headers：
+    *     ·general（通用头）
+    *     ·Response Headers（响应头）
+    *     ·Request Header（请求头）
+    * ——————
+    * http中所有的数据交互（不管是前端给后台的，还是后台给前端的）的数据统称为“http报文”
+    * */
+</script>

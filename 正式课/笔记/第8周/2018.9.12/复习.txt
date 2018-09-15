@@ -1,0 +1,9 @@
+·vm上的数据是挂在vm上的（数据劫持get和set）
+·指令：
+    DOM元素上的行内属性，“v-”开头的：
+    - v-model='value'【类似于小胡子语法“{{}}”】
+    - v-text='value'【表单元素】
+    - v-once【只渲染一次】
+    - v-html='p'【可以把变量中的带有的DOM结构渲染出来】
+    - v-for='(val,i) in/of array'
+    - v-on:click='fn'

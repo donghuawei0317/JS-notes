@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        .bg{
+            background: green;
+        }
+        .col{
+            color:blue;
+        }
+        .fot{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id='app'>
+    <!--<div class="bg col" :class="true?'fot':''">-->
+    <!--<div class="bg col" :class="{fot:true}">-->
+    <div class="bg" :class="['fot',cla]">
+        <!--<img :src="pic" alt="" :title="title">-->
+        文字
+    </div>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            pic:'',
+            title:'文字',
+            cla:'col'
+        }
+    })
+</script>

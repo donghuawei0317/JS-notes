@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>{{name}}</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    /*
+    * beforeCreate → created
+    * beforeMount → mounted
+    * beforeUpdate → updated
+    * beforeDestory → destoryed
+    * */
+    let vm = new Vue({
+        el: '#app',
+        data: { name:'asd'},
+        beforeCreate(){//这时有vue的事件，但是没有示例的数据
+            console.log(this.name);//undefined
+        },
+        created(){
+            console.log(this.name);//asd
+        },
+        beforeMount(){//DOM元素渲染之前。询问适使用template模板
+
+        },
+        mounted(){//数据和页面都已渲染完毕
+
+        },
+        beforeUpdate(){
+            alert('更新前');
+        },
+        updated(){//不要在这里放会触发更新视图的东西
+            alert('更新后');
+        },
+        beforeDestory(){
+            alert('销毁前');
+        },
+        destoryed(){
+            alert('销毁后');
+        }
+    });
+    vm.$destory;//销毁组件
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <div :ref="zf">asd</div>
+    <div :ref="zf">asd</div>
+    <div :ref="zf">asd</div>
+    <div :ref="zf">asd</div>
+    <div :ref="zf">asd</div>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            zf:'zf'
+        },
+        created(){
+            console.log(document.getElementById('zf'));
+        },
+        mounted(){
+            //使用$refs在结构中写死的，我们只能获取最后一个元素
+            //但是荣国v-for循环出来的，可以获取全部，得到的结果是一个数组
+            console.log(document.getElementById('zf'));
+            console.log(this.$refs.zf);
+        }
+    })
+</script>

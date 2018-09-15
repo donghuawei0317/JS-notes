@@ -1,0 +1,27 @@
+ajax → async JavaScript and xml
+全局刷新和局部刷新
+全局刷新的优点：数据是在后台直接渲染好后发送给前台，前台只要做渲染就可以了
+          缺点：只能整个页面刷新
+局部刷新，只更新页面的一部分
+·——————
+var xhr=new XMLHttpRequest();
+xhr.open('get','1.xml',false);
+xhr.onreadystatechange=function(){
+    console.dir(xhr);
+    console.log(xhr.readyState);
+    ·——————
+    - xhr.readyState:
+        + 0 → UNSENT
+        + 1 → OPENED
+        + 2 → HEADERS_RECEIVE
+        + 3 → LOADING
+        + 4 → DONE
+};
+xhr.setRequestHeader([key],[value]);【设置请求头，在发送请求之前设置，value不支持中文】
+- 当value是中文的时候，需要转化：
+    + escape([str])/unescape([str])
+    + encodeURI([str])/decodeURI([str])
+    + encodeURIComponent([str])/decodeURIComponent([str])
+xhr.getResponseHeader([key]);【获取响应头中某个值】
+xhr.getAllResponseHeaders();【获取所有的响应头的值】
+xhr.send();

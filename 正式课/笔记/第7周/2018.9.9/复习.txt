@@ -1,0 +1,45 @@
+·http事务：一次完整的请求+响应
+·http报文：一个完整的请求中所有的数据交互
+    - 通用头
+    - 响应头
+    - 请求头
+·URI URL URN
+·URL组成：
+    - 协议：
+        + http
+        + https
+        + ftp
+    - 域名：
+        + 顶级域名（一级域名）
+        + 二级域名
+        ...
+    - 端口号（一般不需要写，取默认即可）：
+        + http默认为80
+        + https默认为443
+        + ftp默认为21
+    - 路径：根据路径找到对应的文件
+    - 问号传参和哈希值（hash，也叫路由）
+·Ajax：
+    - var xhr=new XMLHttpRequest();
+    - xhr.open([method],[url],[async]);
+    - xhr.onreadystatechange=function(){...}
+    - xhr.send();
+    - 函数：
+        + open()
+        + setRequestHeader([key],[value])
+        + getRequestHeader([key])
+        + getAllRequestHeader()
+        + abort()
+        + send([str])
+    - 事件：
+        + onabort → abort执行后触发
+        + ontimeout → 请求超时后触发
+        + onreadystatechange → 监听请求状态
+    - [async]:
+        + true → 同步
+        + false → 异步
+    - get和post的区别：
+        + 传参方式
+        + 传参的大小限制
+        + post相对于get更安全
+        + get有缓存，post没有缓存

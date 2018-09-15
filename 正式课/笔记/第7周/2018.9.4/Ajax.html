@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * Ajax（async JavaScript and xml）
+    *
+    * xml是一种数据传输格式
+    * */
+    var xhr=new XMLHttpRequest();
+    //刚创建时，xhr.readyState是0
+    xhr.open('get','1.xml',false);
+    //open执行之后，xhr.readyState是1
+    xhr.onreadystatechange=function(){
+        console.dir(xhr);
+    };
+    xhr.send();
+    /*
+    * 返回的结果：
+    * response：是一个字符串
+    * responseText：一个字符串
+    * responseXml：有的话是一个对象，没有的话，是null
+    *
+    * Ajax事件：
+    * xhr.open() → 打开链接
+    * xhr.abort() → 中断请求
+    * xhr.setRequestHeader(key,value) → 设置请求头(key：属性名；value：属性值)
+    * xhr.getresponseHeader(key) → 获取响应头中对应的key的value
+    * xhr.getAllResponseHeaders() → 获取所有的响应头
+    * */
+</script>

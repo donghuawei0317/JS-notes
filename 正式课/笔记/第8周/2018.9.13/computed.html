@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <!--<input type="text" v-model="name">
+    <h3>{{msg}}</h3>-->
+    <input type="checkbox" v-model="checkAll">全选
+    <input type="checkbox" v-for="item in ary">
+    <!--<input type="checkbox" v-model="a">CSS
+    <input type="checkbox" v-model="b">JS
+    <input type="checkbox" v-model="c">VUE
+    <input type="checkbox" v-model="d">HTML-->
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: '珠峰培训',
+            ary: [{a: true}, {a: true}, {a: true}, {a: true}]
+        },
+        methods: {},
+        computed: {
+            msg: {
+                get(){
+                    // this 指向 vm 实例；
+                    // msg 时依赖于 this.name 的；
+                    console.log('get');
+                    let str = this.name.split('').reverse().join('');
+                    return str;
+                },
+                set(val){
+                    console.log(val);
+                }
+            },
+            checkAll: {
+                get(){
+                    return this.ary.every((item)=> {
+                        return item.a;
+                    })
+                },
+                set(val){
+                    this.ary.forEach((item)=> {
+                        item.a = val;
+                    });
+                    console.log(val);
+                }
+            }
+        }
+    })
+</script>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <button @click="fn(1,$event,2)">按钮</button>
+
+    <input type="checkbox" v-model="ary" value="1">CSS
+    <input type="checkbox" v-model="ary" value="2">JS
+    <input type="checkbox" v-model="ary" value="3">VUE
+    {{ary}}
+
+    <select name="" id="" v-model="selected">
+        <option value="" disabled>请选择</option>
+        <option value="1">A</option>
+        <option value="2">B</option>
+        <option value="3">C</option>
+        <option value="4">D</option>
+    </select>
+    {{selected}}
+
+    <input type="radio" v-model="sex" value="1">男
+    <input type="radio" v-model="sex" value="0">女
+    {{sex|myFilter(10,20,30)}}
+    {{sex|myFilter2}}
+</div>
+<div id="app2">
+    {{name|myFilter2}}
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    /*
+    * v-on：click → @click
+    * checkbox → v-model绑定一个数组，必须有value
+    * */
+    //———全局过滤器———
+    Vue.filter('myFilter2',(data)=>{
+        return data+'珠峰';
+    });
+    //——————
+    let vm=new Vue({
+        el:'#app',
+        data:{
+            name:'abc',
+            ary:[],
+            selected:'',
+            sex:1,
+        },
+        methods:{
+            fn(n,e,m){
+                //this指向实例
+                console.log(this);
+                console.log(n,e,m);
+            }
+        },
+        //———过滤器———
+        filters:{
+            myFilter(val,n,m,x){
+                console.log(n, m, x);
+                return val==0?'女':'男';
+            }
+        }
+    });
+    let vm1=new Vue({
+        el:'#app2',
+        data:{
+            name:'abc',
+        }
+    })
+</script>

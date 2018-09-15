@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <h1>{{name}}</h1>
+    <button @click="fn($event,'珠峰培训')">按钮</button>
+    <div @mouseenter="move" @mouseleave="leave">{{name}}</div>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: '珠峰',
+        },
+        methods: {//这里的方法名不能和data中的属性名重复
+            fn(){
+                //fn写到nethods中，fn的this指向实例本身
+                console.log(this);
+                console.log(arguments);//当fn在DOM结构中不加括号时，默认接受一个事件对象；加括号时，就不会把事件对象传进来
+            },
+            move(e){
+                console.log('mouseenter');
+                console.log(e);
+            },
+            leave(e){
+                console.log('leave');
+            }
+        }
+    })
+</script>

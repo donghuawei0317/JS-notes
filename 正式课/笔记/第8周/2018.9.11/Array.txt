@@ -1,0 +1,43 @@
+·VUE 数据操作
+
+JS数据类型：
+    ·基本数据类型：number、string、Boolean、null、undefined
+    ·引用数据类型：{} 、[] 、function 、Date 、RegExp 、...
+数组常用方法：
+    ·会改变原数组：pop、push、shift、unshift、reverse、sort、splice
+    ·不改变原数组：slice、concat、toString、join、indexOf
+    ·迭代的方法：【for(let i=0;i<ary.length;i++){...}：编程式；ary.forEach(()=>{...})：声明式】
+        - forEach
+        - map
+        - filter【过滤，不改变原数组。循环当前项时，若return的值是true，则把当前项复制一份返回给新数组；若return的值是false，则不返回任何数据】
+            let ary=[1,2,3,4,5];
+            let arr=ary.filter(function(item,index){
+                return true;【新数组与原数组内容一样】
+                return false;【新数组一项也没有】
+                return item>3;【arr=[4,5]】
+
+                let t=Math.random();
+                return t>0.5;
+            })；
+        - some【返回的是布尔类型数据（true或false），循环的项目中，只要有一项满足条件，返回的就是true；全都不满足条件时，返回的是false。只要出现一项是true，就不再继续循环】
+            let arr=ary.some((item,index)=>{
+                let t=Math.random();
+                return t>0.5;
+            })
+        - every【返回的是布尔类型数据（true或false），循环的项目中，都满足条件时返回的是true；只要有一项不满足条件，返回的就是false。只要出现一项是false，就不再循环】
+        - find【返回值是符和条件的第一项，没有符合条件的时候，返回值是“undefined”】
+            let arr=ary.some((item,index)=>{
+                 return t>3;
+            })
+        - includes【返回的是布尔类型数据（true或false）。[item]是要查找的项，从索引为[index]的那一项开始查找。该项在数组中，返回值是true；不在，就返回false】
+            let bol=ary.includes([item],[index]);
+        - reduce((prev,next,index,ary)=>{},xxx);【返回值是最后一次迭代的返回值。两个参数，第二个参数不传的话，则prev默认是数组的第一项；再循环时，就是上一次循环return的数值】
+            【用reduce进行数组求和】
+            let sum=ary.reduce((prev,next)=>{
+                retuen prev+next;
+            });
+        - for of【只能用于循环数组】
+            ary.a=10;
+            for (let value of ary){
+                console.log(value);【不会循环到a】
+            }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <!--根据据输入的内容决定显示的提示信息-->
+
+    <input type="text" v-model="name2">
+    <h3>{{msg2}}</h3>
+    <!--<input type="text" v-model="name">
+    <h3>{{name+'123'}}</h3>
+    <h3>{{fn()}}</h3>
+    <h3>{{name|myFilter}}</h3>
+    <h3>{{msg}}</h3>-->
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: '',
+            name2:'',
+//            msg2:''
+        },
+        filters:{
+            myFilter(val){
+                return val+'123'
+            }
+        },
+        methods: {
+            fn(){
+                return this.name + '123'
+            }
+        },
+        computed: {
+            msg: {
+                get(){
+                    return this.name + '123';
+                },
+                set(){
+                }
+            },
+            /*msg2(){//简写，只有get没有set
+                //computed不支持异步
+                setTimeout(()=>{
+                    let n=this.name2.length;
+                    if(n<=2){
+                        return '名字不能少于两位';
+                    }else if(n>=4){
+                        return '名字不能超过三位';
+                    }else{
+                        return '正确';
+                    }
+                },200);
+            }*/
+            msg2:{//简写，只有get没有set
+                //computed不支持异步
+                get(){
+                    setTimeout(()=>{
+                        let n=this.name2.length;
+                        if(n<=2){
+                            this.msg2='名字不能少于两位';
+                        }else if(n>=4){
+                            return '名字不能超过三位';
+                        }else{
+                            return '正确';
+                        }
+                    },200);
+                },
+                set(){
+
+                }
+            }
+        },
+        /*watch:{
+            //只能监听data中存在的，支持异步
+            name2(cur,prev){
+                setTimeout(()=>{
+                    if(cur.length>=4){
+                        this.msg2='名字太长';
+                    }
+                },2000)
+            }
+        }*/
+    })
+</script>

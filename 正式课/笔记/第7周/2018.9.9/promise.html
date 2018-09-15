@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    /*  var p = new Promise(function (resolve, reject) {
+     //        resolve('success');
+     reject('fail');
+     });
+     console.log(p);
+
+     p.then((data)=> {
+     console.log(data);
+     }, (res)=> {
+     console.log(res);
+     });
+
+     var p2 = p.then((data)=> {
+     console.log(data);
+     return data;
+     }, (res)=> {
+     console.log(res);
+     return res;
+     });
+
+     p2.then((data)=> {
+     console.log(data);
+     }, (res)=> {
+     console.log(res);
+     });*/
+    //———Promise.call———
+   /* let p1 = new Promise((resolve, reject)=> {
+        resolve('success1');
+//        reject('fail-1');
+    });
+    let p2=new Promise((resolve,reject)=>{
+//        resolve('success2');
+        reject('fail-2');
+    });
+    Promise.all([p1,p2]).then((res)=>{
+        console.log(1);
+        console.log(res);
+    }).catch((e)=>{
+        console.log(2);
+        console.log(e);
+    })*/
+   //———Promise.race———
+    let p1=new Promise((resolve,reject)=>{
+//        resolve('success-1');
+        reject('fail-1');
+    });
+    let p2=new Promise((resolve,reject)=>{
+//        resolve('success-2');
+        reject('fail-2')
+    });
+    Promise.race([p1,p2]).then((res)=>{
+        console.log(1);
+        console.log(res);
+    }).catch((e)=>{
+        console.log(2);
+        console.log(e);
+    })
+</script>

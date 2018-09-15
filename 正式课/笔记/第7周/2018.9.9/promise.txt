@@ -1,0 +1,93 @@
+·Promise是原生JS的一个类，为了解决JS中异步的问题
+·Promise接收一个参数，这个参数是一个回调函数
+    - 这个回调函数接收两个参数：
+        + 第一个参数是用来异步执行成功之后执行的回调函数
+        + 第二个参数是用来异步执行失败之后执行的回调函数
+        + 以上两个回调函数只能执行其中一个，其中一个执行了，另一个就不再执行
+·Promise的实例有三种状态：pending、resolved、rejected
+    - pending → 实例创建完成时就是pending
+    - resolve → 执行之后是resolved
+    - reject → 执行之后是rejected
+·then是Promise原型上的函数，它接收两个函数作为参数：
+    - 第一个函数是个成功的回调
+    - 第二个函数是个失败的回调
+    - then返回的是一个新的Promise实例，该新实例的then接收的参数是上一个then return的参数；无论是上一个then的成功函数还是失败函数，只要执行成功了，新实例的then的成功函数就会执行，反之，新实例的then的失败函数执行
+——————
+function Promise(fn){
+    let self=this;
+    self.status='pending';
+    self.value=undefined;【先设置传递给成功函数的初始值】
+    self.reason=undefined;【先设置传递给失败函数的初始值】
+    self.resCallbacks=[];【存储成功的回调】
+    self.rejCallbacks=[];【存储失败的回调】
+    function resolve(value){
+        if(self.status==='pending'){
+            self.status='resolve';
+            self.value=value;
+            self.resCallbacks.forEach((item)=>{
+                item && item(self.value);
+            })
+        }
+    }
+    function reject(reason){
+        if(self.status==='pending'){
+            self.status='rejected';
+            self.reason=reason;
+            self.rejCallbacks.forEach((item)=>{
+                item && item(self.reason);
+            })
+        }
+    }
+    try{
+        fn(resolve,reject);
+    }catch(e){
+        reject(e);
+    }
+}
+Promise.prototype.then=function(res,rej){
+    let sel=this;
+    if(self.status=='resolved'){
+        res(self.value);
+    }
+    if(self,status=='rejected'){
+        rej(self.reason);
+    }
+    if(self.status=='pending'){
+        self.resCallbacks.push(res);
+        self.rejCallbacks.push(rej);
+    }
+}
+——————
+var p=new Promise(function(resolve,reject){
+    resolve('success');①
+    reject('fail');②
+    【①和②只能执行其中一个，看执行的先后顺序，一个先执行，另一个就不执行】
+});
+
+p.then((data)=>{
+    console.log(data);③【若①执行，此处的“data”就是“success”】
+},(res)=>{
+    console.log(res);④【若②执行，此处的“res”就是“fail”】
+});
+
+var p2=p.then((data)=>{
+    console.log(data);⑤【同③处】
+    return data;
+},(res)=>{
+    console.log(res);⑥【同④处】
+    return res;
+});
+
+p2.then((data)=>{
+    console.log(data);⑦【无论是⑤还是⑥执行，都会使此处执行；若⑤执行且return了data，则此处的“data”就是“success”，若⑥执行且return了res，则此处的“data”就是“fail”，若没有return，则此处的“data”就是“undefined”】
+},(res)=>{
+    console.log(res);⑧
+})
+———all———
+var p1=new Promise((resolve,reject)=>{});
+var p2=new Promise((resolve,reject)=>{});
+Promise.all([p1,p2].then((data)=>{},(res)=>{}))【中有p1和p2都成功的时候，all才会执行成功函数】
+———race———
+var p1=new Promise((resolve,reject)=>{});
+var p2=new Promise((resolve,reject)=>{});
+Promise.race([p1,p2].then((data)=>{},(res)=>{}))

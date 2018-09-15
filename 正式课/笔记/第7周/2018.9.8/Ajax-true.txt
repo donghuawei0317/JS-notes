@@ -1,0 +1,11 @@
+var xhr=new XMLHttpRequest();
+xhr.open('get','1.xml',true);
+xhr.onreadystatechange=function(){
+    console.log(xhr.readyState);
+    ·——————
+    1 → 2
+    2 → 3
+    3 → 4
+}
+xhr.send();
+console.log(xhr.readyState); → 输出1

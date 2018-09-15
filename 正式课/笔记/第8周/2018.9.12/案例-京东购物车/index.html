@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        [v-cloak]{
+            display:none
+        }
+    </style>
+</head>
+<body>
+<div id='app' v-cloak>
+    <table class="table table-bordered text-center">
+        <thead>
+        <tr>
+            <th><input type="checkbox">全选</th>
+            <th>商品</th>
+            <th></th>
+            <th></th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>小记</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item,i) in list">
+            <td><input type="checkbox"></td>
+            <td>
+                <!--行内属性，vue中用v-bind:src=""去绑定，简写是:src=""-->
+                <img :src="item.pic" alt="">
+            </td>
+            <td><p>{{item.title}}</p></td>
+            <td><p>{{item.desc}}</p></td>
+            <!--<td>{{(item.price/100).toFixed(2)}}</td>-->
+            <td>{{item.price|toFixed2}}</td>
+            <td><!--v-item.trim:去除首尾空格-->
+                <!--v-item.number:把字符串转换为数字-->
+                <button @click="add(item.count)"> + </button>
+                <!--<input type="text" v-model="item.count" @input.stop="change(item.count,i)">-->
+                <input type="text" v-model="item.count" @input.stop="change(item)">
+                <button> - </button>
+            </td>
+            <!--<td>{{(item.count*item.price/100).toFixed(2)}}</td>-->
+            <td>{{item.count*item.price|toFixed}}</td>
+            <!--<td><button class="btn btn-danger" @click="remove(i)">删除</button></td>-->
+            <td><button class="btn btn-danger" @click="remove(item)">删除</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        created(){
+            //一进来就执行，这里的this也是执行这个vm实例的
+            this.getData();
+        },
+        data: {
+            list: []
+        },
+        methods: {
+            //↓getData:function(){...}的简写
+            getData(){
+                axios.post('data.json', {name: 'abc'}).then((data)=> {
+                    console.log(data);
+                    this.list = data.data;
+                }).catch((e)=> {
+                    console.log(e);
+                })
+            },
+            add(item){
+                console.log(item);
+                return item++;
+            },
+            /*change(n,index){
+                //把n处理成大于0的正整数
+                n=n.replace(/\D/g,'');
+                n=n<0?1:n;
+                console.log(n);
+                this.list[index].count=n;
+            }*/
+            change(item){
+                let n = item.count;
+                n = n.replace(/\D/g,'');
+                n = n < 0 ? 1 : n;
+                item.count = n;
+            },
+            /*remove(i){
+                this.list=this.list.filter((item,index)=>{
+                    return i!==index;
+                })
+            }*/
+            remove(i){
+                this.list=this.list.filter((item,index)=>{
+                    return i!==item;
+                })
+            }
+        },
+        filters: {
+            toFixed(val){
+                return "￥" + (val / 100).toFixed(2);
+            },
+            toFixed2(val){
+                return "￥"+val.toFixed(3);
+            }
+        }
+    })
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <!--<input type="text" v-model="text" @keyup="keyup">-->
+    <input type="text" v-model="text" @keyup.13="keyup2">
+    <ul>
+        <li v-for="(val,i) in ary">
+            {{val}}
+            <!--修饰符stop阻止冒泡-->
+            <button @click.stop.prevent="del(i)"> ╳ </button>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            text: '',
+            ary: [],//存储每次放进来的输入框的内容
+        },
+        methods: {
+            keyup(e){
+                let code = e.keyCode;//抬起的按键对应的键值码
+                this.text=this.text.replace(/^ +| +$/g,'');
+                if (code == 13 && this.text) {
+                    this.ary.push(this.text);//把text放到数组中
+                    this.text = '';//把输入框的内容清空
+                }
+            },
+            keyup2(e){
+                this.text=this.text.replace(/^ +| +$/g,'');
+                if(!this.text)return;
+                this.ary.push(this.text);
+                this.text = '';
+            },
+            del(i){
+                //删除点击的那一项，删除数组中的某一项
+                this.ary.splice(i,1);
+            }
+        }
+    })
+</script>

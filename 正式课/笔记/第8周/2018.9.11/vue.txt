@@ -1,0 +1,12 @@
+渐进式、框架
+·库：JQ、zepto、animate.css【我们调用库】
+·框架：vue、react、bootstrap、angular【有自己的一套解决方案。每一个框架都有自己的一个核心库。框架第哦啊用我们写的代码】
+——————
+渐进增强，优雅降级
+
+·渐进式框架：
+    本身有一套自己的核心代码；
+    vue全家桶 vue vue-router axios vueX（状态管理器）
+    Object.defineProperty
+·MVC【M：model；V：view；C：controller；数据单向】
+·MVVM【M：model；V：view；VM：view-model；数据双向，通过数据改变视图，通过视图改变数据】

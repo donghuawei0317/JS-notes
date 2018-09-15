@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    var xhr = new XMLHttpRequest();//readyState=0
+    xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);
+        if(xhr.readyState==2){
+            console.log(2);
+        }
+        /*
+        * 最初，xhr.readyState=0；
+        * open时，readyState从0变为1，触发一次这个函数
+        * 然后等send发出去之后，由于是异步请求，主队列接着执行，等主队列执行完成之后；
+        * http触发的readState的变化才会体现出来
+        *
+        * 先把readyState从1变为2，触发这个函数；
+        * 再把readyState从2变为3，
+        * 最后把readyState从3变为4；
+        * http请求结束
+        * */
+    };
+    xhr.open('post', '1.xml?name="珠峰"', true);//在路径后边
+    var str = encodeURIComponent('珠峰');//在请求头中
+    xhr.setRequestHeader('name', 'str');//在请求体中
+    xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+    xhr.timeout=10;//请求时间的上限（单位：毫秒）
+    xhr.ontimeout=function(){//超时就会触发的函数
+        console.log('超时');
+    };
+    xhr.send('name=12');
+</script>

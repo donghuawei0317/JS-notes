@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <select name="" id="select" v-model="ary" @change="change" multiple><!---->
+        <!--<option value="1" disabled>请选择</option>&lt;!&ndash;disable【该项不能选择】&ndash;&gt;-->
+        <option value="1">香蕉</option>
+        <option value="2">苹果</option>
+        <option value="3">橘子</option>
+        <option value="4">西瓜</option>
+    </select>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    /*let op = document.getElementsByTagName('options');
+    for (var i = 0; i < op.length; i++) {
+        op[i].onclick=function(){
+            console.log(this.innerHTML);
+        }
+
+    }*/
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            ary:[],
+        },
+        methods:{
+            change(){
+                console.log(this.ary);
+            }
+        }
+    })
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    {{name}}
+    <input type="checkbox" v-model="checked" value="1">CSS
+    <input type="checkbox" v-model="checked" value="2">JS
+    <input type="checkbox" v-model="checked" value="3">VUE
+    {{checked}}
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm=new Vue({
+        el:'#app',
+        data:{
+            name:'珠峰',
+            checked:[],//在checkbox里只有“true”和“false”
+        }
+    })
+</script>

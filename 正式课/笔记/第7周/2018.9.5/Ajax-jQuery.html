@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script src="jquery-3.3.1.js"></script>
+<script>
+    $.ajax({
+        type:'get',
+        url:'1.xml',
+        data:{a:12},
+        async:true,//true异步/false同步
+        dataType:'xml',//获取的数据要是一个json数据
+        cache:true,//支持使用缓存；针对get有作用
+        success:function(data){
+            console.log(data);
+        },
+        error:function(res){
+            console.log(res);
+        }
+    });
+    $.get('https://www.easy-mock.com/mock/5b8f8eeaf9900e4a46af7613/ajax/userInfo',{q:12,w:13},function(data){
+        console.log(data);
+    })
+</script>

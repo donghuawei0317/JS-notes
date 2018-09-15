@@ -1,0 +1,21 @@
+·get
+    第一个参数是接口；
+    第二个参数是请求参数；
+    第三个参数是回调函数；
+$.get('1.json',{name:abc},function(data){
+
+});
+——————
+$ajax({
+    type:'get',
+    url:'1.json',
+    data:{name:abc},
+    async:true,(默认是true)
+    cache:false,（是否缓存）
+    success:function(data){},
+    error:function(res){}
+});
+——————
+$post('1.json',{name:abc},function(data){
+
+})

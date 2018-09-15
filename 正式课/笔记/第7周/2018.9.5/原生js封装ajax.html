@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax封装</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script src="./jquery-3.3.1.js"></script>
+<script>
+/*
+jquery的ajax请求：
+type :get
+url: "./1.xml"
+data: {q:1,w:2}       传递的参数
+dataType:"json"/"xml"     数据格式
+async:true   是否支持异步，默认支持
+cache:true    是否允许有缓存，默认允许
+success:function (){}
+error:function (){}
+
+
+ */
+function ajax(options) {
+    //初始化数据
+    let {
+        type = "post",
+        url,
+        data,
+        dataType = "json",
+        cache = false,
+        async = true,
+        success,
+        error
+    } = options;
+
+//先创建一个原生的ajax对象
+    let xhr = new XMLHttpRequest();
+//判断data，需要放到open之前操作;而data的处理方式及判断需要根据type来决定
+    let str = "";//注意let声明的变量不要放条件体中，因为它会形成块级作用域，外边拿不到
+    if (Object.prototype.toString.call(data) == "[object Object]") {
+        for (let k in data) {
+            if (data.hasOwnProperty(k)) {
+                str += `${k}=${data[k]}&`;
+            }
+        }
+        str = str.slice(0, str.length - 1);
+        //判断type是get系列的还是post系列的，使用正则判断
+        let isGet = null;
+        let getReg = /get|head|delete/i;
+        let postReg = /post|put/i;
+        if (getReg.test(type)) {
+            isGet = true;
+        } else if (getReg.test(type)) {
+            isGet = false;
+        } else if (typeof data == "string") {
+            str = data;
+        } else {
+            str = null;
+        }
+        //若cache是false则表示不需要做缓存，需要我们拼接一个随机数在url后边
+        if (isGet) {
+            if (cache) {
+                url += `?${str}`;
+            } else {
+                url += `?${str}&t=` + Math.random();
+            }
+        }
+    }
+    xhr.open(type, url, async);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && /^2\d{2}|^304/.test(xhr.status)) {
+            //代表请求成功,这时我们需要根据dataType判断返回的数据格式
+            switch (dataType.toLowerCase()) {
+                case "json":
+                    //需要把json字符串转为json对象，并返回给成功函数
+                    try {
+                        let json = JSON.parse(xhr.resoponseText);
+                        (success instanceof Function) && success(xhr);
+                    }
+                    catch (e) {
+                        (success instanceof Function) && success(xhr.responseXML);
+                    }
+                    //(success instanceof Function) && success(xhr);//防错机制，success存在才让它执行
+                    break;
+                case "xml":
+                    //如果需要返回xml格式数据，则直接返回原生的responseXML即可
+                    (success instanceof Function) && success(xhr.responseXML);
+            }
+        }
+        if (/^[45]\d{2}/.test(xhr.status)) {
+            (error instanceof Function) && error(xhr);
+        }
+        console.log(xhr.responseXML);
+    }
+    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+    xhr.send(str);
+
+}
+
+ajax({type:"get",url:"./1.xml"});
+
+
+$.ajax({
+	type:"get",
+	data:{q:1,b:2},
+	url:"./1.xml",
+	dataType:"xml",
+	cache:true,//表示支持使用缓存，禁止使用缓存则设置为false即可，默认是true，post不支持缓存
+	async:true,//表示进行异步操作
+	success:function (data){console.log(data);},
+	error:function (){}
+});
+
+</script>

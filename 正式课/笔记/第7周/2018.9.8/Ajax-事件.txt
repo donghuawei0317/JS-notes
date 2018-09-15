@@ -1,0 +1,16 @@
+var xhr=new XMLHttpRequest();
+xhr.open('get','1.xml?a=1',true);
+———中断请求就会执行的函数———
+xhr.onabort=function(){...}
+——————
+xhr.onreadystatechange=function(){
+    concole.log(xhr.readyState)
+}
+xhr.timeout=1000;（设置超时，请求超时就会中断（毫秒））
+———请求超时执行的函数———
+xhr.ontimeout=function(){...}
+——————
+xhr.send();（即使send执行了，但请求要等到主任务队列执行完才会发送出去）
+xhr.abort();（在此处中断请求）
+for(var i=0;i<99999999;i++){}
+xhr,abort();（在此处不能中断http请求，但能终端JS执行）

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <!--<template v-if="!true">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+        <div>D</div>
+    </template>
+    <div v-else-if="true">
+        培训
+    </div>
+    <div v-else>
+        2018
+    </div>-->
+    <button @click="flag=!flag">按钮</button>
+    <!--<button @click="change">按钮</button>-->
+    <template v-if="flag">
+        <!--<label for="inp">登陆</label>
+        <input type="text" id="inp">-->
+        <label>登陆</label>
+        <input type="text" key="1">
+    </template>
+    <template v-else>
+        <label>注册</label>
+        <input type="text" id="a" key="2">
+    </template>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            flag:true,
+        },
+        methods:{
+            change(){
+                this.flag=!this.flag;
+            }
+        }
+    })
+</script>

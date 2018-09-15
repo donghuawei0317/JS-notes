@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <style>
+        .bg{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        .move-enter{
+            opacity: 0;
+        }
+        .move-enter-active,.move-leave-active{
+            transition:1s linear;
+        }
+       /* .move-leave-active{
+            opacity: 0;
+        }*/
+        .move-leave-to{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<div id='app'>
+    <button @click="flag=!flag">按钮</button>
+    <transition name="move">
+        <div class="bg" v-show="flag">
+
+        </div>
+    </transition>
+
+    <transition enter-actve-class="animated tada" leave-active-class="animated rubberBand">
+        <div class="bg"></div>
+    </transition>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    /*
+    * 在vue中，只有v-show和v-if能触发transition动画
+    * */
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            flag:true,
+        }
+    })
+</script>

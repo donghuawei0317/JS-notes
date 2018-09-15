@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    function ajaxPromise(options) {
+        let {
+                type = 'get',
+                url,
+                data = {},
+                dataType = 'json',
+                cache = false
+        }=options;
+        //data参数处理
+        let str = '';
+        for (let k in data) {
+            if (data.hasOwnProperty(k)) {
+                str += `${k}=${data[k]}&`;
+            }
+        }
+        str = str.slice(0, str.length - 1);
+        let isGet = null;
+        if (/get|head|delete/.test(type)) {
+            isGet = true;
+        } else {
+            isGet = false;
+        }
+        if (isGet) {
+            if (url.indexOf('?') == -1) {
+                url += `?${str}`;
+            } else {
+                url.replace(/&$/, '');
+                url += `&${str}`;
+            }
+            cache ? null : url += `&t=${Math.random()}`;
+        }
+        return new Promise(function (resolve, reject) {
+            let xhr = new XMLHttpRequest();
+            console.log(xhr);
+            xhr.open(type, url);//默认是异步
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && /^2\d{2}|304/.test(xhr.status)) {
+                    //成功获取数据
+                    //根据不同的数据类型进行处理
+                    let data = null;
+                    switch (dataType) {
+                        case 'json':
+                            data = JSON.parse(xhr.responseText);
+                            break;
+                        case 'xml':
+                            data = xhr.responseXML;
+                            break;
+                        default:
+                            data = xhr.responseText;
+                    }
+                    resolve(data);
+                }
+                if (xhr.readyState == 4 && /^[45]\d{2}/.test(xhr.status)) {
+                    reject(xhr);
+                }
+            };
+            if (!isGet) {
+                xhr.setRequestHeader('content', 'application/x-www-form-urlencoded');
+            }
+            xhr.send(str);
+        })
+    }
+    ajaxPromise({
+        type: 'get',
+        url: '1.json',
+        data: {a: 1},
+        dataType: 'json',
+        cache: false,
+    }).then((data)=> {
+        console.log(data);
+        return data;
+    })
+</script>

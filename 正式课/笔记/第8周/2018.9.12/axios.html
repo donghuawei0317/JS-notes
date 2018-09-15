@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <button @click.stop="getData">按钮</button>
+</div>
+</body>
+</html>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script src="./node_modules/axios/dist/axios.js"></script>
+<script>
+    //  axios.defaults.baseURL='http://www.163.com';//设置默认的请求路径
+    /*let a = axios.create({
+    //  baseURL:'http://www.163.com',
+        timeout: 3000,
+        headers: {'content-type': "application/x-www-form-urlencoded", a: 12}
+    });*/
+    //请求拦截器
+    axios.interceptors.request.use(function (config) {
+        // 在发送请求之前做些什么
+        alert('1');
+        return config;
+    }, function (error) {
+        // 对请求错误做些什么
+        return Promise.reject(error);
+    });
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            ary: []
+        },
+        methods: {
+            getData(){
+                /*axios.get('package1.json').then((data)=>{
+                 console.log(data);//data是一个大对象，里面的data才是我们要的数据
+                 console.log(data.data);
+                 }).catch((res)=>{
+                 console.log(res);
+                 });*/
+                /* axios({
+                 method: 'get',
+                 url: 'package.json',
+                 params: {//使用get方法的时候，想要用data传参，我们需要把参数写到params里
+                 name: 'abc',
+                 age: 1
+                 }
+                 }).then((data)=> {
+                 console.log(data);
+                 })*/
+                axios.get('package.json?ww=12').then();
+            }
+        }
+    })
+    /*
+    * 会用get和post；
+    * 知道可以设置基础路径
+    * 知道可以设置请求拦截和响应拦截
+    * */
+</script>

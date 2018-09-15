@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    var xhr = new XMLHttpRequest();//readyState=0
+    xhr.open('get','1.xml?a=1',false);//请求接口方式 接口 同步;open执行完，readyState=1
+    //readyState=2、3、4都是http重置的
+    xhr.onreadystatechange=function(){
+        console.log(xhr.readyState);
+    };
+//    xhr.setRequestHeader('name','zhufeng');//设置请求头
+//    xhr.setRequestHeader('name','珠峰');//是中文时会报错，这是需要把中文转换成计算机支持的字符
+    /*var str=escape('珠峰');//之后再用unescape转换为中文，但是一般后台不支持这种转义方式
+    xhr.setRequestHeader('name','str');*/
+    //var str=encodeURI('珠峰');//之后可以用decodeURI(str)转义回中文
+    var str=encodeURIComponent('珠峰');//可以转义特殊字符，比如‘/’、‘：’，可以用decodeURIComponent(str)转义回中文
+    xhr.setRequestHeader('name',str);
+    xhr.send('b=2');
+</script>

@@ -1,0 +1,15 @@
+var xhr=new XMLHttpRequest();
+xhr.open('get','1.xml?a=1',true);
+xhr.onreadystatechange=function(){
+
+}
+xhr.send();
+·——————
+var xhr=new XMLHttpRequest();
+xhr.open('post','1.xml',true);
+xhr.onreadystatechange=function(){
+
+}
+xhr.setRequestHeader('c',3);
+xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+xhr.send('a=1&b=2');

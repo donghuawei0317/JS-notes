@@ -1,0 +1,2 @@
+·npm run xxx → 在package.json中的script里设置xxx
+·直接使用node 1.js
