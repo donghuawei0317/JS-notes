@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1' class="div1">
+    <div class=""></div>
+    <div class=""></div>
+    <div class=""></div>
+    <div class=""></div>
+    <div class=""></div>
+</div>
+</body>
+</html>
+<script>
+    //单个类名
+    function getByClass(str,context){
+        context=context||document;
+        var ary=[];
+        var str=str.replace(/^ +| +$/g,'');
+        var ele=context.getElementsByTagName('*');//context下所有的元素
+        for (var i = 0; i < eles.length; i++) {
+            //查看每一个元素中是否含有str这个类名
+            var reg=new RegExp('(^| +)'+str+'( +|$)');
+            if(reg.test(ele[i].className)){
+                ary.push(ele[i]);
+            }
+        }
+    }
+    //多个类名
+    function getByClass2(str,context){
+        context=context||document;
+        str=str.replace(/^ +| +$/g,'');
+        var strArray=str.split(/ +/g);
+        var ary=[];//存放符合要求的元素
+        var eles=context.getElementsByTagName('*');
+        for (var i = 0; i < strArray.length; i++) {
+            ary=[];
+            var reg=new RegExp('(^| +)'+strArray[i]+'( +|$)');
+            for(var k=0;k<eles[k].length;k++){
+                ary.push(eles[k]);
+            }
+        }
+    }
+</script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        #outer{
+            width: 300px;
+            height: 300px;
+            background: #0aeeaa;
+            margin: auto;
+        }
+        #center{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: auto;
+        }
+        #inner{
+            width: 100px;
+            height: 100px;
+            background: #0fa6ea;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div id='outer'>outer
+    <div id="center">center
+        <div id="inner">inner</div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var outer=document.getElementById('outer');
+    var center=document.getElementById('center');
+    var inner=document.getElementById('inner');
+    outer.onclick=function(){
+        console.log('outer');
+    };
+    center.onclick=function(){
+        console.log('center');
+    };
+    inner.onclick=function(e){
+        e=e||window.event;
+        var tar=e.target||e.srcElement;
+        e.stopPropagation();
+        e.cancelBubble=true;
+        console.log('inner');
+    };
+    /*
+    * 事件的传播机制：
+    *   ·第一阶段：捕获阶段；
+    *   ·第二阶段：冒泡阶段；
+    *
+    *   DOM的0级事件：执行是在冒泡阶段进行的
+    *
+    * onmouseenter 是在捕获阶段触发；
+    * onmouseover 是在冒泡阶段触发
+    * */
+</script>

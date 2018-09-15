@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+<div class="box"></div>
+<div class="box box1"></div>
+<div class="box box1 box2"></div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script>
+    var oDiv = document.getElementsByClassName('box');
+    console.log(oDiv);
+    //判断元素是否含有某类名
+    function hasClass(ele,str) {
+        str = str.replace(/^ +| +$/g, '');
+        var reg = new RegExp('(^| +)' + str + '( +|$)');
+        if (reg.test(ele.className)) {
+            return true;
+        }
+        return false;
+    }
+    console.log(hasClass(oDiv[0], 'box'));
+    console.log(toolBag.hasClass(oDiv[0], 'box'));
+
+    function hasClass2(ele,str) {
+        str = str.replace(/^ +| +$/g, '');
+        var classArray = str.split(/ +/);
+        for (var i = 0; i < classArray.length; i++) {
+            var reg = new RegExp('(^| +)' + classArray[i] + '( +|$)');
+            if (!reg.test(ele.className)) {
+                return false;
+            }
+        }
+        return true;
+    }
+//    console.log(hasClass2(oDiv[0],'box1 box2',));
+
+    //添加className
+    function addClass(ele, str) {
+        if (!hasClass2( ele,str)) {
+            ele.className += ' ' + str;
+        }
+    }
+    addClass(oDiv[0], 'box2');
+
+    function addClass2(ele,str) {
+        str = str.replace(/^ +| +$/g, '');
+        var classArray = str.split(/ +/);
+        if (hasClass2(ele,str)) {
+            return
+        }
+        for (var i = 0; i < classArray.length; i++) {
+            if (!hasClass2( ele,classArray[i])) {
+                ele.className += (' ' + classArray[i]);
+            }
+        }
+    }
+    addClass2( oDiv[0],'box3 box4');
+
+    //移除某元素的某个className
+    function removeClass(ele, str) {
+        str = str.replace(/^ +| +$/g, '');
+        var reg = new RegExp('(^| +)' + str + '( +|$)', 'g');
+        var str1 = ele.className.replace(reg, ' ');
+        ele.className = str1;
+    }
+    removeClass(oDiv[0], 'box2');
+
+    function removeClass2(ele, str) {
+        str = str.replace(/^ +| +$/g, '');
+        if(!hasClass2(ele,str))return;
+        var classArray = str.split(/ +/g);
+        for (var i = 0; i < classArray.length; i++) {
+            var reg = new RegExp('(^| +)' + classArray[i] + '( +|$)', 'g');
+            ele.className = ele.className.replace(reg, ' ');
+        }
+    }
+//    removeClass2(oDiv[2],'box');
+</script>

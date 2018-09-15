@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+<div id='div2'>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+     * 订阅
+     *
+     * 发布
+     *
+     * 取消订阅
+     * */
+    /*var ary=[];//事件池
+     function on(f){//存储订阅人名单
+     ary.push(f);
+     }
+
+     function fire(){
+     ary.forEach((item)=>{
+     item&&item();//让名单里的执行
+     })
+     }
+
+     function off(f){//取消发布
+     var n=ary.indexOf(f);//从名单中找到对应的人
+     ary.splice(n,1);//把这个人从名单中删除
+     }
+
+     function f1(){
+     console.log(1);
+     }
+     function f2(){
+     console.log(2);
+     }
+     function f3(){
+     console.log(3);
+     }
+
+     on(f1);
+     on(f2);
+     on(f3);
+
+     fire();
+
+     off(f2);
+     fire();*/
+
+    var oDiv1 = document.getElementById('div1');
+    var oDiv2 = document.getElementById('div2');
+    /*function on(ele,f){
+     ele.ary=ele.ary||[];
+     ele.ary.push(f);
+     }
+     function fire(ele){
+     ele.ary.forEach((item)=>{
+     item&&item();
+     })
+     }
+     function off(ele,f){
+     var n=ele.ary.indexOf(f);
+     ele.ary.splice(n,1);
+     }
+
+     function f1(){
+     console.log(1);
+     }
+     function f2(){
+     console.log(2);
+     }
+     function f3(){
+     console.log(3);
+     }
+     on(oDiv1,f1);
+     on(oDiv1,f2);
+     on(oDiv1,f3);
+
+     on(oDiv2,f3);
+
+     fire(oDiv2);
+     fire(oDiv1);*/
+
+    function on(ele, type, f) {
+        ele[type] = ele[type] || [];
+        if(n>-1)return;
+        ele[type].push(f);
+    }
+    function fire(ele, type) {
+        ele[type].forEach((item)=> {
+            item && item();
+        });
+    }
+    function off(ele, type, f) {
+        var n = ele[type].indexOf(f);
+        if(n!=-1){
+            ele[type].splice(n, 1);
+        }
+    }
+</script>

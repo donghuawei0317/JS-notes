@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 160px;
+            height: 100px;
+        }
+
+        #div1 img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #div2 {
+            width: 320px;
+            height: 200px;
+            position: absolute;
+            float: left;
+            display: none;
+        }
+
+        #div2 img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>
+    <img src="images/lange.jpg" alt="">
+</div>
+<div id='div2'>
+    <img src="images/lange.jpg" alt="">
+</div>
+</body>
+</html>
+<script>
+    var div1 = document.getElementById('div1');
+    var div2 = document.getElementById('div2');
+    div1.onmouseenter=function(){
+        div2.style.display='block';
+    };
+    div1.onmouseleave=function(){
+        div2.style.display='none';
+    };
+    div1.onmousemove=function(e){
+        e=e||window.event;
+        var tar=e.target||e.srcElement;
+        div2.style.left=e.pageX+20+'px';
+        div2.style.top=e.pageY+20+'px';
+    }
+</script>

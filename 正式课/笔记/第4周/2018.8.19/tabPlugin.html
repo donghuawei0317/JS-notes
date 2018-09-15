@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 600px;
+            margin: auto;
+        }
+
+        .til {
+            width: 600px;
+            height: 50px;
+            display: flex;
+        }
+
+        .til li {
+            flex: 1;
+            text-align: center;
+            line-height: 50px;
+            border: 1px dashed #0fa6ea;
+            cursor: pointer;
+        }
+
+        .til li.current {
+            background: #0aeeaa;
+        }
+
+        .content {
+            border: 1px solid #007aff;
+            width: 600px;
+            height: 400px;
+            text-align: center;
+            font-size: 25px;
+            display: none;
+        }
+
+        .content.current {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id='box'>
+    <ul class="til">
+        <li class="current">css</li>
+        <li>js</li>
+        <li>vue</li>
+    </ul>
+    <div class="contendBox">
+        <div class="content current">css</div>
+        <div class="content">js</div>
+        <div class="content">vue</div>
+    </div>
+</div>
+</body>
+</html>
+<script src="jquery-3.3.1.js"></script>
+<script src="toolBag.js"></script>
+<script>
+  /*  var $lis = $('#box .til>li');
+    var $contents = $('#box .content');
+    $lis.on('click', function () {
+        console.log(this);
+        var $this = $(this);
+        $this.addClass('current').siblings().removeClass('current');
+        var n = $this.index();
+        $contents.eq(n).addClass('current').siblings().removeClass('current');
+    });*/
+    ~function(){
+        function a(options){
+            options=options||{};
+            var _defaultOption={
+                eventType:'click'
+            };
+            for (var k in options) {
+                _defaultOption[k]=options[k];
+            }
+            var $box=this;
+            var $lis=$box.find('ul.til>li');
+            var $contents=$box.find('.content');
+
+            $lis.eq(_defaultOption.index).addClass('current').siblings().removeClass('current');
+
+            $contents.eq(_defaultOption.index).addClass('current').siblings().removeClass('current');
+
+            $lis.on(_defaultOption.eventType, function () {
+                console.log(this);
+                var $this = $(this);
+                $this.addClass('current').siblings().removeClass('current');
+                var n = $this.index();
+                $contents.eq(n).addClass('current').siblings().removeClass('current');
+            })
+        }
+        $.fn.extend({
+            a:a
+        })
+    }();
+    $('#box').a({
+        index:2,
+        eventType:'mouseenter'
+    })
+</script>

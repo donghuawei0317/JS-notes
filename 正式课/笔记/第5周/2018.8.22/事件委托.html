@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 700px;
+            height: 400px;
+            margin: auto;
+            border:1px solid #000;
+        }
+        #box nav{
+            width: 200px;
+            float: left;
+        }
+        #box nav a{
+            display: block;
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-bottom: 1px solid #000;
+            box-sizing: border-box;
+        }
+        #box nav a.current{
+            background: #007aff;
+            color:#fff;
+        }
+        #box section{
+            width: 500px;
+            height: 400px;
+            float: left;
+            background: #0aeeaa;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id='box'>
+    <nav>
+        <a class="current" href="javascript:;">导航1</a>
+        <a href="javascript:;">导航2</a>
+        <a href="javascript:;">导航3</a>
+        <a href="javascript:;">导航4</a>
+        <a href="javascript:;">导航5</a>
+        <a href="javascript:;">导航6</a>
+        <a href="javascript:;">导航7</a>
+        <a href="javascript:;">导航8</a>
+    </nav>
+    <section>
+        导航1内容
+    </section>
+</div>
+</body>
+</html>
+<script>
+    /*
+    * 事件委托：给元素一个个绑定事件太浪费性能，我们直接给它们的父元素绑定，利用事件的冒泡，点击子元素的时候，会触发父级元素的绑定事件,我们找到点击的事件源
+    * */
+    var box=document.getElementById('box');
+    var section=document.getElementsByTagName('section')[0];
+    var oAs=box.getElementsByTagName('a');
+    box.onclick=function(e){
+        e=e||window.event;
+        var tar=e.target||e.srcElement;
+        console.log(tar);
+        if(tar.nodeName.toLowerCase()=='a'){
+            var str=tar.innerHTML+'内容';
+            section.innerHTML=str;
+            [...oAs].forEach((item)=>{item.className=''});
+            tar.className='current';
+        }
+    }
+</script>

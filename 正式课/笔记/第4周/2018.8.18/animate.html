@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border:1px dashed #0fa6ea;
+            background-color: #0aeeaa;
+            position: absolute;
+            top:0;
+            left:100px;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    ~function(){
+        var moveTypeBag={
+            linear:function linear(change,duration,time,begin){
+                return change/duration*time+begin;
+            },
+        };
+
+        function move(ele,obj,duration,moveType,T){
+            T=T||17;
+            moveType=moveType||'linear';
+            var begin={},
+                    change={},
+                    time=0;
+            for(var k in obj){
+                if(obj.hasOwnProperty(k)){
+                    begin[k]=toolBag.css(ele,k);
+                    change[k]=obj[k]-begin[k];
+                }
+            }
+            ele.timer=setInterval(function(){
+                time+=T;
+                if(time>=duration){
+                    clearInterval(ele.timer);
+                    time=duration;
+                    ele.timer=null;
+                }
+                for(var k in obj){
+                    if(obj.hasOwnProperty(k)){
+                        var curPos=moveTypeBag[moveType](change[k],duration,time,begin[k]);
+                        toolBag.css(ele,k,curPos);
+                    }
+                }
+            },T);
+        }
+        window.myAnimate=move;
+    }();
+    myAnimate(oDiv,{top:500,left:500},2000);
+</script>

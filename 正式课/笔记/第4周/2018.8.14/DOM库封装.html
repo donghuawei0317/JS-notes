@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1' class="box">
+    珠峰培训
+    <p class="box" id="p1">1</p>
+    <p class="box1">2</p>
+    <!--注释-->
+    <p class="box2">3</p>
+    <p class="box box1">4</p>
+    <p class="box box1 box2">5</p>
+</div>
+</body>
+</html>
+<script>
+    /*
+     * children：元素子节点
+     * childNodes:所有的子节点
+     * */
+    var oDiv = document.getElementById('div1');
+    var oP = document.getElementById('p1');
+    //----------获取某个元素的子元素节点
+    function children(ele) {
+        //先去拿所有的子节点，然后再从这些子节点中筛选出元素子节点
+        //var childs=ele.childNodes;
+        //直接循环children可以减少循环次数
+        var childs = ele.children;
+        var ary = [];
+        for (var i = 0; i < childs.length; i++) {
+            if (childs[i].nodeType == 1) {
+                ary.push(childs[i]);
+            }
+        }
+        return ary;
+    }
+    console.log(children(div1));
+    console.log(children(p1));
+    //----------获取有某个类名的元素
+    function getByClass(str, context) {//str：类名 ；context：上下文
+        /*
+         * 先去拿到context下所有的元素子节点；
+         * 然后再从这些节点中筛选出有str这个类名的
+         * */
+        context = context || document;
+        var ary = [];//放符合条件的元素
+        //var eles=children(context);
+        var eles = context.getElementsByTagName('*');//把context下所有的标签都拿到
+        /*
+         * 筛选：根据元素的类名中是否有str
+         * */
+        for (var i = 0; i < eles.length; i++) {
+            //用正则判断eles[i].className中是否有str这个类名
+            //var reg=new RegExp('^ *'+str+' *$');//只可以匹配到单个，类名的所有情况
+            var reg = new RegExp('(^| +)' + str + '( +|$)');
+            if (reg.test(eles[i].className)) {
+                ary.push(eles[i]);
+            }
+        }
+        return ary;
+    }
+    console.log(getByClass('box'));
+    var a=document.getElementsByClassName('box');
+    console.log(a);
+    //——————
+    function getByClass2(str, context) {
+        context = context || document;
+        str=str.replace(/^ +| +$/g,'');
+        var classAry = str.split(/ +/g);
+        var eles = context.getElementsByTagName("*");
+        for (var k = 0; k < classAry.length; k++) {
+            var ary = [];
+            var reg = new RegExp('(^| +)' + classAry[k] + '( +|$)');
+            for (var i = 0; i < eles.length; i++) {
+                if (reg.test(eles[i].className)) {
+                    ary.push(eles[i]);
+                }
+            }
+            eles = ary;
+        }
+        return ary;
+    }
+    console.log(getByClass2('box box1'));
+    //——————判断元素有没有某个className
+    function hasClass(ele,str){
+        str=str.replace(/^ +| +$/g,'');
+        var reg = new RegExp('(^| +)' + str + '( +|$)');
+        return reg.test(ele.className);
+    }
+    function hasClass2(ele,str){
+        str=str.replace(/^ +| +$/g,'');
+        var ary=str.split(/ +/g);
+        for(var i=0;i<ary.length;i++){
+            var reg = new RegExp('(^| +)' + ary[i] + '( +|$)');
+            if(!reg.test(ele.className)){
+                return false;
+            }
+        }
+        return true;
+    }
+    console.log(hasClass2(div1, 'box'));
+    //——————添加className
+    /*
+    * 思路一：先把str与元素之前的类名拼接起来，然后分割成数组，再给数组去重；去重之后再用空格拼接成字符串，最后把这个字符串赋值给元素的className
+    * */
+    function addClass(ele,str){
+        str=str.replace(/^ +| +$/g,'');//去除首位空格
+        if(hasClass(ele,str))return;//如果之前有这个类名，直接return
+        var ary=str.split(/ +/);//把str分割成数组，每一项都是类名
+        for(var i=0;i<ary.length;i++){
+            if(!hasClass(ele,ary[i])){
+                ele.className+=(' '+ary[i]);
+            }
+        }
+    }
+    addClass(div1,'box');
+    //——————删除某个className
+    function deleteClass(ele,str){
+        str=str.replace(/^ +| +$/g,'');
+        if(!hasClass(ele,str))return;
+        var ary=str.split(/ +/g);
+        for(var i=0;i<ary.length;i++){
+            var reg=new RegExp('(^| +)' + ary[i] + '( +|$)','g');
+            ele.className=ele.className.replace(reg,' ');
+        }
+    }
+    deleteClass(div1,'box');
+</script>

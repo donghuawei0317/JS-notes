@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+<input type="text" id="inp">
+</body>
+</html>
+<script>
+    var inp=document.getElementById('inp');
+    /*inp.onkeyup=function(){
+        //this.value=12;
+        this.value=this.value.replace(/\D/g,'');//只能输入数字
+    }*/
+    if(inp.oninput!==undefined){
+        //oninput 监听input框value值的变化，在IE中不兼容
+        inp.oninput=function(){
+            this.value=this.value.replace(/\D/g,'');
+            console.log(this.value);
+        }
+    }else{
+        inp.onpropertychange=function(){
+            //onpropertychange兼容IE
+            this.value=this.value.replace(/\D/g,'');
+            console.log(this.value);
+        }
+    }
+    //——————
+    //onchange value值发生改变且失去焦点时才会触发
+    //——————
+    /*
+    * ——window——
+    * window.onload
+    * window.onresize
+    * window.onscroll
+    * ——————
+    * ——移动端——
+    * touchstart
+    * touchmove
+    * touchend
+    * */
+</script>

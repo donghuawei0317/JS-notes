@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        #div1 {
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #0fa6ea;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    var oDiv=document.getElementById('div1');
+    oDiv.onclick=function(){
+        console.log(1);
+    };
+    oDiv.onclick=function(){
+        console.log(2);
+    };
+    //DOM 0级事件绑定会存在覆盖的现象，下边的代码会把上边的代码覆盖
+    //DOM 2级事件绑定。支持绑定多个函数；第三个参数相同时，才会处理重复绑定，这时就不再往事件添加
+    /*oDiv.addEventListener('click',function(){
+        console.log(3);
+    },false);*/
+    /*
+    * 第一个参数：事件类型（没有‘on’）
+    * 第二个参数：要执行的函数
+    * 第三个参数：一个布尔值，‘true’：绑定的事件在捕获阶段触发；‘false’：绑定的事件在冒泡阶段触发。一般默认是false。
+    * */
+    function f1(){
+        console.log(4);
+    }
+    oDiv.addEventListener('click',f1,false);
+    oDiv.addEventListener('click',f1,false);
+    oDiv.removeEventListener('click',f1,false);//只能移除有函数名的函数，不能移除匿名函数
+    /*
+    * IE低版本的DOM 2级事件绑定
+    * ele.attachEvent('onclick',function(){})
+    * ele.detachEvent('onclick',function(){})
+    * 只有两个参数：
+    * 第一个参数：事件类型，有on
+    * 第二个参数：要执行的函数
+    * attachEvent没有处理重复绑定
+    * */
+</script>

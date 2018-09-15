@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1, #div2 {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            /*background: #00ae66;*/
+            position: absolute;
+            line-height: 100px;
+            text-align: center;
+            cursor: move;
+            user-select: none;
+            box-shadow: inset -5px -5px 15px 0;
+            background: linear-gradient(to bottom right, #fff 5%, #00ae66 95%);
+        }
+
+        #div2 {
+            background: linear-gradient(to bottom right, #fff 5%, #0055cc 95%);
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+<div id='div2'>文字内容</div>
+</body>
+</html>
+<script src="jquery-3.3.1.js"></script>
+<script>
+    var oDiv1 = document.getElementById('div1');
+    var oDiv2 = document.getElementById('div2');
+    class Drag {
+        constructor(ele) {//ele是通过new传进来的参数
+            //私有属性
+            //在这里绑定onmousedown
+            $(ele).on('mousedown', this.dragStart.bind(this));
+            this.ele = ele;
+            this.$start = $.Callbacks();
+            this.$move = $.Callbacks();
+            this.$end = $.Callbacks();
+        }
+
+        dragStart(e) {
+            //记录鼠标和盒子的初始位置
+            this.startX = $(this.ele).offset().left;
+            this.startY = $(this.ele).offset().top;
+            this.mx = e.pageX;
+            this.my = e.pageY;
+            $(document).on('mousemove', this.dragMove.bind(this));
+            $(document).on('mouseup', this.dragEnd.bind(this));
+            this.$start.fire();
+        }
+
+        dragMove(e) {
+            var x = e.pageX - this.mx + this.startX;
+            var y = e.pageY - this.my + this.startY;
+            $(this.ele).css({
+                left: x,
+                top: y
+            });
+            this.$move.fire();
+        }
+
+        dragEnd() {
+            $(document).off('mousemove');
+            $(document).off('mouseup');
+            this.$end.fire();
+        }
+    }
+    //目标 通过new能直接实现oDiv的拖拽
+    var d1 = new Drag(oDiv1);
+    var d2 = new Drag(oDiv2);
+    console.log(d1);
+    console.log(d1.__proto__);
+    var n = 1;
+    function addZindex(ele) {
+        this.ele.style.zIndex = n++;
+    }
+    d1.$start.add(addZindex.bind(d1));
+    d2.$start.add(addZindex.bind(d2));
+</script>

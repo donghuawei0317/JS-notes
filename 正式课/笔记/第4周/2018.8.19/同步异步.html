@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * JS是单线程的
+    * 常见的异步
+    *   ·定时器
+    *   ·事件绑定
+    *   ·Ajax请求
+    * 浏览器怎么规划JS的异步？
+    *   ·一个主任务队列，一个等待任务队列
+    *       - 主任务队列是指代码从上到下依次执行
+    *       - 等待任务队列存放的是异步代码
+    *       - 等待任务队列中的代码执行的前提是主任务队列中的代码执行完毕
+    * 定时器有一个最小的默认时间，在不同的浏览器里，这个最小默认时间也不同
+    * window.onload=function(){...};页面加载完成后执行函数
+    * window.ready=function(){...};DOM树加载完成后执行函数
+    * function f1(){...};function f2(f1){...};function f3(){f1();}; 一个函数执行过程让另一个函数f1执行，我们就成f1为回调函数
+    *
+    * ‘promise’：es6新增的类
+    *
+    * 回调地狱
+    * */
+    var p=new Promise(function(res,rej){
+        var data=null;
+        var xhr=new XMLHttpRequest();
+        xhr.open('get','data.json');
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4&&xhr.status==200){
+                data=JSON.parse(xhr.responseText);
+                res(data);
+            }
+        }
+        xhr.send();
+    }).then(function(data){
+        console.log('yes');
+    },function(data2){
+        console.log('no');
+    })
+</script>

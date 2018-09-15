@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border:1px dashed #0fa6ea;
+            background-color: #0aeeaa;
+            position: absolute;
+            top:0;
+            left:100px;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    function move(ele,obj,duration,T){
+        T=T||17;
+        var begin={},
+                change={},
+                time=0;
+        for(var k in obj){
+            if(obj.hasOwnProperty(k)){
+                begin[k]=toolBag.css(ele,k);
+                change[k]=obj[k]-begin[k];
+            }
+        }
+        ele.timer=setInterval(function(){
+            time+=T;
+            if(time>=duration){
+                clearInterval(ele.timer);
+                time=duration;
+                ele.timer=null;
+            }
+            for(var k in obj){
+                if(obj.hasOwnProperty(k)){
+                    var curPos=linear(change[k],duration,time,begin[k]);
+                    toolBag.css(ele,k,curPos);
+                }
+            }
+        },T);
+        function linear(change,duration,time,begin){
+            return change/duration*time+begin;
+        }
+    }
+    move(oDiv,{top:500,left:500},5000,17);
+</script>

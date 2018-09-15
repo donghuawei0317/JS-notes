@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: #0aeeaa;
+            border-radius: 50%;
+            cursor: move;
+            position: relative;
+        }
+        #div2{
+            width: 400px;
+            height: 400px;
+            border:2px solid red;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div id='div1' draggable="true"></div>
+<div id="div2"></div>
+</body>
+</html>
+<script>
+    var oDiv1=document.getElementById('div1');
+    var oDiv2=document.getElementById('div2');
+    //———给拖动的元素绑定的———
+    oDiv1.ondragstart=function(e){
+        console.log(e);
+    };
+    oDiv1.ondragover=function(e){
+//        console.log(e);
+    };
+    oDiv1.ondragend=function(){
+        console.log('end');
+    };
+    //———给目标元素绑定的———
+    oDiv2.ondragenter=function(e){
+        console.log('enter');
+    };
+    oDiv2.ondragover=function(e){
+        e.preventDefault();
+    };
+    oDiv2.ondragleave=function(e){
+        console.log('leave');
+    };
+oDiv2.ondrop=function(e){
+    console.log('drop');
+}
+</script>

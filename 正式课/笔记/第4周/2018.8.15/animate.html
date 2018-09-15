@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            position: relative;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script src="animation.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    myAnimate(oDiv,2000,{top:200,left:200});
+</script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 50px;
+            height: 50px;
+            margin-top: 2000px;
+            cursor: pointer;
+        }
+        #div2{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+<div id='div2'>文字内容</div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    var oDiv2=document.getElementById('div2');
+    oDiv.onclick=function(){
+        var timer=setInterval(function(){
+            if(toolBag.screenScrollH()<=0){
+                clearInterval(timer);
+                timer=null;
+            }
+            document.documentElement.scrollTop-=20;
+            document.body.scrollTop-=20;
+        },17)
+    };
+
+
+    oDiv2.onclick=function(){
+        if(this.running)return;
+        this.running=true;
+        var duration=1000,
+            change=toolBag.screenScrollH(),
+            speed=change/duration;
+        this.timer=setInterval(()=>{
+            var move=speed*30;
+            change=toolBag.screenScrollH();
+            if(change<=0){
+                clearInterval(this.timer);
+                this.running=false;
+            }
+            document.documentElement.scrollTop-=move;
+            document.body.scrollTop-=move;
+        },17)
+    }
+
+</script>

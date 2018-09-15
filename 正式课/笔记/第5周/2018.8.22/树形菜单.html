@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<ul id="box">
+    <li>
+        <span class="one1">一级菜单1</span>
+        <ul>
+            <li>
+                <span class="two">二级菜单1</span>
+            </li>
+            <li>
+                <span class="two">二级菜单2</span>
+                <ul>
+                    <li>
+                        <span class="three">三级菜单1</span>
+                    </li>
+                    <li>
+                        <span class="three">三级菜单2</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span class="one2">一级菜单2</span>
+        <ul>
+            <li>
+                <span class="two">二级菜单1</span>
+            </li>
+            <li>
+                <span class="two">二级菜单2</span>
+                <ul>
+                    <li>
+                        <span class="three">三级菜单1</span>
+                    </li>
+                    <li>
+                        <span class="three">三级菜单2</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span class="one3">一级菜单3</span>
+        <ul>
+            <li>
+                <span class="two">二级菜单1</span>
+            </li>
+            <li>
+                <span class="two">二级菜单2</span>
+                <ul>
+                    <li>
+                        <span class="three">三级菜单1</span>
+                    </li>
+                    <li>
+                        <span class="three">三级菜单2</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
+<script src="jquery-3.3.1.js"></script>
+<script>
+    var box = document.getElementById('box');
+    var oSpans = document.getElementsByTagName('span');
+    //———设置菜单默认折起———
+    [...oSpans].forEach((item)=> {
+        //item是每一个span；目标是让每一个span的弟弟ul折起来
+        var oUl = item.nextElementSibling;//获取span的弟弟元素节点
+        if (oUl && oUl.nodeName.toLowerCase() == 'ul') {
+            oUl.style.display = 'none';
+        }
+    });
+    //———给大盒子绑定点击事件———
+    box.onclick = function (e) {
+        e = e || window.event;
+        var tar = e.target || e.srcElement;
+        //tar是事件源：判断是不是span，如果是，就让弟弟ul展开或者折起
+        if (tar.nodeName.toLowerCase() === 'span') {
+            var oul = tar.nextElementSibling;//获取事件源的弟弟元素节点（在本例中就是ul标签）
+            if (oul && oul.nodeName.toLowerCase() === 'ul') {
+                if (oul.style.display == 'none') {
+                    oul.style.display = 'block';
+                } else {
+                    oul.style.display = 'none';
+                    var uls = oul.querySelectorAll('ul');//获取oul里边所有的ul标签
+                    //当事件源的弟弟元素节点折起的时候，将弟弟元素节点中的所有ul折起
+                    [...uls].forEach((item)=> {
+                        item.style.display = 'none';
+                    })
+                }
+            }
+        }
+    };
+    //——————
+    /*  var $box=$('#box'),
+     $oSpan=$('#box span');
+     $.each($oSpan,function(index,item){
+     var $oul=$(item).next();
+     if($oul.length){
+     $oul.hide();
+     }
+     });
+     $box.on('click',function(ev){
+     var $tar=$(ev.target);
+     if($tar[0].nodeName.toLowerCase()=='span'){
+     var $oul=$tar.next();
+     if($oul.length){
+     if($oul.css('display')=='none'){
+     $oul.show();
+     }else{
+     $oul.hide();
+     $oul.find('ul').hide();
+     }
+     }
+     }
+     })*/
+</script>

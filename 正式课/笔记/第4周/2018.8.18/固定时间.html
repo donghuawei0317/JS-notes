@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border:1px dashed #0fa6ea;
+            background-color: #0aeeaa;
+            position: absolute;
+            top:0;
+            left:100px;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script>
+    //2s走完400px
+    var oDiv=document.getElementById('div1');
+    function move(ele,duration,attr,target){
+        var begin=toolBag.css(ele,attr),
+                time=0,
+                speed=(target-begin)/duration;
+        ele.timer=setInterval(function(){
+            time+=17;
+            if(time>=2000){
+                clearInterval(ele.timer);
+                timer=null;
+                return;
+            }
+            toolBag.css(ele,attr,time*speed+begin);
+        },17);
+    }
+    move(oDiv,2000,'left',600);
+
+</script>

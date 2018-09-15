@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    var oDiv=document.getElementById('div1');
+    /*
+    * DOM 2级事件绑定支持一个元素绑定多个事件
+    * DOM 0级事件绑定一个元素仅能绑定一个事件，若绑定了多个事件，后面的事件后将前面的事件覆盖掉
+    *   DOM 0级事件解除绑定：oDiv.onclick=null；
+    * 标准浏览器下
+    * oDiv.addEventListener('click',fn,false)
+    *
+    * IE低版本
+    * oDiv.attachEvent('onclick',fn)
+    * */
+</script>

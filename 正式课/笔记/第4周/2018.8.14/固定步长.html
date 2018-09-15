@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: #007aff;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script src="js/toolBag.js"></script>
+<script>
+    /*
+    * 固定步长的运动:每次移动相同的距离
+    * */
+    var oDiv=document.getElementById('div1');
+    var l=0;
+    var tarL=toolBag.screenWidth()-oDiv.offsetWidth;
+    var timer=window.setInterval(function(){
+        l+=10;
+        if(l>=tarL){
+            clearInterval(timer);
+//            l=tarL;
+        }
+        toolBag.css(oDiv,'left',l);
+    },20)
+</script>

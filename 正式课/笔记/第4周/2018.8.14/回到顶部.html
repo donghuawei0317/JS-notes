@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>返回顶部</title>
+    <link rel="icon" href="">
+    <style>
+        #div1 {
+            height: 5000px;
+            background: linear-gradient(#007aff, #00a77b, #0aeeaa);
+        }
+
+        .btn {
+            cursor: pointer;
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            display: none;
+        }
+
+        .btn2 {
+            cursor: pointer;
+            position: fixed;
+            bottom: 0;
+            right: 50px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+<a href="#div1">返回顶部</a>
+<button class="btn">固定步长-返回顶部</button>
+<button class="btn2">固定时间-返回顶部</button>
+</body>
+</html>
+<script src="js/toolBag.js"></script>
+<script>
+    var btn = document.getElementsByClassName('btn')[0];
+    var btn2 = document.getElementsByClassName('btn2')[0];
+    //——固定步长——
+    btn.onclick = function () {
+        if (this.timer != null)return;
+        this.timer = window.setInterval(() => {
+            var tarT = toolBag.screenScrollH();
+            tarT -= 10;
+            if (tarT <= 0) {
+                clearInterval(this.timer);
+                this.timer = null;
+                tarT = 0;
+            }
+            document.documentElement.scrollTop = tarT;
+            document.body.scrollTop = tarT;
+
+        }, 10)
+    };
+    //——固定时间——
+    //    var timer=null;
+    btn2.onclick = function () {
+        if (this.timer != null)return;
+        var changeT = toolBag.screenScrollH();
+        var duration = 2000;
+        var speed = changeT / duration;//每 1 毫秒运动的距离
+        var time = 0;//记录运动的时间
+        this.timer = window.setInterval(()=> {
+            time += 20;
+            var moveL = time * speed;//运动的距离
+            if (time >= duration) {
+                clearInterval(this.timer);
+                moveL = changeT;
+                this.timer = null;
+            }
+            document.documentElement.scrollTop = changeT - moveL;
+            document.body.scrollTop = changeT - moveL;
+        }, 20)
+    };
+    window.onscroll = function () {
+        var scrT = toolBag.screenScrollH();
+        var cliH = 300;
+        if (scrT > cliH) {
+            btn.style.display = 'block';
+            btn2.style.display = 'block';
+        } else {
+            btn.style.display = 'none';
+            btn2.style.display = 'none';
+        }
+    };
+    window.onmousewheel = function () {
+        clearInterval(btn.timer);
+        clearInterval(btn2.timer);
+        btn.timer = null;
+        btn2.timer = null;
+    }
+</script>

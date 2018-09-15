@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script src="jquery-3.3.1.js"></script>
+<script>
+    var $start=$.Callbacks();
+    var $move=$.Callbacks();
+    var $end=$.Callbacks();
+
+    function f1(a){
+        console.log(1,a);
+    }
+    function f2(a){
+        console.log(2,a);
+    }
+    function f3(a){
+        console.log(3,a);
+    }
+
+    $start.add(f1);
+    $start.add(f2);
+    $start.add(f3);
+
+    $start.fire();
+    $start.remove(f2);
+    $start.fire('abc');
+</script>

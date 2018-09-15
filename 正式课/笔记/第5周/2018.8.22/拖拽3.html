@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: #0aeeaa;
+            line-height: 100px;
+            text-align: center;
+            border-radius: 50%;
+            user-select: none;
+            cursor: move;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script src="jquery-3.3.1.js"></script>
+<script>
+    //按下鼠标时记录鼠标的位置和盒子的位置；
+    // 当鼠标移动时，记录鼠标轴移动的距离，让盒子相应的移动这么多距离
+//    var oDiv = document.getElementById('div1');
+    /*oDiv.onmousedown=function(e){
+     e=e||window.event;
+     //合资的初始位置
+     this.startX=this.offsetLeft;
+     this.startY=this.offsetTop;
+     //鼠标的初始位置
+     this.mX=e.pageX;
+     this.mY=e.pageY;
+
+     this.canM=true;
+     };
+     document.onmousemove=function(e){
+     if(!oDiv.canM)return;
+     e=e||window.event;
+     //xy是鼠标移动的距离
+     var x=e.pageX-oDiv.mX;
+     var y=e.pageY-oDiv.mY;
+     oDiv.style.left=oDiv.startX+x+'px';
+     oDiv.style.top=oDiv.startY+y+'px';
+     };
+     document.onmouseup=function(e){
+     oDiv.canM=false;
+     };*/
+ /*   oDiv.onmousedown = function (e) {
+        dragStart.call(this,e);
+        document.onmousemove=dragMove.bind(this);
+        document.onmouseup=dragEnd.bind(this);
+    };
+    function dragStart(e) {
+        this.starX = this.offsetLeft;
+        this.startY = this.offsetTop;
+        this.mX = e.clientX;
+        this.mY = e.clientY;
+//        this.canM = true;
+    }
+    function dragMove(e) {
+//        if (!this.canM)return;
+        var x = e.clientX - this.mX;
+        var y = e.clientY - this.mY;
+        this.style.left = this.startX + x + 'px';
+        this.style.top = this.startY + y + 'px';
+    }
+    function dragEnd(e) {
+//        this.canM = false;
+        document.onmusemove=null;
+        document.onmouseup=null;
+    }*/
+    var $oDiv = $('#div1');
+    $oDiv.on('mousedown',function (ev) {
+        dragStart.call(this,ev);
+        //初版是在外边直接给document绑定move,
+        //这次 我们在 onmousedown 中绑定
+        this.DragMove = dragMove.bind(this);
+        this.DragEnd = dragEnd.bind(this);
+        $(document).on('mousemove',this.DragMove);
+        $(document).on('mouseup',this.DragEnd);
+        // document.onmousemove = this.DragMove;
+        // document.onmouseup = this.DragEnd;
+    });
+    // oDiv.onmousedown = function (e) {
+    //     dragStart.call(this,e);
+    //     //初版是在外边直接给document绑定move,
+    //     //这次 我们在 onmousedown 中绑定
+    //     this.DragMove = dragMove.bind(this);
+    //     this.DragEnd = dragEnd.bind(this);
+    //     document.onmousemove = this.DragMove;
+    //     document.onmouseup = this.DragEnd;
+    // };
+
+    function dragStart(e) {
+        this.startX = this.offsetLeft;
+        this.startY = this.offsetTop;
+        this.mx = e.clientX;
+        this.my = e.clientY;
+        // this.canM = true;
+    }
+    function dragMove(e) {
+        // if(!this.canM)return;
+        var x = e.clientX - this.mx,
+                y = e.clientY - this.my;
+        $(this).css( {
+            left:this.startX + x,
+            top: this.startY + y
+        });
+        if(!this.prevX){
+            this.prevX=0;
+        }
+        this.speed=e.clientX-this.prevX;//两次move之间的时间差当作单位时间
+        this.prevX=e.clientX;
+    }
+    function dragEnd(e) {
+        // this.canM = false;
+        // document.onmousemove = null;
+        // document.onmouseup = null;
+        $(document).off('mousemove');
+        $(document).off('mouseup',this.DragEnd);
+        this.maxL=(document.documentElement.clientWidth||document.body.clientWidth)-this.offsetWidth;
+        fly.call(this);
+    }
+    //左右弹性动画
+    function fly(){
+        var $this=$(this);
+        this.speed*=0.98;
+        var l=$this.offset().left+this.speed;
+        //边界问题：
+        //吐过l大于可视窗口-盒子的宽度；已经到达最右边，这时让speed*-1，
+
+        if(l>this.maxL){
+            this.speed*=-1;
+            l=this.maxL;
+        }
+        if(l<0){
+            this.speed*=-1;
+            l=0;
+        }
+        $this.css({
+            left:l
+        });
+        this.timer=setTimeout(fly.bind(this),30);
+        if(Math.abs(this.speed)<0.01){
+            clearTimeout(this.timer);
+        }
+    }
+</script>

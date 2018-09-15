@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: #0aeeaa;
+            border-radius: 50%;
+            cursor: move;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'></div>
+</body>
+</html>
+<script src="js/drag.js"></script>
+<script src="js/event.js"></script>
+
+
+<script>
+    var oDiv1=document.getElementById('div1');
+    on(oDiv1,'mousedown',dragStart);
+</script>

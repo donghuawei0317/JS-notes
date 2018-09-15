@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>拖拽-发布订阅</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            /*background: #00ae66;*/
+            position: relative;
+            line-height: 100px;
+            text-align: center;
+            cursor: move;
+            user-select: none;
+            box-shadow: inset -5px -5px 15px 0;
+            background: linear-gradient(to bottom right, #fff 5%, #00ae66 95%);
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+
+<script src="js/drag.js"></script>
+<script src="js/event.js"></script>
+<script>
+    //约定 所有以my开头的事件都是自定义的事件，其他都是原生事件
+    var oDiv = document.getElementById('div1');
+//    oDiv.onmousedown = dragStart;
+    on(oDiv,'mousedown',dragStart);
+    function fly() {
+        this.running = true;
+        this.speed *= 0.98;
+        var l = this.offsetLeft + this.speed;
+        if (l > this.maxL) {
+            l = this.maxL;
+            this.speed *= -1;
+        }
+        if (l < 0) {
+            l = 0;
+            this.speed *= -1;
+        }
+        this.style.left = l + 'px';
+        if (Math.abs(this.speed) < 0.1) {
+            clearTimeout(this.timer);
+            this.running = false;
+        } else {
+            this.timer = setTimeout(fly.bind(this), 30)
+        }
+    }
+    function drop() {
+        console.log(1);
+        if (!this.flag) {
+            this.flag = 0;
+        }
+        if (!this.dropSpeed) {
+            this.dropSpeed = 9.8;
+        } else {
+            this.dropSpeed += 9.8;
+        }
+        this.dropSpeed *= 0.98;
+        var t = this.offsetTop + this.dropSpeed;
+        if (t >= this.maxT) {
+            t = this.maxT;
+            this.dropSpeed *= -1;
+            this.flag++;
+        } else {
+            this.flag = 0;
+        }
+        this.style.top = t + 'px';
+        if (this.flag > 2) {
+            clearTimeout(this.dropTimer);
+        } else {
+            this.dropTimer = setTimeout(drop.bind(this), 30);
+        }
+    }
+    on(oDiv,'myFly',fly);
+    on(oDiv,'myDrop',drop);
+    fire(oDiv,'mousedown');
+</script>

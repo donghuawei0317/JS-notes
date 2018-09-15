@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: #0aeeaa;
+            border-radius: 50%;
+            cursor: move;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'></div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById('div1');
+    oDiv.onmousedown = function (e) {
+        e = e || window.event;
+        var tar = e.target || e.srcElement;
+        this.startX = this.offsetLeft;
+        this.startY = this.offsetTop;
+        this.mx = e.pageX;
+        this.my = e.pageY;
+        document.onmousemove = move.bind(this);
+        document.onmouseup = up.bind(this);
+    };
+    function move(e) {
+        e = e || window.event;
+        var tar = e.target || e.srcElement;
+        var l = e.pageX - this.mx + this.startX;
+        var t = e.pageY - this.my + this.startY;
+        this.style.left = l + 'px';
+        this.style.top = t + 'px';
+    }
+    function up(e) {
+        document.onmousemove = null;
+        document.onmouseup = null;
+    }
+</script>

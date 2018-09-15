@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            right:800px;
+            background-color: #00a77b;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    function move(ele,duration,obj){
+        var beginL={};
+        var changeL={};
+        for(var k in obj){
+            if(obj.hasOwnProperty(k)){
+                beginL[k]=toolBag.css(ele,k);
+                changeL[k]=obj[k]-beginL[k];
+            }
+        }
+        var times=0;
+        var timer=window.setInterval(function(){
+            times+=20;
+            if(times>=duration){
+                clearInterval(timer);
+                times=duration;
+            }
+            for(var k in obj){
+                if(obj.hasOwnProperty(k)){
+                    var curPos=linear(times,changeL[k],duration,beginL[k]);
+                    toolBag.css(ele,k,curPos);
+                }
+            }
+        },20);
+        function linear(time,changeL,duration,beginL){
+            return changeL/duration*time+beginL;
+        }
+    }
+    move(oDiv,3000,{'right':200,'top':500})
+</script>

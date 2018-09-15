@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            border:1px dashed red;
+            background: #0aeeaa;
+            text-align: center;
+            line-height: 100px;
+            position: relative;
+            top: 100px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script src="toolBag.js"></script>
+<script src="myAnimate.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    var sx=toolBag.css(oDiv,'top');
+    var zy=toolBag.css(oDiv,'left');
+    document.onkeydown=function(e){
+        console.log(e.keyCode);//keyCode：是键盘每个键对应的键值码
+        switch(e.keyCode){
+            case 38:
+                myAnimate({
+                    curEle:oDiv,
+                    target:{top:sx-=100}
+                });
+                break;
+            case 39:
+                myAnimate({
+                    curEle:oDiv,
+                    target:{left:zy+=100}
+                });
+                break;
+            case 40:
+                myAnimate({
+                    curEle:oDiv,
+                    target:{top:sx+=100}
+                });
+                break;
+            case 37:
+                myAnimate({
+                    curEle:oDiv,
+                    target:{left:zy-=100}
+                })
+        }
+    }
+</script>

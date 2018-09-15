@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .litBox {
+            width: 320px;
+            height: 200px;
+            overflow: hidden;
+            border: 1px solid #0055cc;
+            border-radius: 5px;
+        }
+
+        .litBox img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bigBox {
+            position: absolute;
+            width: 800px;
+            height: 500px;
+            display: none;
+        }
+
+        .bigBox img {
+            width: 100%;
+            height: 100%;
+            border: 1px solid red;
+            border-radius: 100px;
+        }
+
+        .a {
+            margin: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="litBox">
+    <img src="images/lange.jpg" alt="">
+</div>
+<div class="bigBox">
+    <img src="images/lange.jpg" alt="">
+</div>
+<div class="a"></div>
+<div class="litBox">
+    <img src="images/lange.jpg" alt="">
+</div>
+<div class="bigBox">
+    <img src="images/lange.jpg" alt="">
+</div>
+<div class="a"></div>
+<div class="litBox">
+    <img src="images/lange.jpg" alt="">
+</div>
+<div class="bigBox">
+    <img src="images/lange.jpg" alt="">
+</div>
+</body>
+</html>
+<script>
+    //一个
+    /* var litBox=document.getElementsByClassName('litBox')[0];
+     var bigBox=document.getElementsByClassName('bigBox')[0];
+     document.onmousemove=function(e){
+     e=e||window.event;
+     var tar=e.target||e.srcElement;
+     if(tar.parentNode.className=='litBox'){
+     bigBox.style.display='block';
+     bigBox.style.left=e.pageX+20+'px';
+     bigBox.style.top=e.pageY+20+'px';
+     }else{
+     bigBox.style.display='none';
+     }
+     };*/
+    //多个
+    var litBox = document.getElementsByClassName('litBox');
+    var bigBox = document.getElementsByClassName('bigBox');
+    document.onmousemove = function (e) {
+        e = e || window.event;
+        var tar = e.target || e.srcElement;
+        if (tar.parentNode.className == 'litBox') {
+            var n = [...litBox].indexOf(tar.parentNode);
+            bigBox[n].style.display = 'block';
+            bigBox[n].style.left = e.pageX + 20 + 'px';
+            bigBox[n].style.top = e.pageY + 20 + 'px';
+        } else {
+            [...bigBox].forEach(function (item) {
+                item.style.display = 'none';
+            })
+        }
+    }
+</script>

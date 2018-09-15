@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            /*background: #00ae66;*/
+            position: relative;
+            line-height: 100px;
+            text-align: center;
+            cursor: move;
+            user-select: none;
+            box-shadow: inset -5px -5px 10px 0;
+            background: linear-gradient(to bottom right, #fff 5%, #00ae66 95%);
+        }
+    </style>
+</head>
+<body>
+<div id='div1'>文字内容</div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById('div1');
+    oDiv.onmousedown = dragStart;
+    function dragStart(e) {
+        e = e || window.event;
+        //盒子的初始位置
+        this.startX = this.offsetLeft;
+        this.startY = this.offsetTop;
+        //鼠标的初始位置
+        this.mx = e.pageX;
+        this.my = e.pageY;
+        //——————
+        document.onmousemove = dragMove.bind(this);
+        document.onmouseup = dragEnd.bind(this);
+    }
+    function dragMove(e) {
+        e = e || window.event;
+        var x = e.pageX - this.mx,
+                y = e.pageY - this.my;
+        this.style.left = this.startX + x + 'px';
+        this.style.top = this.startY + y + 'px';
+        //求速度
+        //prevX：上一次move触发时 鼠标X的距离
+        if (!this.prevX) {
+            this.prevX = 0;
+        }
+        this.speed = e.pageX - this.prevX;//两次move触发时移动的距离当作速度
+        this.prevX = e.pageX;
+    }
+    function dragEnd() {
+        document.onmousemove = null;
+        document.onmouseup = null;
+        this.maxL = (document.documentElement.clientWidth || document.body.clientWidth) - this.offsetWidth;
+        this.maxT = (document.documentElement.clientHeight || document.body.clientHeight) - this.offsetHeight;
+        if (!this.running) {
+            fly.call(this);
+        }
+        drop.call(this);
+    }
+    function fly() {
+        this.running = true;
+        clearTimeout(this.timer);
+        this.speed *= 0.98;
+        var l = this.offsetLeft + this.speed;
+        if (l > this.maxL) {
+            l = this.maxL;
+            this.speed *= -1;
+        }
+        if (l < 0) {
+            l = 0;
+            this.speed *= -1;
+        }
+        this.style.left = l + 'px';
+        if (Math.abs(this.speed) < 0.1) {
+            clearTimeout(this.timer);
+            this.running = false;
+        } else {
+            this.timer = setTimeout(fly.bind(this), 30)
+        }
+    }
+    function drop() {
+        if (!this.flag) {
+            this.flag = 0;
+        }
+        if (!this.dropSpeed) {
+            this.dropSpeed = 9.8;
+        } else {
+            this.dropSpeed += 9.8;
+        }
+        this.dropSpeed *= 0.98;
+        var t = this.offsetTop + this.dropSpeed;
+        if (t >= this.maxT) {
+            t = this.maxT;
+            this.dropSpeed *= -1;
+            this.flag++;
+        } else {
+            this.flag = 0;
+        }
+        this.style.top = t + 'px';
+        if (this.flag > 2) {
+            clearTimeout(this.dropTimer);
+        } else {
+            this.dropTimer = setTimeout(drop.bind(this), 30);
+        }
+    }
+</script>
