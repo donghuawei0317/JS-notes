@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+   <!-- <style type="text/less">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body, .box {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .box {
+            background: url("../img/img/cube-bg.jpg") no-repeat center;
+            background-size: cover;
+            perspective: 2000px;
+
+        ul {
+            position: relative;
+            width: 5.1rem;
+            height: 5.1rem;
+            top: 50%;
+            margin-top: -2.55rem;
+            left: 50%;
+            margin-left: -2.55rem;
+            list-style: none;
+
+        li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        }
+        }
+        }
+    </style>-->
+    <link rel="stylesheet/less" href="2.less">
+    <script src="less.js"></script>
+    <script>
+        /*
+         * 设计稿：750px
+         * html设置font-size
+         * */
+        var clientW = document.documentElement.clientWidth || document.body.clientWidth;//屏幕宽度
+        document.documentElement.style.fontSize = clientW / 750 * 100 + 'px';
+    </script>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li><img src="../img/img/cube-img1.png" alt=""></li>
+        <li><img src="../img/img/cube-img2.png" alt=""></li>
+        <li><img src="../img/img/cube-img3.png" alt=""></li>
+        <li><img src="../img/img/cube-img4.png" alt=""></li>
+        <li><img src="../img/img/cube-img5.png" alt=""></li>
+        <li><img src="../img/img/cube-img6.png" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    /*
+    * 思路：根据手指移动的距离去设置盒子转动的角度；
+    *       需要找一个变量来存储盒子的转动角度
+    * */
+    var oUl=document.getElementsByTagName('ul')[0];
+    var startX=150,startY=10;
+    var mx=0,my=0;
+    document.ontouchstart=function(e){
+        console.log(e);
+        this.mx=e.touches[0].pageX;
+        this.my=e.touches[0].pageY;
+    };
+    document.ontouchmove=function(e){
+this.changeX=e.touches[0].pageX-this.mx;//手指横向移动的距离
+this.changeY=e.touches[0].pageY-this.my;//手指纵向移动的距离
+        oUl.style.transform=`rotateX(${startX-this.changeY}deg) rotateY(${startY-this.changeX}deg)`
+    };
+    document.ontouchend=function(e){
+        startX=startX-this.changeY;
+        startY=startY-this.changeX;
+    }
+</script>

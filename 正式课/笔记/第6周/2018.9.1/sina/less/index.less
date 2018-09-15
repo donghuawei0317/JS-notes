@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.l {
+  float: left;
+}
+
+.r {
+  float: right;
+}
+
+@r: 75rem;
+header {
+  background: linear-gradient(40deg, #838dfb, #8191f8 10%, #4fa2f1 50%, #1eabf6);
+  padding: 20/@r 0;
+  .title {
+    overflow: hidden;
+    > div {
+      font-size: 36/@r;
+      color: #fff;
+      position: relative;
+      &:nth-child(1) {
+        .l;
+        font-size: 132/@r;
+        top: -20/@r;
+        margin-left: 20/@r;
+      }
+      &:nth-child(2) {
+        .r;
+        top: 23/@r;
+        margin-right: 20/@r;
+      }
+      &:nth-child(3) {
+        .r;
+        top: 23/@r;
+        right: 35/@r;
+      }
+    }
+  }
+  nav {
+    font-size: 32/@r;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    line-height: 30/@r;
+    box-sizing: border-box;
+    a {
+      float: left;
+      color: #fff;
+      display: inline-block;
+      width: 14%;
+      text-align: center;
+      margin: 0 2/@r 24/@r 0;
+    }
+  }
+}
+
+.bar {
+  nav {
+    height: 80/@r;
+    border-bottom: 1px solid #ececec;
+    font-size: 34/@r;
+    line-height: 80/@r;
+    white-space: nowrap;
+    display:flex;
+    a {
+      color: #1a1a1a;
+      font-size: 34/@r;
+      padding:0 10/@r;
+      flex:1 1;
+      position: relative;
+    }
+    a:nth-child(1){
+      text-align: left;
+      left:20/@r;
+    }
+    a:nth-child(2){
+      text-align: center;
+    }
+    a:nth-child(3){
+      text-align: right;
+      right:20/@r;
+    }
+  }
+}

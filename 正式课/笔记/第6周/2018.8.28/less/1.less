@@ -1,0 +1,76 @@
+//———自定义变量———
+@c: 300px;
+@color: #00a77b;
+@img: '.../images/';
+//——————
+* {
+  list-style: none;
+}
+
+.public {
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+  li {
+    background: red;
+  }
+}
+
+#div1 {
+  width: @c;
+  height: @c + 100;
+  //background: @color;
+  background: url("../images/lange.jpg");
+}
+
+/*.box1{
+  .public;//这里边的属性，若在下边重新定义了，这里的属性会被覆盖掉
+  width: 200px;
+  height: 200px;
+  border:1px solid red;
+}*/
+.box1:extend(.public) {
+  border:1px solid yellow;
+}
+.pub(){
+  width: 50px;
+  height: 50px;
+  background: red;
+}
+.pub1(@a,@b){
+  width: @a;
+  height: @b;
+  background: red;
+}
+.pub2(@a:50px,@b:200px){
+  width: @a;
+  height: @b;
+  background: #3059fa;
+}
+.box2{
+  .pub();
+  border:1px solid pink;
+}
+.box3{
+  .pub1(100px,100px);
+}
+.box4{
+  .pub2();
+}
+//———循环———
+.w(@n) when(@n<5){
+  .box_@{n}{
+    width:@n*100px;
+    height:@n*100px;
+  }
+  .w(@n+1);
+}
+.w(1);
+//——————
+/*
+1、支持嵌套的写法
+2、支持变量
+3、混合形式 .public{width:100px;height:100px}  .box{.public}
+4、函数 .w(@a,@b){...}
+5、循环
+*/

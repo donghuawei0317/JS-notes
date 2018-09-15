@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style rel="stylesheet/less" type="text/less">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        @img:'images/';
+        .lt{
+            float: left;
+        }
+        .rt{
+            float: right;
+        }
+        header{
+            height: 83px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,1);
+            .logo{
+                .lt;
+                width: 325px;
+                height: 100%;
+                background: url("@{img}logo1.png") no-repeat left;
+                transition: all .5s linear;
+            }
+            nav{
+                .rt;
+                a{
+                    display:inline-block;
+                    height: 100%;
+                    color:#fff;
+                    text-decoration: none;
+                    margin:0 20px;
+                    line-height: 83px;
+                }
+            }
+        }
+        section.banner{
+            width: 100%;
+            height: 625px;
+            background: url("@{img}banner1.jpg") no-repeat center;
+            background-size: cover;
+            margin-top:83px;
+        }
+        //把屏幕简要分成三类：大于1000的一类；730-1000的一类；730以下的一类
+        @media all and (max-width:1000px){
+            header{
+                nav{
+                    a{
+                        margin: 0 5px;
+                    }
+                }
+            }
+        }
+        @media all and (max-width:730px){
+            header{
+                .logo{
+                    width: 135px;
+                }
+            }
+            section.banner{
+                height: 450px;
+            }
+        }
+    </style>
+    <script src="less.js"></script>
+</head>
+<body>
+<header>
+    <div class="logo"></div>
+    <nav>
+        <a href="#">产品1</a>
+        <a href="#">产品2</a>
+        <a href="#">产品3</a>
+        <a href="#">产品4</a>
+        <a href="#">产品5</a>
+        <a href="#">产品6</a>
+        <a href="#">产品7</a>
+    </nav>
+</header>
+<section class="banner">
+    <!--<img src="images/banner1.jpg" alt="">-->
+</section>
+</body>
+</html>
+<script>
+</script>
