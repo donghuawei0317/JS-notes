@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#div1{
+    width: 1000px;
+    margin: auto;
+    box-shadow: 0 0 10px 20px;
+}   
+#div1 ul{
+    margin: 10px;
+    width: 180px;
+    float: left;
+}
+#div1 ul li{
+    width: 100%;
+    margin-top: 10px;
+    position: relative;
+}
+#div1 ul li img{
+    width: 100%;
+}
+#div1 ul li p{
+    position: absolute;
+    left:0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    opacity: 0.5;
+    font-size: 18px;
+    color: #fff;
+    line-height: 50px;;
+    text-align: center;
+}
+.clearfix:after{
+    clear: both;
+    content:'';
+    display:block;
+}

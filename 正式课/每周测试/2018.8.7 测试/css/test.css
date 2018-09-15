@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#all{
+    width: 1080px;
+    height: 100%;
+    margin: 0 auto;
+}
+.top{
+    width: 100%;
+    height: 50px;
+    border:1px solid #000;
+}
+#paixu,.top li{
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin-right: 10px;
+    font-size: 20px;
+}
+.bottom{
+    width: 100%;
+    height: 500px;
+    border:1px solid #000000;
+}
+#all .bottom ul{
+    overflow: hidden;
+}
+.bottom li{
+    box-sizing: border-box;
+    width: 200px;
+    border:1px solid #000000;
+    float: left;
+    margin-right: 20px;
+}
+.bottom .pic{
+    width: 100%;
+}
+.bottom .pic img{
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

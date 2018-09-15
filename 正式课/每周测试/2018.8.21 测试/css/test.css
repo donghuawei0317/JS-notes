@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.box{
+    width: 600px;
+    height: 300px;
+    border:1px solid #0fa6ea;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px 0;
+    margin: 100px auto;
+    overflow: hidden;
+    text-align: center;
+}
+.imgBox{
+    height: 100%;
+    position: relative;
+    background: #eee url("../images/default.gif") no-repeat center center;
+}
+.imgBox li{
+    width: 600px;
+    height: 300px;
+    float: left;
+    position: relative;
+}
+.imgBox li img{
+    width: 100%;
+    height: 100%;
+}
+.imgBox li p{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background:rgba(0,0,0,0.5);
+    color:#fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 20px;
+}
+.btnBox .leftBtn,.btnBox .rightBtn{
+    width: 30px;
+    height: 50px;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top:125px;
+    text-align: center;
+    line-height: 50px;
+    color:#fff;
+    font-size: 20px;
+    display: none;
+    cursor: pointer;
+}
+.leftBtn{
+    left: 0;
+    border-radius: 0 15px 15px 0;
+}
+.rightBtn{
+    right:0;
+    border-radius: 15px 0 0 15px;
+}
+.tipBox{
+    position: relative;
+    display:inline-block;
+    height: 30px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 15px;
+    bottom:85px;
+    text-align: center;
+    line-height: 30px;
+}
+.tipBox li{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    line-height:20px;
+    background: #fff;
+    display:inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.tipBox li.current{
+    background: red;
+}
