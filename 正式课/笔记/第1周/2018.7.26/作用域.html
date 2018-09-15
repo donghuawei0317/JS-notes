@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var ary = [1, 2, 3];
+    function sum(a) {
+        a[0] = 10;
+        console.log(a);
+        a = [2, 2, 3];
+        return a;
+    }
+    console.log(sum(ary));
+    console.log(ary);
+    /*
+     *
+     * 作用域 函数执行开辟栈内存（作用域）
+     * 私有作用域--》函数执行会形成一个私有作用域
+     * 全局作用域--》页面打开就会形成一个全局作用域
+     *
+     * 私有变量--》在私有作用域里形成的变量（通过var或形参）
+     * 全局变量--》在全局作用域形成的变量（通过var）
+     *
+     * 作用域链
+     * 每一个私有作用域都会有它的上级作用域，它的上级作用跟他在那定义的关系
+     *
+     * 函数执行的过程：
+     * 函数执行，先开辟一个私有作用域
+     * 然后再进行变量提升（var function 提前声明，先形参赋值，再变量提升）
+     * 代码从上到下依次执行
+     * */
+    //1、
+    console.log(a);
+    a = 12;
+    function fn() {
+        console.log(a);
+        var a = 13;
+    }
+    fn();
+    console.log(a);
+    //2、
+    console.log(a);
+    var a = 12;
+    function fn() {
+        console.log(a);
+        var a = 13;
+        return a = 13;
+    }
+    // a = fn();
+    console.log(fn());
+    console.log(a);
+    //3、
+    console.log(a);
+    a = 12;
+    console.log(a);
+    function fn() {
+        console.log(a);
+        a = 23;
+    }
+    fn();
+    console.log(a);
+
+    //4、
+    console.log(a);
+    var a = 12;
+    function fn(a) {
+        console.log(a);
+        a = 13;
+    }
+    fn(a);
+    console.log(a);
+    //5、
+    var foo = 1;
+    function bar() {
+        if (!foo) {
+            var foo = 10;
+        }
+        console.log(foo);
+    }
+    bar();
+    //6、
+    var n = 13;
+    function fn(n) {
+        alert(n);
+        var n = 14;
+        alert(n);
+    }
+    fn(n);
+    //7、
+    var n = 13;
+    function fn() {
+        n = 15;
+        console.log(n);
+    }
+    fn();
+    alert(n);
+    //8、
+    var n = 10;
+    function outer() {
+        var n = 15;
+
+        function inner() {
+            function center() {
+                alert(n);
+            }
+
+            center();
+        }
+
+        inner();
+    }
+    outer();
+    //9、
+    var n = 0;
+    function a() {
+        var n = 10;
+
+        function b() {
+            n++;
+            alert(n);
+        }
+
+        b();
+    }
+    a();
+    alert(n);
+    //10、
+    var n = 0;
+    function b() {
+        n++;
+        alert(n);
+    }
+    function a() {
+        var n = 10;
+        b();
+    }
+    b();
+    a();
+    alert(2);
+    //11、
+    console.log(num, str);
+    var num = 18;
+    var str = 'lily';
+    function fn2() {
+        console.log(str, num);
+        num = 19;
+        str = 'candy';
+        var num = 14;
+        console.log(str, num);
+    }
+    fn2();
+    console.log(str, num);
+    //12、
+    alert(a);
+    console.log('a' in window);
+    if (!('a' in window)) {
+        var a = 10;
+    }
+    alert(a);
+
+    console.log(fn);
+    if (9 === 8) {
+        function fn() {
+            alert(2);
+        }
+    }
+    //13、
+    f = function a() {
+        return true
+    };
+    g = function () {
+        return false
+    };
+    (function () {
+        console.log(g);
+        if (g() && [] == ![]) {
+            console.log(g);
+            f = function f() {
+                return false
+            };
+            function g() {
+                return true
+            }
+        }
+    })();
+    alert(f());
+    alert(g());
+    a()
+</script>

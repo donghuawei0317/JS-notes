@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * let：没有变量提升，不是window的属性，不能重复声明，但可以重复定义
+    * const：与let基本相同，只是它不能重复定义
+    * */
+    function f(){
+        console.log(a);
+        let a=12;
+        //let声明变量，虽然没有变量提升，但是也会在代码执行之前预览一次代码，发现有let声明，那就认为let声明的属于私有，此时，在代码执行的时候，就不会再往上级查找变量
+    }
+    f();
+    /*
+    * 块级作用域：
+    * for(var i=0;i<2;i++){//这就属于一个块级作用域}
+    * if（条件）{//块级作用域}
+    * while
+    * switch case
+    * 用花括号包住的，除了对象，其他都是一个块级作用域
+    * */
+    let a=13;
+    if(true){
+        let a=12;
+        console.log(a);
+    }
+    console.log(a);
+</script>

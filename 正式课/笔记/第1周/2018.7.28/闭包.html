@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * 闭包：一种保护机制，保护内部变量不受外界影响
+    * 函数执行会形成一个私有作用域，用来保护内部变量，这个作用域就是一个闭包；
+    * （外界认为的闭包一般是指不销毁的作用域）
+    *
+    * 作用域销毁：
+    * 一般情况下，一个函数执行形成的作用域都是即时销毁的。
+    * 当一个作用域中有内容被外界占用，那么这个作用域就不会被销毁；
+    * 当函数执行，返回一个引用数据类型，并且这个引用数据类型被外界接收，就不会销毁
+    *
+    * 当一个作用域有内容临时被外界占用，那么这个占用解除时，该作用域就会被销毁；
+    * */
+
+    //闭包的形式：
+    //1、
+    var fn=(function(){
+        return function(){
+            console.log(1);
+        }
+    })();
+    //2
+    var obj=(function(){
+        var fn=function(){
+            console.log(2);
+        };
+        return {
+            f:fn
+        }
+    })();
+    //3
+    var fn=function(){
+        var a=3;
+    }
+</script>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+
+    //let const
+    /*
+    * let声明的变量没有变量提升，而且也不是window上的一个属性;不能重复声明，但可以重新赋值
+    * const：与let基本相同，但是不能重新赋值
+    * */
+    var a=12;
+
+    let b=1;
+    console.log('a' in window);
+
+    let a=12;
+    function f(){
+        console.log(a);
+    }
+    function f1(){
+        console.log(a);
+        let a=15;
+        console.log(a);
+    }
+    f();
+    f1();
+
+    /*
+    * 在函数执行的时候，形成的私有作用域中，用var生命过的变量提升，会给一个默认值undefined；用let和const生命的变量，不会进行变量提升，但是会对里边带有let和const的变量进行预览，这时浏览器不会再往上级作用域查找相应的变量
+    *
+    * 暂时性死区
+    *
+    * 全局作用域
+    * 私有作用域：函数执行的时候形成的
+    *
+    * es6 块级作用域{} for if while
+    * 块级作用域只与let和const声明的变量起作用；对于var没有块级作用域的限制
+    * */
+    if(true){
+        let c=12;
+    }
+    console.log(c);
+    if(true){
+        var d=13;
+    }
+    console.log(d);
+
+    /*
+    * 一个变量第一次出现可以赋值，但不能调用
+    *
+    * typeof a;//undefined
+    *
+    * typeof b;//error
+    * let b=1;
+    * */
+
+</script>

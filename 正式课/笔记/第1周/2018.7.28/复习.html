@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //不同数据类型比较
+    []==![];//true
+    /*
+    * 1、对象和对象比较：比较的是地址
+    * 2、对象和字符串比较：先把对象转化成字符串，然后再比较
+    * [1,2,3].toString()//->'1,2,3'
+    * 3、null==undefined//->true;null===undefined//->false
+    * 4、其他情况：把两边转化成数字再去比较，其中引用数据类型是先转化成字符串再转化成数字
+    *
+    * 隐式数据类型转化：
+    * ‘+’：只要碰见字符串，就变成字符串拼接
+    * ‘！’：取反，先把后边的内容准化成布尔类型，然后再取反
+    * ‘-’：1-‘a’，先把两边用number转化，然后再进行运算（-、*、/、%）
+    * isNaN（xxx）：先把参数转化成number，然后再去判断
+    * if（条件）：把条件转化成布尔，再去判断
+    * 不同数据类型比较
+    * */
+
+    function getBro(ele){
+        var temp=ele.previousSibling;
+        while(temp&&temp.nodeType!=1){
+            temp=temp.previousSibling;
+        }
+        return temp;
+    }
+    var oDiv3=document.getElementById('div3');
+    function getEleIndex(ele){
+        var ary=[];
+        var temp=getBro(ele);
+        while(temp){
+            ary.push(temp);
+            temp=getBro(temp);
+        }
+        return ary.length;
+    }
+    //返回这个元素的索引值
+    getBro(oDiv3);
+</script>

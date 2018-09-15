@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul{
+            width: 400px;
+            border:1px solid #007aff;
+            margin :auto;
+        }
+        li{
+            border-bottom: 1px solid #0fa6ea;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        ul li:nth-child(2n){
+            background-color: #2a70be;
+        }
+        ul li:nth-child(2n-1){
+            background-color: #070FC8;
+        }
+    </style>
+</head>
+<body>
+<div id=div1>文字内容</div>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+</body>
+</html>
+<script>
+    var oLis=document.getElementsByTagName('li');
+//方法一：自定义属性
+    /*for(var i=0;i<oLis.length;i++){
+        oLis[i].a=i;
+        oLis[i].onclick=function(){
+            alert(this.a+1);
+        }
+    }*/
+    /*for(let i=0;i<oLis.length;i++){
+        oLis[i].onclick=function(){
+            alert(i+1);
+        }
+    }*/
+   //方法二：
+    /*
+    * 当一个作用域里有一个引用数据类型被外界占用，那么这个作用域就不销毁；
+    * 对应oLis[0].onclick=function(){}
+    * */
+   /* for(var i=0;i<oLis.length;i++){
+        (function(n){
+            oLis[n].onclick=function(){
+                alert(n+1);
+            }
+        })(i)
+    }*/
+    //方法三：
+   /* for(var i=0;i<oLis.length;i++){
+        oLis[i].onclick=(function(n){
+            return function(){
+                alert(n+1);
+            }
+        })(i);
+    }*/
+
+    function f(n){
+        return function(){
+            alert(n+1);
+        }
+    }
+    for(var i=0;i<oLis.length;i++){
+        oLis[i].onclick=f(i);
+    }
+    //4、
+   /* for(let i=0;i<oLis.length;i++){
+        oLis[i].onclick=function(){
+            alert(i+1);
+        }
+    }*/
+</script>

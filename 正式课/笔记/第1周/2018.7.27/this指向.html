@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+
+    /*
+    * 函数里两个特殊的属性：arguments（实参集合）和this（函数的执行主体）
+    * this的指向问题：
+    * 1、看函数执行时，看前边有没有点，有的话，this就是点前边的；没有的话，this默认就是window；
+    * 2、自执行函数的this指向window；
+    * 3、DOM事件绑定的this是指向绑定的DOM元素；
+    * */
+    function f(){
+        console.log(this);
+    }
+    var obj={fn:f};
+    obj.fn();
+    f();
+
+</script>

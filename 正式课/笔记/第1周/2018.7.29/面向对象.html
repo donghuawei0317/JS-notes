@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * 面向对象，是一种编程思想，他是以对象数据类型为导向的一种编程思想；
+    * 面向过程以过程为中心的编程思想；
+    *
+    * JS中，万物皆对象
+    * js c++ PHP Java... 面向对象开发  （oop） object oriented programing
+    * c                  面向过程
+    *
+    * 面向对象
+    * 封装
+    * 继承
+    * 多态
+    *
+    * 面向对象的四种设计模式；
+    * 单例模式
+    * 工厂模式
+    * 构造函数模式
+    * 原型模式
+    *
+    *     1、单例设计模式(全称是‘单独的实例’，就是利用普通对象作为命名空间，所有的普通对象都属于Object基类的一个实例)：
+    *     本身就是一个普通的对象。
+    *     ·调用自己属性的方法：
+    *         ·对象名.属性名
+    *         ·this调用。需要注意this的指向问题
+    *         ·在对象一中调用对象二中的属性，只能通过 对象名.属性名
+    *     （命名空间：就是定义的这些对象名）
+    *     ·高级单例模式：
+    *         由于普通的单例模式没有隐私，谁都能看，谁都能改，有时我们需要保护自己的一些隐私，这是就需要我们的这些高级模
+    *         式。
+    *         缺点是：会形成一个不销毁的作用域，占用浏览器的内存
+    *     单例模式缺点：单例模式每次都要重新var一个新对象，当我们需要创建很多个单例时，每次都var一个新对象比较麻烦，还会
+    *     造成一定的代码冗余。这时我们可以利用函数去创建我们需要的单例。
+    *     这种模式成为工厂模式。
+    *         var fn=(function(){return function(){}})();
+    *         var person=(function(){
+    *             var name='123';
+    *             var fn=function(){
+    *                 console.log(12)
+    *             };
+    *             var fn2=function(){
+    *                 console.log(name)
+    *             };
+    *             var fn3=function(){
+    *                 fn2();
+    *             };
+    *             reutrn {
+    *                 f:fn
+    *             }
+    *         })();
+    *     2、工厂模式：就是一个普通函数，单例模式缺点：单例模式每次都要重新var一个新对象，当我们需要创建很多个单例时，每
+    *     次都var一个新对象比较麻烦，还会造成一定的代码冗余。这时我们可以利用函数去创建我们需要的单例。这种模式成为工厂模式。
+    *         *代码冗余
+    *         *函数可以实现代码的高内聚低耦合
+    *         var obj={
+    *             name:'xxx',
+    *             set:function(){},
+    *             get:function(){}
+    *         };
+    *         var obj={
+     *             name:'xxx1',
+     *             set:function(){},
+     *             get:function(){}
+     *         };
+     *         var obj={
+     *             name:'xxx2',
+     *             set:function(){},
+     *             get:function(){}
+     *         };
+     *         function factory(name){
+     *             var obj={
+     *             name:'name',
+     *             set:function(){},
+     *             get:function(){}
+     *         };
+     *         return obj;
+     *         }
+     *     3、构造函数模式：创建一个构造函数，通过new去创建这个构造函数（自定义类）的一个实例，这个实例的__proto__属性指
+     *     向这个构造函数（自定义类）的原型对象，这个原型对象上有一个constructor属性指向构造函数本身。构造函数的函数名首
+     *     字母一般要大写。当这个函数通过new执行时，那么他就是一个构造函数（自定义类），也就是把他当作一个类去执行。
+     *         构造函数与高级单例模式相似。
+     *     *new执行函数与普通函数执行的区别：
+     *         new执行会在函数内部自动创建一个对象（this），函数执行完成后，会把this默认返回
+     *         如果手动修改return值，若return的是一个值类型，那么默认return的是this；若return的是引用数据类型，那么返回
+     *         的就是这个应用数据类型。
+     *         function person(name,age){
+     *             this.name=name;
+     *             this.age=age;
+     *             this.set=function(){
+     *                 console.log(12)
+     *             }
+     *         }
+     *         var tom=new person('tom',18);
+     *         console.log(tom);
+     *
+    * */
+    var obj={
+        name:'123',
+        set:function(){},
+        get:function(){}
+    };
+    obj.set();
+    var obj2={
+        name:'456',
+        set:function(){},
+        get:function(){}
+    };
+    obj2.set();
+    /*
+    * JS的类：
+    *     类：  Object、String、Number、Boolean、Function、       Array、Date...
+    *     实例：{}      ‘sss’  123     true   function sum（）   []
+    *     ·每个实例都可以通过__proto__找到它的所属类的原型对象
+    *
+    * 原型 prototype：每个函数都有一个原型属性prototype，指向他的一个原型对象
+    * */
+</script>
