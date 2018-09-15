@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var tar=new Date('2018/7/22 18:00:00').getTime();//目标时间距离1970年的毫秒数
+    var now=new Date().getTime();//当前时间距离1970年的毫秒数
+    var time=tar-now;//当前时间距离目标时间的毫秒数
+
+    var h=Math.floor(time/3600000);//time中的整小时数
+    time=time-h*3600000;//time中减去整小时数剩余的毫秒数
+    var m=Math.floor(time/60000);//剩余time中的整分钟数
+    time=time-m*60000;//time中减去整分钟数剩余的毫秒数
+    var s=Math.floor(time/1000);
+
+    var str=`距离下课还有${h}时${m}分${s}秒`;
+    var oDiv=document.getElementById('div1');
+    oDiv.innerText=str;
+
+    //定时器
+    /*
+    * setTimeout(f,time)
+    * */
+
+
+</script>

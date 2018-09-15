@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title></title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id="div1">zhufeng</div>
+
+</body>
+</html>
+<script>
+    /*
+    * 用函数的原因：
+    * 1、节省代码
+    * 2、高内聚（把东西聚到一块，这一块就是为了实现某个功能，跟其他代码没有任何联系）低耦合（跟其他代码没有关联）
+    *
+    * 函数语法：
+    * 1、function 函数名（）{
+    *     函数体
+    * }
+    * 2、var 函数名=function [函数名，可写可不写]（）{
+    *     函数体
+    *}
+    * 第一种声明方式，在声明的代码之前调用这个函数；
+    * 第二种声明方式，在声明的代码之后调用这个函数。
+    * 函数声明之后可以无限次调用
+    *
+    * clearRoom(),函数的调用--->函数名()
+    * */
+    function clearRoom(){
+        console.log('zhuozi');
+        console.log('woshi');
+        console.log('chumen')
+    }
+    clearRoom();
+
+    var clearPer = function(){
+        console.log('xilan');
+        console.log('shuaya');
+        console.log('chuanyi');
+        return 'www';//return什么，函数执行后，返给外界的就是啥
+    };
+    clearPer();
+    console.log(clearPer());
+    console.log(clearPer);
+    var a = clearPer();//把函数执行的结构赋值给a
+    console.log(a);
+
+    function sum(){
+        var a = 10;
+        var b = 20;
+        var total = a + b;
+        return total;
+    }
+    console.log(sum());
+    /*
+    * 函数的传参，就是一个接收的过程
+    * function sun（a，b）{
+    *     a和b叫形参（形式上的参数）
+    * }
+    * */
+    function sun(a,b){
+//        console.log(a,b);
+        var total = a + b;
+        return total;
+    }
+    sun(1,2);//1，2就是实参，实际上的参数
+    sun(3,4);
+    console.log(sun(1,2));
+    console.log(sun(3,4));
+
+    function sum2(){
+        console.log(arguments);
+        var total = 0;
+        for(var i = 0;i < arguments.length;i++){
+            total += arguments[i];
+        }
+        console.log(this);
+        return total;
+    }
+    console.log(sum2(1, 2, 3, 4, 5));
+    /*
+    * arguments:实参集合
+    * this：函数的执行主体（谁调用这个函数）
+    * */
+    var oDiv = document.getElementById('div1');
+    function byId(id){
+        var odiv = document.getElementById(id);
+        return odiv;
+    }
+    var oDiv1 = byId('div1');
+    var oDiv2 = byId('div2');
+    console.log(oDiv,oDiv1);
+
+    for (var i = 0;i < 10;i++){
+        var total = 2 * (5 + i) + 5;
+        console.log(total);
+    }
+    function con(n){
+        for (var i = 0;i < n;i++){
+            var total = 2 * (5 + i) + 5;
+            console.log(total);
+        }
+    }
+    console.log(con(10));
+
+    function con2(m){
+        console.log(2*(5+m)+5);
+    }
+    for (var i = 0;i < 10;i++){
+        con2(i);
+    }
+
+    function sum2(){
+        var total = 0;
+        for (var i = 0;i < arguments.length;i++){
+            total += arguments[i];
+//            total += arguments.i;
+//            total += arguments['i'];
+        }
+        return total;
+    }
+    console.log(sum2(1,1,1,1,1,1,'1'));
+    console.log(sum2('',1,1,1,1,1,'1'));
+    console.log(sum2('1',1,1,1,1,1));
+    console.log(0+'1');
+    console.log(typeof (0+''));
+    //arguments()是一个类数组。
+    //目前只有两个类数组：arguments和元素集合
+
+
+
+    //任意求和，只加能整除2或3的数字
+
+
+    var sun = function(a,b){
+        console.log(this);
+        return a + b;
+    };
+    var obj = {
+        fn:sum,
+        w:12
+    }
+    sun();
+    obj.fn();
+
+    var oDiv = document.getElementById('div1');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>数组的排序</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+    * 数组的排序 sort
+    * 1、冒泡排序：
+    * */
+    var ary=[2,3,4,56,7,8,];
+    //两项两项地比较，如果后一项比前一项大，则不交换顺序，否则两者交换顺序
+
+
+
+    //快速排序
+    function sum(n){
+        var t=0;
+        for(var i=0;i<=n;i++){
+            t+=i;
+        }
+        return t;
+    }
+    console.log(sum(0));//0
+    var t1=sum(2);//1+2=3
+    console.log(t1);
+    var t2=sum(3);//1+2+3=6
+    console.log(t2);
+    var t3=sum(4);//1+2+3+4=10
+    console.log(t3);
+
+
+    //递归：让函数自己调用
+    function sum1(n){
+        if(n<=0){
+            return 0;
+        }
+        return n+sum1(n-1);
+    }
+    console.log(sum1(5));
+    function sum2(n){
+        if(n>0){
+            return n+sum2(n-1);
+        }
+        return 0;
+    }
+    console.log(sum2(5));
+
+
+    function sum3(n){
+        if(n<=0)return 0;
+        if(n%2==0||n%3==0){
+            return n+sum3(n-1);
+        }
+        return 0+sum3(n-1);
+    }
+
+    //用递归实现快速排序
+    //思路：从数组的中间部分取出一个值，然后用取出数值后的数组的每一项跟取出的这个数值比较，把比它大的放到一个数组中，比它小的放到另一个数组中；
+    //然后再把新的这两个数组重复刚才的步骤，把结果拼成一个新的数组。
+    function quickSort(ary){
+        if(ary.length<=1){
+            return ary;
+        }
+//        var temp=ary[parseInt(ary.length/2)];
+        var n=parseInt(ary.length/2);//中间项的索引
+        var temp=ary.splice(n,1)[0];//中间项
+        var left=[],right=[];
+        for(var i=0;i<ary.length;i++){
+            if(temp>=ary[i]){
+                left.push(ary[i]);
+            }else{
+                right.push(ary[i]);
+            }
+        }
+        return quickSort(left).concat(temp,quickSort(right));
+    }
+    var ary2=[1,2,3,5,6,8,4,7,9];
+    console.log(quickSort(ary2));
+</script>

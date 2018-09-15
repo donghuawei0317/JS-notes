@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+
+
+</body>
+</html>
+<script>
+    //通过id获取，没有这个id，拿到的是null
+    //通过雷鸣或者标签名获取，若没有对应的元素，拿到的是一个空集合
+    var obj={
+        1:'www',
+        'www':12,
+        www:13,
+        a:15
+    };
+    /*console.log(1);
+    console.log('www');
+    console.log('a');*/
+    console.log(obj[1]);
+    console.log(obj['www']);
+    console.log(obj["a"]);
+</script>

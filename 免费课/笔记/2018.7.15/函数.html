@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+
+
+</body>
+</html>
+<script>
+    /*
+    * 函数的存储过程：
+    * 1、开辟一个堆内存
+    * 2、吧函数里边的代码，以*字符串*的形式存储到堆内存中
+    * 3、把堆内存的地址赋值给函数名
+    * */
+    var total=0;
+    function sum1(){
+        a=1;
+        b=2;
+        total=a+b;
+    }
+    sum1();
+    console.log(total);//total=3
+
+    var total2=0;
+    function sum2(){
+        a=1;
+        b=2;
+        total2+=a+b;
+    }
+    sum2();
+    sum2();
+    sum2();
+    console.log(total2);
+    //匿名函数
+    //第一种：
+    var a=function(){
+        console.log(1);
+    };
+    //第二种：
+    (function(形参){
+        console.log(2);
+    })(实参);
+    !function(){
+        console.log(3);
+    };
+    ~function(){
+        console.log(4);
+    };
+    //第三种：
+   /* div.onclick=function(){
+        console.log(5);
+    };*/
+    /*
+    * return（可有可无）：
+    * 跳出函数体；
+    * 确定返回值；
+    * 不写return时，函数执行返回的结果是undefined；
+    * 写了return，但后边没有添加任何内容时，返回的结果是undefined；
+    * return a+b 是把表达式运行的结果返回；
+    * return的位置不固定，根据需求确定其位置；
+    *
+    * 形参和实参：
+    * function sum（a，b，c）{}，abc在函数定义的阶段确定的参数是形参；
+    * sum（1，2，3），在函数调用的阶段，传禁区的参数叫实参；
+    * sum（1），bc多余的形参给的默认值是undefined；
+    * sum（1，2，3，4），多余的实参没有对应的形参接收，形参是按照先后顺序接收实参的；
+    *
+    * arguments：
+    * 他是一个函数内部的属性，与是否设置形参和实参没有关系，一直存在
+    * */
+    function sum(){
+        console.log(arguments);
+    }
+    sum(1,2,3);
+    /*
+    * this：
+    * 函数的执行主体，谁调用的函数：简单规律就是看点点前边的
+    * */
+</script>

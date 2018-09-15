@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title></title>
+    <link rel="icon" href="">
+</head>
+<body>
+
+
+</body>
+</html>
+<script>
+    var user = {
+        name: 'xingming',
+        age: 9,
+        sex: '男',
+        height: '180cm',
+        weight: '90kg'
+      /*  0: '12',
+        1: '34',
+        2: '56'*/
+    };
+    //循环就是为了让我们不用做这些重复性的动作，让电脑去做。
+    /*
+     * for(var key in obj){
+     *     key:是一个变量，对应对象里的每一个属性名
+     *     obj:要循环的对象
+     *     obj[key]:每一个属性对应的属性值
+     *}
+     * 一般是用来循环普通对象
+     * */
+
+    console.log('name' in user);
+    console.log('www' in user);
+
+
+    for (var a in user) {
+        console.log(a);
+        console.log(user[a])
+    }
+
+
+    var str = '';
+    for (var a in user) {
+        str = str + a + '是' + user[a] + ',';
+        //str = str + `${a}是${user[a]},`;
+    }
+    console.log(str);
+
+    if('name'in user){
+        console.log(user.name)
+    }
+    if('histroy'in window){
+        window.history.go(-1);
+    }
+
+
+
+    /*
+     * for 循环
+     * i++ : i=i+1
+     * i-- : i=i-1
+     * for(var i=0;i<10;i++){
+     *     console.log(i)
+     * }
+     * break：跳出整个循环
+     * continue：跳出本次循环
+     * */
+    for (var i = 0; i < 10; i++) {
+        /*
+        * 第一次：i=0;0<10 执行内部代码
+        * 第二次：i++，i=1；1<10 执行内部代码
+        * 第三次：i++，i=2；2<10 执行内部代码
+        * ...
+        * 第九次：i++，i=8；8<10 执行内部代码
+        * 第十次：i++，i=9；9<10 执行内部代码
+        * 第十一次：i++ i=10；10<10 跳出循环
+        * */
+        console.log(i)
+    }
+
+    for(var i = 10;i > 0; i--){
+        console.log(i)
+    }
+
+    for(var i = 0;i < 10;i++){
+        if(i < 5){
+            i += 3;//i = i + 3
+            continue;
+        }else{
+            i += 2;//i = i + 2;
+            continue;
+        }
+        i += 1;
+    }
+    console.log(i);
+    /*
+    * 循环流程：
+    * i=0,0<10 --> i=0,0<5 --> i=i+3=3 --> i=i+1=4;
+    * i=4,4<10 --> i=4,4<5 --> i=i+3=7 --> i=i+1=8;
+    * i=8,8<10 --> i=8,8>5 --> i=i+2=10--> i=i+1=11;
+    * i=11,11>10 --> 跳出循环，i=11
+    * */
+
+
+
+    /*一般是不知道要循环多少次的时候用。
+    * while(){
+    *
+    * }
+    * */
+    var a = 3;
+    while(a>0){
+        console.log(a);
+        a = a - 1
+    }
+
+
+
+
+</script>

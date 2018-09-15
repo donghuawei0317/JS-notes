@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    /*
+     * setInterval：实现倒计时
+     * */
+    //设定：2018.7.19 16：45：00 为截止时间
+    function timeCount() {
+        var now = new Date();
+        var nowT = now.getTime();//当前时间距离1970年的毫秒数
+
+        var tar = new Date('2018.7.19 16:45:00');
+        var tarT = tar.getTime();//目标时间距离1970年的毫秒数
+
+        var time = tarT - nowT;//时间差，毫秒
+        if (time <= 0) {
+            clearInterval(timer);
+            time = 0;
+        }
+        //var h=time/3600000;//获取小时，有可能为小数
+        var h = Math.floor(time / 3600000);//整数小时
+        time = time - h * 360000;//减去整数小时，剩余的毫秒数
+        var m = Math.floor(time / 60000);//剩余的毫秒中，有多少整数分钟
+        time = time - m * 60000;//减去整数分钟，剩余的毫秒数
+        var s = Math.floor(time / 1000);//剩余的毫秒中，整秒
+
+        var str = `距离考试还剩${h < 10 ? '0' + h : h}时${m < 10 ? '0' + m : m}分${s < 10 ? '0' + s : s}秒`;
+
+        var oDiv = document.getElementById('div1');
+        oDiv.innerHTML = str;
+    }
+    var timer = window.setInterval(timeCount, 1000);
+</script>

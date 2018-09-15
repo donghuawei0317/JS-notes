@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>数组的删除</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var ary = [1, 2, 3, 4, 5];
+    //pop:
+    /*var a=ary.pop();
+     console.log(a);//3
+     console.log(ary);//ary=[1,2]*/
+    //length:
+    /*ary.length=ary.length-1;//或者：ary.length -= 1;
+     console.log(ary.length);
+     console.log(ary);
+
+     function myPop(ary){
+     ary.length-=1;
+     return ary.length;
+     }
+     var a=myPop(ary);
+     console.log(a);
+     console.log(ary);
+     */
+    //shift:
+    /*var a=ary.shift();
+     console.log(a);//1(数据类型为number)
+     console.log(ary);//ary=[2,3]
+    function myShift(ary){
+        var a=ary[0];
+        for(var i=0;i<ary.length;i++){
+            ary[i]=ary[i+1];
+        }
+        ary.length-=1;
+//        return Number(a);
+        return a;
+    }
+    console.log(myShift(ary));
+    console.log(ary);*/
+    //splice:
+    /*var a = ary.splice(1, 2, 'a', 'b', 'c');
+    console.log(a);//[2,3]
+    console.log(ary);//ary=[1,'a','b','c',4,5,6]
+    var b=ary.splice();
+    console.log(b);
+    console.log(ary);
+    var c=ary.splice(0);
+    console.log(c);
+    console.log(ary);*/
+
+    //用splice实现push：
+    /*function a(ary,n) {
+        ary.splice(ary.length,0,n);
+        return ary.length;
+    }
+    console.log(a(ary, 7));
+    console.log(ary);*/
+
+    //用splice实现pop：
+    /*function a(ary){
+        var b=ary[ary.length-1];
+        ary.splice(ary.length-1,1);
+        return b;
+    }
+    console.log(a(ary));//5
+    console.log(ary);//[1,2,3,4]*/
+
+    var a=ary.splice(3,0,5);
+    console.log(a);
+    console.log(ary);
+</script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>隔行变色(试验）</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        ul{
+            box-sizing:border-box;
+            width: 500px;
+            height: 452px;
+            margin:100px auto;
+            border:1px solid #00ae66;
+        }
+        ul li{
+            text-align:center;
+            box-sizing:border-box;
+            width: 100%;
+            height: 50px;
+            border-bottom:1px solid #2a70be;
+            line-height: 50px;
+            font-size: 25px;
+        }
+    </style>
+
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+</ul>
+</body>
+</html>
+<script>
+    var oLis=document.getElementsByTagName('li');
+    for (var i=0;i<oLis.length;i++){
+        switch(i%2){
+            case 0:
+                oLis[i].style.backgroundColor='#0FAE09';
+                break;
+            default:
+                oLis[i].style.backgroundColor='#090EAE';
+                break;
+        }
+    }
+</script>

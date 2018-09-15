@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>函数递归求和</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById('div1');
+    //求和[0,n]：
+    /*function sum(n){
+     if(n<=0){
+     return 0;
+     }
+     return n+sum(n-1);
+     }
+     console.log(sum(6));
+     oDiv.innerHTML=sum(6);*/
+    //求[0,n]之间的奇数和：
+    function sum2(n) {
+        if (n <= 0) {
+            return 0;
+        }
+        if (n % 2 == 1) {
+            return n + sum2(n - 2);
+        }else{
+            return sum2(n-1);
+        }
+    }
+    oDiv.innerHTML = sum2(10);
+    //求[0,n]之间的偶数和：
+     /*function sum3(n){
+     if(n<=0){
+     return 0;
+     }
+     if(n%2==0){
+     return n+sum3(n-2);
+     }else{
+     return n-1+sum3(n-2);
+     }
+
+     }
+     oDiv.innerHTML=sum3(9);*/
+</script>

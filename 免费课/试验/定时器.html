@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>定时器</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var a=document.getElementById('div1');
+    var timer=window.setTimeout(function(){
+        a.innerHTML='123';
+    },5000);
+    window.clearTimeout(timer);
+
+    var timer2=window.setInterval(function(){
+        console.log(1);
+    },5000);
+    window.clearInterval(timer2);
+    a.onclick=function(){
+        this.q='www';
+        this.timer=window.setInterval(function(){
+            console.log(123)
+        },2000)
+    }
+    window.clearInterval(timer);
+</script>

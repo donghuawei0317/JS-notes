@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>数组的排列和排序（不改变原数组）</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //toString:不接受参数，返回值是每一项用逗号连接的字符串
+    var ary = [1, 2, 3, 4, 5];
+    var res = ary.toString();
+    console.log(res, ary, typeof res);
+    //join()：接收参数，也可以不给参数；把数组以指定字符连接成字符串
+    var res2 = ary.join();
+    var res3 = ary.join(',');
+    var res4 = ary.join('+');
+    var res5 = ary.join(' ');
+    var res6 = ary.join('');
+    console.log(res2, res3, res4, res5, res6);
+    //数组每一项相加求和 for
+    var total = 0;
+    for (var i = 0; i < ary.length; i++) {
+        total += ary[i];
+    }
+    //eval :把字符串转换成表达式
+    var str = '1+2+3';
+    console.log(eval(str));
+    var str2 = ary.join('+');
+    console.log(eval(str2));
+
+    //concat()：用于拼接数组，参数可以不传，也可以传多个，参数的数据类型不限
+    var res1=ary.concat();//数组复制一份返回给res1
+    console.log(res1, ary);
+    res1[0]=9;
+    console.log(res1, ary);
+
+    var res2=ary.concat(12,23,[22,33],{w:1},function(){console.log(2)});
+    console.log(res2);
+    //当参数是数组时，会把这个数组拆开（只拆一层），一项一项放到新数组中；
+    //当参数是其他数据类型时，是整个放入新数组中
+
+
+    //slice（n，m）：从索引n（包含）开始获取到索引m（不包含）；返回值是获取到的项目组成的数组
+    ary.slice(1,2);
+    var res3=ary.slice(1,2);//参数可以为负数
+    var res4=ary.slice();//复制一份
+    var res5=ary.slice(0);//复制一份
+    console.log(res3,res4,res5,ary);
+
+    //indexOf:没有对应索引值时，返回值为-1；用于查看某一项是否在该数组中
+    //ary.indexOf(xxx,n):从索引n开始查找，是否包含xxx项，包含就返回其对应的索引，否则返回-1，默认n=0
+    //lastIndexOf
+    ary2=[1,2,3,4,5,1,3];
+    console.log(ary2.indexOf(3));
+    console.log(ary2.lastIndexOf(3));
+    console.log(ary2.indexOf(1));
+    console.log(ary2.lastIndexOf(1));
+    console.log(ary2.indexOf(8));//
+    console.log(ary2.lastIndexOf(8));//
+
+
+</script>

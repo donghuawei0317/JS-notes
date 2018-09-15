@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>Date</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+<!--<div id=div2>文字内容</div>-->
+</body>
+</html>
+<script>
+    var oDiv1 = document.getElementById('div1');
+    var oDiv2 = document.getElementById('div2');
+    //    console.log(new Date());
+    //    oDiv.innerHTML='没有参数时： '+new Date();
+    //    oDiv.innerHTML='有参数时： '+new Date('2008/8/8 8:00:00');
+//    var a = new Date();
+//    var b = new Date('2008/8/8 8:00:00');
+
+    //    oDiv.innerHTML=a.getFullYear();
+    //    oDiv.innerHTML=a.getFullYear();
+
+    //    oDiv1.innerHTML=a.getMonth();
+    //    oDiv2.innerHTML=b.getMonth();
+
+    //    oDiv1.innerHTML = a.getDate();
+    //    oDiv2.innerHTML = b.getDate();
+
+//    oDiv1.innerHTML=a.getDay();
+//    oDiv2.innerHTML=b.getDay();
+//    oDiv1.innerHTML=a.getHours();
+//    oDiv2.innerHTML=b.getHours();
+//    oDiv1.innerHTML=a.getSeconds();
+//    oDiv2.innerHTML=b.getSeconds();
+//    oDiv1.innerHTML=a.getMilliseconds();
+//    oDiv2.innerHTML=b.getMilliseconds();
+//    oDiv1.innerHTML=a.getTime();
+//    oDiv2.innerHTML=b.getTime();
+    //今天是X年X月X日 星期X X:X:X
+    //方法一：
+    /*function sum(){
+        var now=new Date(),
+                year=now.getFullYear(),
+                month=now.getMonth()+1,
+                date=now.getDate(),
+                hour=now.getHours()<10?'0'+now.getHours():now.getHours(),
+                minute=now.getMinutes()<10?'0'+now.getMinutes():now.getMinutes(),
+                second=now.getSeconds()<10?'0'+now.getSeconds():now.getSeconds(),
+                day=now.getDay(),
+                ary=['日','一','二','三','四','五','六'];
+        var str=`今天是${year}年${month}月${date}日 星期${ary[day]} ${hour}:${minute}:${second}`;
+        return str;
+    }*/
+    //方法二：
+    function sum(){
+        var str='今日是X年X月X日 星期X X时X分X秒',
+                a=new Date(),
+                year=a.getFullYear(),
+                month=a.getMonth(),
+                date=a.getDate(),
+                hour=a.getHours(),
+                minute=a.getMinutes(),
+                second=a.getSeconds(),
+                day=a.getDay(),
+                str2='日一二三四五六';
+        var str3=str.replace('X',year).replace('X',month).replace('X',date).replace('X',str2[day]).replace('X',hour).replace('X',minute).replace('X',second);
+        return str3;
+    }
+    oDiv1.innerHTML=sum();
+
+</script>

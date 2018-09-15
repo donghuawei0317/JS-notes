@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //字符串所有的方法都不会改变原字符串，replace（替换）除外。
+    var str='zhufengpeixun';
+    console.log(str.charAt(3));//查看某个索引值对应的字符
+    console.log(str[3]);
+
+    console.log(str.charCodeAt(3));//查看某个索引值对应的字符的ASCII值
+
+    str.slice(1,3);//从索引1开始获取到索引3结束，不包含索引3；返回值为获取到的字符组成的字符串。与数组的slice用法一致。
+    str.substr(1,3);//从索引1开始获取3个字符，返回值是获取到的字符串
+    str.substring(1,3);//从索引1获取到索引3，不包含索引3
+    //若写为str.substring(3,1)，系统会自动将1和3调换位置，结果等同于str.substring(1,3)。
+
+    str.split();//把字符串按照指定字符分割成数组；数组的长度是后边的第二个参数，，没有的话默认全部
+    var str2='1+2+3';
+    var ary=[1,2,3,4,5,6];//ary.join('+')
+    console.log(str2.split('+',2));
+    console.log(str2.split());//把字符串整体作为数组的一项
+    console.log(str2.split(''));
+
+    str.toUpperCase();//把字符串改为大写
+    str.toLocaleUpperCase();//与上边的相同，只是与地区有关
+
+    str.toLowerCase();//把字符串改为小写
+    str.toLocaleLowerCase();
+
+    //str.replace(a,b)    用b替换字符串中的a，一次只能替换一个字符
+    /*
+    * 若要替换多个：
+    * str2.replace('+','-').replace('+','-')
+    * 或者：
+    * str2.replace(/\+/g,'-')    正则
+    * */
+
+    var str3='http://zhufengpeixun.cn?w=12&q=eee&a=999';
+    var queryUrl=function(str){
+        var str4=str.split('?')[1];
+        var ary=str4.split('&');
+        var obj={};//用来存储键值对
+        for(var i=0;i<ary.length;i++){
+            var arr=ary[i].split('=');
+            obj[arr[0]]=arr[1];
+        }
+        return obj;
+    };
+    console.log(queryUrl(str3));
+</script>

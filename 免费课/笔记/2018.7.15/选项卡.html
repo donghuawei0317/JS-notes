@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        .til_box{
+            width: 400px;
+            display: flex;
+            margin: auto;
+        }
+        .til_box .til{
+            flex:1;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 25px;
+        }
+        .til_box .til:nth-child(2){
+            border-right: 1px solid #000;
+            border-left:1px solid #000;
+        }
+        .content{
+            width: 400px;
+            height: 400px;
+            margin: auto;
+            border:1px ;
+        }
+    </style>
+</head>
+<body>
+<div class="til_box">
+    <div class="til">js</div>
+    <div class="til">html</div>
+    <div class="til">css</div>
+</div>
+<div class="content">js'box</div>
+<div class="content">html's box</div>
+<div class="content">css's box</div>
+</body>
+</html>
+<script>
+    function byClass(str){
+        return document.getElementsByClassName(str);
+    }
+    var tils=byClass('li');
+    var contents=byClass('content')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var ary=[1,2,3];
+    function sum(){
+        console.log(arguments);
+        var a=arguments[0];
+        for(var i=1;i<arguments.length;i++){
+            a[a.length]=arguments[i];
+        }
+        return a.length;
+    }
+    sum(ary,4,5,6);
+    console.log(ary);
+</script>

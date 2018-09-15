@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>函数的递归给数组排序</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var ary=[1,2,3,6,5,4,9,8,7];
+    function sum(ary){
+        if(ary.length<=1){
+            return ary;
+        }
+        var n=parseInt(ary.length/2);
+        var temp=ary.splice(n,1)[0];
+        var left=[],right=[];
+        for(var i=0;i<ary.length;i++){
+            if(temp>=ary[i]){
+                left.push(ary[i]);
+            }else{
+                right.push(ary[i]);
+            }
+        }
+        return sum(left).concat(temp,sum(right));
+    }
+    console.log(sum(ary));
+    var oDiv=document.getElementById('div1');
+    oDiv.innerHTML=sum(ary);
+</script>

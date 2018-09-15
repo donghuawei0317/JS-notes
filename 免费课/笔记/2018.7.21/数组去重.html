@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var ary = [1, 2, 3, 4, 1, 2, 3, 5, 6, 1, 2, 3, 7, 8, 9];
+    //1.
+   /* function sum(ary) {
+        for (var i = 0; i < ary.length; i++) {
+            for (var n = i + 1; n < ary.length; n++) {
+                if (ary[i] == ary[n]) {
+                    ary.splice(n, 1);
+                    n--;
+                }
+            }
+        }
+        return ary;
+    }
+    console.log(sum(ary));*/
+    //2.
+    /*function sum(ary) {
+        var a = [];
+        for (var i = 0; i < ary.length; i++) {
+            if (a.indexOf(ary[i]) == -1) {
+                a.push(ary[i]);
+            }
+        }
+        return a;
+    }
+    console.log(sum(ary));*/
+    //3.
+    function sum(ary){
+        var obj={},a=[];
+        for(var i=0;i<ary.length;i++){
+            obj[ary[i]]=ary[i];
+        }
+        for(var k in obj){
+            a.push(obj[k]);
+        }
+        return a;
+    }
+    console.log(sum(ary));
+</script>

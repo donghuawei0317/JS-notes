@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #kaiguan {
+            margin:100px auto;
+            height: 50px;
+            width: 200px;
+            line-height: 50px;
+            text-align:center;
+        }
+        #light{
+            margin:0 auto;
+            height: 200px;
+            width:200px;
+            border:1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+<div id="kaiguan">开关</div>
+<div id="light"></div>
+
+</body>
+</html>
+<script>
+    var a=document.getElementById('kaiguan');
+    var b=document.getElementById('light');
+    var c=1;
+    a.onclick=function(){
+        if(c==1){
+            b.style.backgroundColor='#000';
+            c=0;
+        }else{
+            b.style.backgroundColor='#ccc';
+            c=1;
+        }
+    };
+    console.log(a);
+    console.log(b);
+    console.log(c);
+</script>

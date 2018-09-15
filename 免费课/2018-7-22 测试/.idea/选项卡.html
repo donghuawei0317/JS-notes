@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>选项卡（测试）</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .top{
+            width: 200px;
+            height: 50px;
+            margin: 100px auto 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .top li{
+            float: left;
+            width: 33.33%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: aqua;
+        }
+        .top li.active{
+            background-color: blue;
+            color: #red;
+        }
+        .top i{
+            display: block;
+            width: 1px;
+            height: 30px;
+            background-color: #000;
+            position: absolute;
+        }
+        .top .fi{
+            top: 10px;
+            left:33.33%
+        }
+        .top .se{
+            top:10px;
+            left:66.66%
+        }
+        .bottom{
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .bottom li{
+            display: none;
+            float: left;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            background-color: red;
+        }
+        .bottom li.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<ul class="top">
+    <li>A</li>
+    <i class="fi"></i>
+    <li>B</li>
+    <i class="se"></i>
+    <li>C</li>
+</ul>
+<ul class="bottom">
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+</ul>
+</body>
+</html>
+<script>
+    var oUls1=document.getElementsByClassName('top')[0];
+    var oLisT=oUls1.getElementsByTagName('li');
+    var oUls2=document.getElementsByClassName('bottom')[0];
+    var oLisB=oUls2.getElementsByTagName('li');
+    function sum1(){
+        for(var i=0;i<oLisT.length;i++){
+            oLisT[i].className='';
+            oLisB[i].className='';
+        }
+    }
+    for(var i=0;i<oLisT.length;i++){
+        oLisT[i].a=i;
+        oLisT[i].onclick=function(){
+            sum1();
+            oLisT[this.a].className='active';
+            oLisB[this.a].className='active';
+        }
+    }
+
+</script>

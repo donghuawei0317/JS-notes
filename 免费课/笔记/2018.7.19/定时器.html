@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>定时器</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //setTimeout(f,time):只执行一次，f是个函数体，time是毫秒
+    //clearTimeout(timer);清除timer定时器
+    var timer=window.setTimeout(function(){
+        console.log(122);
+    },2000);//2000毫秒=2秒
+    //2秒之后要做的事
+    window.clearTimeout(timer);
+
+    //setInterval(f,time):可以执行无限次
+    //clearInterval（timer2）；清除timer2定时器
+    var timer2=window.setInterval(function(){
+        console.log(123);
+    },1000);
+    window.clearInterval(timer2);
+</script>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>数组的增加-删除-修改</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //增加：
+    var ary = [];
+    //ary[3]='qq';
+    //push() 在数组的末尾增加项
+    //push（xxx，xxx，xxx）参数可以有很多个，且数据类型不限制；返回值是改变后的数组的长度
+    //    var a=ary.push(1);
+    //    console.log(ary,ary.push(100,200));
+    ary.push(function () {
+        console.log(12);
+    });
+    console.log(ary);
+    ary[0]();//调用ary里的函数
+    //length:
+    //ary[ary.length-1];
+    ary[ary.length] = '123';
+    console.log(ary);
+
+    function myPush(ary, n) {
+        ary[ary.length] = n;
+        return ary.length
+    }
+    myPush(ary, 456);
+    console.log(ary);
+
+    //unshift：在数组的前边添加，返回值也是改变后的数组的长度，参数可以是多个
+    var ary2=[12,23,13,14];
+    var res=ary2.unshift(1,2,3);
+    console.log(res, ary2);
+
+
+    //删除：
+    //pop：删除数组的最后一项。没有参数。返回值：删除的那一项。
+    var ary3=[12,13,14];
+    var res3=ary3.pop();
+    console.log(res3, ary3);
+    ary3.length=1;
+    console.log(ary3);
+    //用length删除最后一项
+    ary3.length=ary3.length-1;
+
+    //shift:删除数组的第一项；没有参数；返回值为删除的那一项
+    var ary4=[12,34,56];
+    var res4=ary4.shift();
+    console.log(res4, ary4);
+
+    //splice(n,m,x,y,z,...)从索引为n的地方开始，删除m个元素，用x，y，z...替换之前的元素；返回值是删除的m项组成的新数组
+    var ary5=[12,34,56];
+    /*var res5=ary5.splice(1,1,21,22,22,32);
+    console.log(ary5, res5);*/
+    /*var res5_1=ary5.splice(1,0,21,22,22,32);
+    console.log(res5_1, ary5);*/
+
+    /*var res5_2=ary5.splice();
+    console.log(res5_2,ary5);*/
+
+    /*var res5_3=ary5.splice(0);
+    console.log(res5_3,ary5);*/
+
+    //用splice实现push
+    /*function myPush2(ary,n){
+        ary.splice(ary.length,0,n);
+        return ary.length;
+    }
+    var res5_4=myPush2(ary5,15);
+    console.log(res5_4, ary5);*/
+
+    function myPop(ary){
+        var temp=[];//可有可无
+        temp=ary.splice(ary.length-1,1);
+        return temp[0];
+    }
+    var res5_5=myPop(ary5);
+    console.log(res5_5, ary5);
+</script>

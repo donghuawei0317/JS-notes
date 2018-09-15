@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title></title>
+    <link rel="icon" href="">
+    <script></script>
+    <script src="js.js"></script>
+</head>
+<body>
+<div id="div1" onclick="alert('珠峰培训')"><!--js行内式-->
+    珠峰培训
+</div>
+
+<div id="div2" >
+    珠峰培训
+</div>
+<div id="div3" >
+    珠峰培训
+</div>
+<!--
+css引入方式：
+1、行内式；
+2、内嵌式；
+3、外链式；
+
+js引入方式：
+1、行内式-把js直接写在；
+2、内嵌式；
+3、外链式；
+-->
+
+</body>
+</html>
+<script>
+    /*内嵌式：用div2代表上边的div元素。可以直接用ID代表这个元素，这种写法只有在标准浏览器下支持，低版本浏览器不支持*/
+    div2.onclick = function(){
+        alert(2)
+    }
+</script>
+<script src="js.js"></script>

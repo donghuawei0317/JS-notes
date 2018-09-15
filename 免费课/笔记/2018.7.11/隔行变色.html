@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title></title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            margin:100px auto   ;
+            width: 500px;
+            list-style: none;
+        }
+        li{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 25px;
+            border: 1px solid #000000;
+        }
+       /* li:nth-child(2n){
+            background-color: #00a77b;
+        }
+        li:nth-child(2n-1){
+            background-color: #0fa6ea;
+        }*/
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+
+</body>
+</html>
+<script>
+    var oLis = document.getElementsByTagName('li');
+    console.log(oLis);
+    function changeBg(a){
+        for(var i=0;i<a.length;i++){
+            if(i%2==0){
+                a[i].style.backgroundColor='#00ae66';
+            }else{
+                a[i].style.backgroundColor='#0fa6ea';
+            }
+        }
+    }
+    changeBg(oLis);
+
+</script>

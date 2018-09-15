@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+
+    var a="www\"qqq";
+
+    //a.length//字符串长度
+    for(var i=0;i<a.length;i++){
+        console.log(a[i]);
+    }
+    var ary=[1,2,3];
+    ary[ary.length]='4';
+    console.log(ary);
+
+    a[a.length]='r';
+    a[0]='t';
+    console.log(a);
+    //字符串只能读，不能改
+
+    var str='qwerte56';
+    str.charAt(1);//查看对应索引位置的字符
+    console.log(str.charAt(1));
+
+    str.charCodeAt(1);//查看对应索引位置的字符的阿斯克码值
+    console.log(str.charCodeAt(1));
+
+    //str.toUpperCase():把小写字母转换成大写，没有改变原字符串
+
+    //str.toLowerCase():把大写字母转换成小写，没有改变原字符串
+
+    //indexOf  lastIdexOf
+    console.log(str.indexOf('w'));
+    console.log(str.indexOf('a'));
+
+    //split:把字符串以指定字符拆分成数组
+    //数组的join是把以指定字符串拼接成字符串
+    var str4='q,e,w+a,r';
+    var ary=str4.split(',');
+    var ary2=str4.split('+');
+    var ary3=str4.split('');
+    var ary4=str4.split(' ');
+    var ary5=str4.split();
+    console.log(ary);
+    console.log(ary2);
+    console.log(ary3);
+    console.log(ary4);
+    console.log(ary5);
+
+    var ary6=[1,2,3,4,5];
+    var ary7=ary6.join('+').split("+");
+    console.log(ary6);
+    console.log(ary7);
+
+    //substr
+    //str.substr(n,m);//从索引n开始，获取m个元素
+    //类似于ary.splice(n,m,x,y,z)
+    console.log(str.substr(2, 1));
+    console.log(str);
+
+    //substring
+    //str.substring(n,m);从索引n开始，获取到索引m（不包含）。当n>m时，两者会自动交换位置
+    //类似于ary.slice(n,m)
+    console.log(str.substring(1, 2));
+    console.log(str.substring(2, 1));
+
+    //slice
+    //str.slice(n,m);从索引n获取到索引m（不包含）
+
+
+    //replace(a,b);把字符串中的a用b替换掉
+    var n=str.replace('e','adc');
+    console.log(n);
+    console.log(str);
+
+    var str= 'http://www.zhufengpeixun.com?a=12&b=23';
+function getQuery(str){
+    var obj={};
+    var str6=str.split('?')[1];
+    var ary=str6.split('&');
+    for(var i=0;i<ary.length;i++){
+        var ary2=ary[i].split('=');
+        obj[ary2[0]]=ary2[1];
+    }
+    return obj;
+}
+var obj=getQuery(str);
+    console.log(obj);
+
+</script>

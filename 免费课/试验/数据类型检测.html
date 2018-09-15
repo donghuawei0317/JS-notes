@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>数据类型的检测</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //typeof：
+    /*console.log(typeof 12);//number
+    console.log(typeof '12');//string
+    console.log(typeof true);//boolean
+    console.log(typeof 'true');//string
+    console.log(typeof null);//object
+    console.log(typeof undefined);//undefined
+    console.log(typeof {});//object
+    console.log(typeof {w:1});//object
+    console.log(typeof ({}));//object
+    console.log(typeof []);//object
+    console.log(typeof [2]);//object
+    console.log(typeof '');//string*/
+    //constructor:
+    /*var a=12;
+    console.log(a.constructor.toString());
+    console.log('a'.constructor.toString());
+    console.log(([]).constructor.toString());
+    console.log([].constructor.toString());
+    console.log({}.constructor.toString());
+    console.log(true.constructor.toString());*/
+    //instanceof：
+    /*var a={};
+    console.log(a instanceof Object);//true
+    console.log(a instanceof Array);//false
+    var b=[];
+    console.log(b instanceof Object);//true
+    console.log(b instanceof Array);//true*/
+    //Object.prototype.toString.call(xxx):
+    console.log(Object.prototype.toString.call([]));
+    console.log(Object.prototype.toString.call({}));
+    console.log(Object.prototype.toString.call(/\d/));
+    console.log(Object.prototype.toString.call(12));
+    console.log(Object.prototype.toString.call('12'));
+    console.log(Object.prototype.toString.call(true));
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+      /*  #div1{
+            color: red;
+        }*/
+    </style>
+</head>
+<body>
+<div id=div1 style="color: red;">文字内容</div>
+<!--这是一个注释-->
+<span>文字</span>
+<p>内容</p>
+<h1>文字内容文字内容</h1>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById('div1');
+    var Body=document.body;
+    //document.父节点.childNodes
+    //    console.log(document.body.childNodes);
+    //document.父节点.children
+    //    console.log(document.body.children);
+
+    //    console.log(oDiv.parentNode);
+    //    console.log(oDiv.previousSibling);
+    //    console.log(oDiv.previousElementSibling);
+    //    console.log(oDiv.nextSibling);
+    //    console.log(oDiv.nextElementSibling);
+    //    console.log(document.body.firstChild);
+    //    console.log(document.body.firstElementChild);
+    //    console.log(document.body.lastChild);
+    //    console.log(document.body.lastElementChild);
+    var H2=document.createElement('h2');
+    Body.appendChild(H2);
+//    console.log(Body.replaceChild(oDiv, H2));
+//    console.log(Body.removeChild(oDiv));
+    oDiv.setAttribute('style','color:red');
+//    oDiv.setAttribute('a',100);
+    console.log(oDiv.getAttribute('style'));
+    oDiv.removeAttribute('style');
+</script>

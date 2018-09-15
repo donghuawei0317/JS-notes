@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>数组的定义-语法</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var ary = [1, 2, 3];//声明式
+    var ary = [];
+    /*
+     * 数组的每一项都有一个属性名（数组本身就是一个对象，他只是对象的一个细分）跟他对应，这里的属性名（依次递增的数字）叫索引
+     * 数组的每一项可以是任意数据类型
+     * */
+    var sum = function (a, b) {
+        return a + b;
+    };
+    var ary = [1, true, 'qqq', null, undefined, {q: 0}, function () {
+        console.log(2)
+    }, sum, sum()];
+    console.log(sum());
+    console.log(ary[7](1, 2), ary[8]);
+    console.log(ary);
+    /*数组里的变量，要把对应的变量值放到相应的位置
+     *
+     * 对象的查看 打点 ['']
+     * 数组本身也应该有打点和['']两种方式，但是对象中的数字属性只能用[''][]的方式，所以数组中的查看只能用[''][]
+     * */
+    var ary1=[1,2,3,1,2,3,];
+    var q=ary1[0];
+    console.log(q);
+
+
+    console.log(ary['8'], ary[8]);
+    //for in 循环查看数组
+    ary.aaa = 'www';
+    for (var k in ary) {
+        //k 每一个属性名
+        console.log(ary[k]);
+    }
+    //for循环
+    for (var i = 0; i < ary.length; i++) {
+        console.log(ary[i]);
+    }
+    //while循环
+    var n = 0;
+    while (n < ary.length) {
+        console.log(ary[n]);
+        n++;
+    }
+    var ary2=[1,2,3,'4'];
+    console.log(ary2);
+    console.log(Object.prototype.toString.call(ary2));
+    ary.a='qqq';
+    console.log(ary2);
+
+    var ary3=[];
+    ary3.qq='qq';
+    ary3.aa='aa';
+    ary3[3]='33';
+    console.log(ary3);
+    console.dir(ary3);
+    console.log(Object.prototype.toString.call(ary3));
+
+</script>

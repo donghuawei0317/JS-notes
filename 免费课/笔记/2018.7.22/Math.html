@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        /**{
+            user-select: none;
+        }*/
+    </style>
+    </head>
+<body>
+<div id=div1>文字内容</div>
+<div id=div2>文字内容</div>
+</body>
+</html>
+<script>
+    console.log(Math.sqrt(9));//开方
+    console.log(Math.pow(3, 2));//3的2次方
+    console.log(Math.floor(2.9));//
+    console.log(Math.floor(-2.9));
+    console.log(Math.ceil(2.1));
+    console.log(Math.ceil(-2.1));
+
+    console.log(Math.round(3.5));//四舍五入
+    console.log(Math.abs(-1.2));//取绝对值
+
+    Math.max(1, 5, 9);//取一组数中的最大值
+    Math.min(1, 5, 9);//取一组数中的最小值
+
+    console.log(Math.random());//取[0-1)之间的随机数，包含0，不包含1
+
+    //求0-50之间的随机数    [0,50)
+    Math.random() * 50;
+    //求0-50之间的随机整数    [0,50)
+    console.log(Math.floor(Math.random() * 50));
+    //求0-50之间的随机整数    [0,50]
+    console.log(Math.round(Math.random() * 50));
+    //求0-50之间的随机整数    [0,50]
+    console.log(Math.ceil(Math.random() * 50));
+    //求5-50之间的随机整数    [5,50]
+    Math.round(Math.random() * 45 + 5);
+    //求m-n之间的随机整数
+    //    Math.round(Math.random()*(n-m)+m);
+
+    //获取一个四位验证码，英文和数字组成的字符串
+    var str = 'qwertyuiopasdfghjklzxcvbnm0123456789QWERTYUIOPASDFGHJKLZXCVBNM';
+    var n = Math.round(Math.random() * 61);//取0-61之间的随机整数
+    var s = str[n];
+
+    function sum() {
+        var str1 = '';
+        var str = 'qwertyuiopasdfghjklzxcvbnm0123456789QWERTYUIOPASDFGHJKLZXCVBNM';
+        var ary=[];
+        for(var i=0;i<4;i++){
+            var n = Math.round(Math.random() * 61);
+            if(ary.indexOf(n)==-1){
+                ary.push(n);
+                str1 += str[n];
+            }else{
+                i--
+            }
+        }
+        //用while替换for：
+        /*var i=0;
+        while(i<4){
+            var n=Math.round(Math.random()*61);
+            if(ary.indexOf(n)==-1){
+                ary.push(n);
+                str1+=str[n];
+                i++;
+            }
+        }*/
+        return str1;
+    }
+    var oDiv = document.getElementById('div1');
+//    var oDiv2 = document.getElementById('div2');
+    oDiv.onclick=function(){
+        oDiv.innerHTML=sum();
+        console.log(sum());
+    }
+
+</script>

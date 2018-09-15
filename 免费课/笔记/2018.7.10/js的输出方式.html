@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title></title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id="div1">珠峰培训</div>
+<!--
+js的输出方式：目的是调试bug
+alert（） 弹出框
+console.log（div1） 是在浏览器控制台输出的
+console.dir(div1) 是在浏览器控制台输出该元素的详细信息,供程序员调试bug
+confirm（1）有两个反馈值“确定”=true，“取消”=false
+debugger阻断代码的执行
+
+代码的执行：
+一般把js放到下边（原因：1、因为要操作dom的时候必须保证dom已经被加载；2、当前边加载的js特别大的时候，会影响整个页面的加载速度，导致页面出现空白期。），css放到上边
+-->
+
+</body>
+</html>
+<script>
+    console.log(div1);debugger;
+    console.dir(div1);
+    console.log(confirm(1))
+
+</script>

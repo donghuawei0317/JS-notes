@@ -1,0 +1,4 @@
+JS组成：
+。ECMAscript：变量，语句，函数
+。DOM：文档对象模型（document object model）存放的都是操作DOM的内容
+。BOM：浏览器对象模型（browser object model）window history。。。

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>开关灯</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        #switch {
+            width: 200px;
+            margin: 100px auto 0 auto;
+            text-align: center;
+            border:1px solid #007aff;
+        }
+
+        #light {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border: 1px solid #2a70be;
+            background-color: #0fa6ea;
+        }
+    </style>
+</head>
+<body>
+<div id="switch">开关</div>
+<div id="light"></div>
+</body>
+</html>
+<script>
+    var a = document.getElementById('switch');
+    var b = document.getElementById('light');
+    var c = 1;
+    a.onclick = function () {
+        if (c == 1) {
+            b.style.backgroundColor ='#2a70be';
+            c = 0;
+        }else {
+            b.style.backgroundColor = '#EA131B';
+            c = 1;
+        }
+    };
+    console.log(a);
+    console.log(b);
+</script>

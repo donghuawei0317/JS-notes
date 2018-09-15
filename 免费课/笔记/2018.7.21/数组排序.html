@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>数组排序</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    //冒泡排序：
+    /*var ary=[1,2,3,9,8,7,6,5,4];
+    function sum(ary){
+        for(var i=0;i<ary.length-1;i++){//比较的轮数
+            for(var j=0;j<ary.length-1-i;j++){
+                var temp=ary[j];
+                if(ary[j]>ary[j+1]){
+                    ary[j]=ary[j+1];
+                    ary[j+1]=temp;
+                }
+            }
+        }
+        return ary;
+    }
+    console.log(sum(ary));*/
+    //快速排序
+    //函数的递归（自己调用自己）
+    function sum(n){
+        if(n<=0){
+            return 0;
+        }
+        return n+sum(n-1);
+    }
+    console.log(sum(10));
+    //0-10奇数求和
+    function sum2(n){
+        if(n<=0){
+            return 0;
+        }
+        if(n%2==1){
+            return n+sum2(n-2);
+        }else{
+            return sum2(n-1);
+        }
+    }
+    console.log(sum2(10));
+
+    /*
+    * 现找出数组的中间项，把这一项拿出来，用拿出这一项之后的数组中的每一项与这个数比较
+    * */
+
+    function sum3(ary){
+        if(ary.length<=1){
+            return ary;
+        }
+        var n=parseInt(ary.length/2);
+        var cur=ary.splice(n,1)[0];
+        var left=[],right=[];
+        for(var i=0;i<ary.length;i++){
+            if(ary[i]<cur){
+                left.push(ary[i]);
+            }else{
+                right.push(ary[i]);
+            }
+        }
+        return sum3(left).concat(cur,sum3(right));
+    }
+</script>

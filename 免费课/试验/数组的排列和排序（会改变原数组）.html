@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var ary = [1, 2, 3, 4, 5, 6];
+    //reverse:
+    /*  var a=ary.reverse();
+     console.log(a);//[6,5,4,3,2,1]
+     console.log(ary);//[6,5,4,3,2,1]
+     a[0]=9;
+     console.log(a);
+     console.log(ary);
+     function myReverse(ary){
+     for(var i=0;i<ary.length/2;i++){
+     var temp=ary[i];
+     ary[i]=ary[ary.length-1-i];
+     ary[ary.length-1-i]=temp;
+     }
+     return ary;
+     }
+     console.log(myReverse(ary));
+     function myReverse2(ary){
+     var arr=[];
+     for(var i=ary.length-1;i>=0;i--){
+     arr.push(ary[i]);
+     }
+     return  arr;
+     }
+     console.log(myReverse2(ary));*/
+    //sort:
+    var ary2 = [1, 2, 3, 1, 2, 4, 5, 6];
+    var a = ary2.sort();
+    console.log(a);
+    console.log(ary2);
+    a[0] = 9;
+    console.log(a);
+    console.log(ary2);
+
+    var ary3 = [1, 2, 3, 4, 5, 6, 41, 51, 6, 7, 10, 8, 9];
+    var b = ary3.sort();
+    console.log(b);
+
+    var ary4 = [1, 2, 3, 1, 2,100, 3, 4, 5, 6, 55, 66, 22,11];
+    var ary5 = [1, 2, 3, 1, 2, 3, 4, 5, 6, 55, 66, 22];
+
+    var c=ary5.sort(function (a,b){
+     return a-b;
+     });
+     console.log(c);
+
+    var c=ary5.sort(function(a,b){
+     return b-a;
+     });
+     console.log(c);
+    console.log(ary5);
+    function sum(ary) {
+        for (var i = 0; i < ary.length; i++) {
+                for (n = i; n < ary.length;n++) {
+//                    n++;
+//                    console.log(n);
+                    var b = ary[i] - ary[n];
+                    if (b < 0) {
+                        var temp = ary[i];
+                        ary[i] = ary[n];
+                        ary[n] = temp;
+                    }
+                }
+        }
+        return ary;
+    }
+    console.log(sum(ary4));
+</script>

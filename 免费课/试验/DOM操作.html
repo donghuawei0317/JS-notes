@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>DOM操作</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+<div class="doc">
+    <div class="div2">文字内容2</div>
+    <div id="div3">
+        <span id="span">文字内容3</span>
+        文字内容4
+    </div>
+    <span>
+        <!--注释内容-->
+    </span>
+</div>
+</body>
+</html>
+<script>
+    /* var oDiv = document.getElementById('div1');
+     //    oDiv.innerHTML='hello';
+     //    oDiv.innerHTML='<p>123</p>';
+     //    oDiv.innerText='hello';
+     //    oDiv.innerText='<p>123</p>';
+     var span1 = document.createElement('span');
+     //    console.log(span1);
+     //    console.log(span1.toString());
+     //    oDiv.innerHTML = span1;
+     span1.innerHTML = '这是一个span标签';
+     span1.className='mySpan';
+     span1.style.backgroundColor='red';
+     oDiv.appendChild(span1);
+     */
+    var span2 = document.createElement('span');
+    var oDiv = document.getElementById('div3');
+    var oSpan = document.getElementById('span');
+    var oSpan2=oDiv.firstElementChild;
+    oDiv.insertBefore(span2,oSpan2);//在#div3的第一个元素子节点前创建一个span标签
+    console.log(oSpan2);//<span id="span">文字内容3</span>
+    var oDivs=document.getElementsByTagName('div');//选择所有div标签,返回值是数组
+    console.log(oDivs);
+    var divs=document.querySelectorAll('div');
+    //query.SelectorAll():选择多个节点，返回值是所有选中的节点组成的数组
+    console.log(divs);
+
+    var oDiv2=document.createElement('div');
+    oDiv.appendChild(oDiv2);
+
+//    oSpan.innerHTML='<div>123</div>';
+    console.log(document.querySelectorAll('.doc>div:nth-child(1)'));
+    console.log(document.querySelectorAll('.doc'));
+</script>

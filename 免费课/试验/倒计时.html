@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>倒计时</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    function sum(){
+        var aimTime=new Date('2018/7/24 15:00:00');//获取目标时间
+        var aimTimeT=aimTime.getTime();//获取目标时间距离1970年的毫秒数
+        var nowTime=new Date();//获取当前时间
+        var nowTimeT=nowTime.getTime();//获取当前时间距离1970年的毫秒数
+        var time=aimTimeT-nowTimeT;//获取目标时间与当前时间的时间差，毫秒
+        if(time<=0){
+            clearInterval(timer);//当到达目标时间时，清除定时器
+            time=0;//时间差为0
+        }
+        var hour=Math.floor(time/3600000);//获取整小时数，’time/3600000‘可能为小数，要向下取整
+        time=time-hour*3600000;//减去整小时数，剩余的毫秒数
+        var minute=Math.floor(time/60000);//获取整分钟数，’time/60000‘可能为小数，要向下取整
+        time=time-minute*60000;//减去整分钟数，剩余的毫秒数
+        var second=Math.floor(time/1000);//获取整秒数，’time/1000‘可能为小数，要向下取整
+        var str=`距离活动结束还有${hour<10?'0'+hour:hour}时${minute<10?'0'+minute:minute}分${second<10?'0'+second:second}秒`;
+        var oDiv=document.getElementById('div1');
+        oDiv.innerHTML=str;
+    }
+    var timer=window.setInterval(sum,1000);
+</script>

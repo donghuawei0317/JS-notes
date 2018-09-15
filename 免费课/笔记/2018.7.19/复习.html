@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var oDiv=document.getElementById('div1');
+    var div1=document.createElement('div');
+    div1.innerHTML='<span>文字内容</span>';
+    div1.className='myClass';
+    document.body.appendChild(div1);
+    //父节点.insertBefore(newele,oldele);
+//    document.body.insertBefore(div1,oDiv);
+    //当页面上已经有某个元素时，无论是通过appendChild还是insertBefore操作，都不会新增该元素，只是改变该元素的位置。
+    //父节点，removeChild（oDiv）：从父节点中删除某元素
+//    document.body.removeChild(div1);
+    //父节点.replaceChild(newele,oldele):
+    document.body.replaceChild(div1,oDiv);
+    //cloneNode():参数为true是子孙全部拷贝，没有参数时只拷贝它自己
+    var oDiv2=oDiv.cloneNode(true);
+
+    oDiv.qqq='自定义属性';
+    //aetAttribute设置元素的行内属性，参数两个：第一个是设置的属性名，第二个是设置的属性值
+    //getAttribute获取元素的行内属性，参数只有一个，就是要获取的属性的属性名
+
+
+</script>

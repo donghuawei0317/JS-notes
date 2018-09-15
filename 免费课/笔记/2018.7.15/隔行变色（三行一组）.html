@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>隔行变色（三行一组）</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul {
+            margin: 100px auto;
+            width: 500px;
+            height: 450px;
+            border: 1px solid #000000;
+            /*line-height: 20px;*/
+        }
+
+        ul li {
+            box-sizing: border-box;
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid #00ae66;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+        }
+        /*隔行变色*/
+        /*ul li:nth-child(3n){
+            background-color:#1BAE24;
+        }
+        ul li:nth-child(3n+1){
+            background-color:#AE0606;
+        }
+        ul li:nth-child(3n+2){
+            background-color:#0807AE;
+        }*/
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+</ul>
+
+</body>
+</html>
+<script>
+    var oLis = document.getElementsByTagName('li');//各方法共用部分
+    //方法一：
+ /*   for (var i = 0; i < oLis.length; i++) {
+        if (i % 3 == 0) {
+            oLis[i].style.backgroundColor = '#1BAE24';
+        } else if (i % 3 == 1) {
+            oLis[i].style.backgroundColor = '#AE0606';
+        } else {
+            oLis[i].style.backgroundColor = '#0807AE';
+        }
+    }*/
+    //方法二：
+/*    function changeColor() {
+        for (var i = 0; i < oLis.length; i++) {
+            if (i % 3 == 0) {
+                oLis[i].style.backgroundColor = '#1BAE24';
+            } else if (i % 3 == 1) {
+                oLis[i].style.backgroundColor = '#AE0606';
+            } else {
+                oLis[i].style.backgroundColor = '#0807AE';
+            }
+        }
+    }
+    changeColor();*/
+    //方法三：
+    /*for (var i = 0; i < oLis.length; i++) {
+        switch (i % 3) {
+            case 0:
+                oLis[i].style.backgroundColor = '#1BAE24';
+                break;
+            case 1:
+                oLis[i].style.backgroundColor = '#AE0606';
+                break;
+            default:
+                oLis[i].style.backgroundColor = '#0807AE';
+        }
+    }*/
+    //方法四：
+    function a(){
+        for (var i = 0; i < oLis.length; i++) {
+            switch (i % 3) {
+                case 0:
+                    oLis[i].style.backgroundColor = '#1BAE24';
+                    break;
+                case 1:
+                    oLis[i].style.backgroundColor = '#AE0606';
+                    break;
+                default:
+                    oLis[i].style.backgroundColor = '#0807AE';
+            }
+        }
+    }
+    a();
+
+</script>

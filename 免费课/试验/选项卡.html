@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .top {
+            margin: 100px auto 0 auto;
+            width: 200px;
+            height: 50px;
+            border: 1px solid #000000;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .top li {
+            float: left;
+            width: 33.33%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #00a77b;
+        }
+
+        .top li.active {
+            background-color: #c81623;
+            color: #070FC8;
+        }
+
+        .top .fi, .top .se {
+            display: block;
+            width: 1px;
+            height: 30px;
+            background-color: #000;
+            z-index: 100;
+        }
+
+        .top .fi {
+            position: absolute;
+            top: 10px;
+            left: 33.33%
+        }
+
+        .top .se {
+            position: absolute;
+            top: 10px;
+            left: 66.66%
+        }
+
+        .bottom {
+            margin: 0 auto 0 auto;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #0aeeaa;
+            overflow: hidden;
+        }
+
+        .bottom li {
+            display: none;
+            float: left;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            background-color: #0fa6ea;
+        }
+
+        .bottom li.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<ul class="top">
+    <li>A</li>
+    <i class="fi"></i>
+    <li>B</li>
+    <i class="se"></i>
+    <li>C</li>
+</ul>
+<ul class="bottom">
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+</ul>
+</body>
+</html>
+<script>
+    var ul1 = document.getElementsByClassName('top');
+    console.log(ul1);
+    var oLisT = ul1[0].getElementsByTagName('li');
+    console.log(oLisT);
+    //    var ul2 = document.getElementById('bottom');
+    var ul2 = document.getElementsByClassName('bottom');
+    console.log(ul2);
+    var oLisB = ul2[0].getElementsByTagName('li');
+    console.log(oLisB);
+    function sum() {
+        for (var i = 0; i < oLisT.length; i++) {
+            oLisT[i].className = '';
+            oLisB[i].className = '';
+        }
+    }
+    for (var i = 0; i < oLisT.length; i++) {
+        oLisT[i].a = i;
+        oLisT[i].onclick = function () {
+            sum();
+            oLisT[this.a].className = 'active';
+            oLisB[this.a].className = 'active';
+        }
+    }
+</script>

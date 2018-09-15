@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title></title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id="div1">珠峰培训</div>
+
+</body>
+</html>
+<script>
+    //引用数据类型（应运而生） {} [] Date RegExp fn...
+    //对象是复合数据的载体，用{}包起来。内容是一对一对的键值对（属性名：属性值）
+    //这里的冒号相当于 等号：是 赋值的意思，不同的键值对之间用逗号隔开
+    //属性名对应变量名 （但是属性名可以是单独的数字，不能是以数字开头的字符）
+    //： 对应等号
+    //属性值 对应变量值（可以是任意的数据类型）
+    var per = {
+        name:'zhufeng',
+        age:9,
+        hobby:{
+            hobby:'play',
+            hobby1:'eat'
+        }
+    };
+    var per1 = {
+        name:'xiaoming',
+        age:10
+    };
+    console.log(per.name);
+    //对象的 增 删 改 查
+    //查看：
+    //属性名不管是否带引号都是表示的同一个属性
+    //1、通过打点的方式（从属关系。此方式不适用于属性名为纯数字的属性）：
+    per.name;
+    //2、中括号：
+    per['name'];
+    var name = 'age';
+    console.log(per[name], per.name, per['name']);
+    per[name]//-->per['age']-->9
+    //定义属性时，属性名可以带引号也可以不带
+    //调用时，若通过打点的方式获取某个属性对应的值，则不能个这个属性名加引号
+    //        若通过[]的方式获取某个属性对应的值，必须用引号把这个属性名包起来
+    //        如果不用引号，则[]内代表的是变量对应的值
+    //        当属性名是数字的时候，必须用[]的方式获取该属性对应的值，这时的数字属性名的引号可加可不加
+
+    //给对象添加一项
+    var user = {
+        name:'xiaoming',
+        password:'1234'
+    };
+    //修改
+    console.log(user.name);
+    user.name = 'xm1';
+    console.log(user.name);
+    //增加
+    console.log(user.sex);
+    user.sex = '男';
+    console.log(user.name);
+    //当这个对象有这个属性的时候，再重新赋值时，是相当于修改这个属性对应的属性值。
+    //当这个对象没有这个属性时，给这个属性重新赋值时，相当于给这个对象添加了这个属性。
+
+    //对象的删除
+    //1、真删除；
+    console.log(user);
+    delete user.name;
+    console.log(user);
+    //2、假删除；
+    console.log(user);
+    user.sex = null;
+    console.log(user);
+</script>

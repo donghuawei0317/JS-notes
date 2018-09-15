@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>数组的排列和排序（不改变原数组）</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>文字内容</div>
+</body>
+</html>
+<script>
+    var ary = [1, 2, 3, 4, 1, 6];
+    //toString():不接收参数，返回值是每一项用逗号隔开的字符串
+    /*var a=ary.toString();
+     console.log(a);
+     console.log(typeof a);
+     console.log(ary);*/
+
+    //join():
+    /*var a=ary.join();
+     console.log(a);
+     var b=ary.join(',');
+     console.log(b);
+     var c=ary.join('+');
+     console.log(c);
+     var d=ary.join('');
+     console.log(d);
+     var e=ary.join(' ');
+     console.log(e);
+    //数组每一项相加求和：
+     var total=0;
+     for(var i=0;i<ary.length;i++){
+     total+=ary[i];
+     }
+     console.log(total);
+    //eval():把字符串转换成表达式
+    var a = '1+2+3';
+    console.log(eval(a));//6
+    var b = '1,2,3';
+    console.log(eval(b));//3
+    var c = '123';
+    console.log(eval(c));//123*/
+    //concat():
+   /* var a=ary.concat();
+    console.log(a);//[1,2,3,4,5,6]
+    console.log(ary);//[1,2,3,4,5,6]
+    a[0]=9;
+    console.log(a);//[9,2,3,4,5,6]
+    console.log(ary);//[1,2,3,4,5,6]
+    var b=ary.concat(12,[8,9],{w:1},function(){console.log(1)});
+    console.log(b);
+    var c=ary.concat(1,[1,[1,2,3],2],3);
+    console.log(c);
+*/
+   //slice(n,m):
+    /*var a=ary.slice(1,2);
+    console.log(a);//[2]
+    var b=ary.slice(-2,-1);
+    console.log(b);
+    var c=ary.slice();
+    console.log(c);
+    var d=ary.slice(0);
+    console.log(d);
+    var e=ary.slice(1);
+    console.log(e);*/
+    //indexOf:
+    /*console.log(ary.indexOf(3));//2
+    console.log(ary.lastIndexOf(3));//2
+    console.log(ary.indexOf(1));//0
+    console.log(ary.indexOf(1, 2));//4
+    console.log(ary.lastIndexOf(1));//4
+    console.log(ary.lastIndexOf(1, 2));//0
+    console.log(ary.indexOf(8));//-1
+    console.log(ary.lastIndexOf(8));//-1*/
+</script>

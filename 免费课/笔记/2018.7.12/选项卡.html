@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title></title>
+    <link rel="icon" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .til {
+            width: 400px;
+            height: 52px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin: 100px auto 0 auto;
+        }
+
+        .til ul {
+            overflow: hidden;
+        }
+
+        .til ul li {
+            line-height: 50px;
+            float: left;
+            width: 33.33%;
+            font-size: 25px;
+            text-align: center;
+        }
+
+        .til ul li.active {
+            background-color: #00a77b;
+            color: #000;
+        }
+
+        .body {
+            width: 400px;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            font-size: 30px;
+            margin: auto;
+        }
+
+        .body ul {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .body ul li {
+            width: 100%;
+            height: 100%;
+            background-color: #0aeeaa;
+            display: none;
+        }
+
+        .body ul li.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="til">
+    <ul>
+        <li>css</li>
+        <li>html</li>
+        <li>js</li>
+    </ul>
+</div>
+<div class="body">
+    <ul>
+        <li>css's body</li>
+        <li>html's body</li>
+        <li>js's body</li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    var til = document.getElementsByClassName('til')[0];
+    var tils = til.getElementsByTagName('li');
+    console.log(tils);
+    var body = document.getElementsByClassName('body')[0];
+    var bodys = body.getElementsByTagName('li');
+    console.log(bodys);
+
+    function clearClass() {
+        for (var i = 0; i < tils.length; i++) {
+            tils[i].className = '';
+            bodys[i].className = '';
+        }
+    }
+    //方法一：
+    /*   tils[0].onclick = function () {
+     clearClass();
+     tils[0].className = 'active';
+     bodys[0].className = 'active';
+     };
+     tils[1].onclick = function () {
+     clearClass();
+     tils[1].className = 'active';
+     bodys[1].className = 'active';
+     };
+     tils[2].onclick = function () {
+     clearClass();
+     tils[2].className = 'active';
+     bodys[2].className = 'active';
+     };*/
+    //方法二：
+    for (var i = 0; i < tils.length; i++) {
+        tils[i].my = i;
+        tils[i].onclick = function () {
+            clearClass();
+            tils[this.my].className = 'active';
+            bodys[this.my].className = 'active';
+            alert(`我是第${this.my+1}个li`);
+        }
+    }
+    console.log(tils[2].my);
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>数据类型的检测</title>
+    <link rel="icon" href="">
+</head>
+<body>
+
+
+</body>
+</html>
+<script>
+    //1.typeof
+    var a=12;
+    console.log(typeof a);
+    console.log(typeof 'number');
+    console.log(typeof true);
+    console.log(typeof 'true');
+    console.log(typeof null);
+    console.log(typeof undefined);
+    console.log(typeof {});
+    console.log(typeof ({}));
+    //2.constructor
+    var b='qqq';
+    console.log(b.constructor.toString());
+    console.log(a.constructor.toString());
+    console.log(({}).constructor.toString());
+    console.log(([]).constructor.toString());
+    //3.instanceof  用来查看*对象*
+    var c={};
+    console.log(c instanceof Object);//true
+    console.log(c instanceof Array);//false
+    var d=[];
+    console.log(d instanceof Object);//true
+    console.log(d instanceof Array);//true
+
+
+    //4.Object.prototype.toString.call(xxx);
+    console.log(Object.prototype.toString.call([]));
+    console.log(Object.prototype.toString.call({}));
+    console.log(Object.prototype.toString.call(/\d/));
+    console.log(Object.prototype.toString.call(12));
+    console.log(Object.prototype.toString.call('qqq'));
+    console.log(Object.prototype.toString.call(true));
+
+
+
+</script>

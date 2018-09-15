@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>querySelectorAll</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id=div1>
+    <span class="item1">aa</span>
+    <span class="item2">bb</span>
+    <span class="item3">cc</span>
+    <span class="item4">dd</span>
+    <span class="item5">ee</span>
+</div>
+</body>
+</html>
+<script>
+    var a=document.querySelectorAll('.item');
+    console.log(a);
+    var b=document.querySelectorAll('#div1');
+    console.log(b);
+    var c=document.querySelectorAll('#div1>span:nth-child(3)');
+    console.log(c);
+</script>
