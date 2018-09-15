@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+    <div id="div1">珠峰培训</div>
+</body>
+</html>
+<script>
+    /*
+    * this 指向
+    * 1、直接看点  函数执行时 ，点前边是谁，this就指向谁；没有点的就是window
+    * 2、自执行函数的this 指向window
+    * 3、DOM事件绑定，this 指向绑定的DOM元素
+    * */
+    var fn = function () {
+        console.log(this);
+    };
+    var obj = {f:fn};
+    var oDiv = document.getElementById('div1');
+
+    fn();// window
+    obj.f();// obj
+    oDiv.onclick = function () {
+        console.log(this);//oDiv
+    };
+    (function () {
+        console.log(this);//window
+    })();
+
+    var name = "zhufengpeixun.com";
+    var person = {
+        name: "zhufeng",
+        pro: {
+            name: "peixun",
+            getName: function() {
+                return this.name;
+            },
+            getName2: function () {
+                return function () {
+                    return this.name
+                }
+            }
+        }
+    };
+    console.log(person.pro.getName());//'peixun'
+    var pepole = person.pro.getName;
+    console.log(person.pro.getName2()());//'z.com'
+    console.log(pepole());//'z.com'
+
+
+</script>  

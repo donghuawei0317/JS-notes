@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+    <div id="div1">珠峰培训</div>
+</body>
+</html>
+<script>
+    // console.log(a); a is not defined
+    // let a = 12;
+    // 没有变量提升
+    // 不是window的属性
+    // 不能重复声明
+
+    // const b = 13;
+    // 跟let 的区别就是不能重复定义
+
+    function f() {
+        // console.log(a);// a is not defined//  暂时性死区
+        // let 声明的变量 虽然没有变量提升，但是也会在代码执行之前预览一次代码，发现有let声明，那就认为 let 声明的属于私有，这时，在代码执行的时候就不会再向上级查找变量
+        let a = 12;
+    }
+    f();
+
+    /*
+    * 块级作用域
+    * for(var i = 0; i < 2; i++){
+    *   //这就是属于一个块级作用域
+    * }
+    *
+    * if(条件){
+    *   //块级作用域
+    * }
+    *
+    * while
+    * switch case
+    *
+    * 用大括号包 住的，排除对象；其他的就是一个块级作用域
+    * */
+    // let b = 13;
+    // var b = 14;
+    //
+
+
+    let a = 13;
+    if(true){
+        let a = 12;
+        // let a = 13;
+        console.log(a); //12
+    }
+    console.log(a);//13
+
+
+    var b = 13;
+    if(true){
+        var b = 12;
+        // let a = 13;
+        console.log(b); //12
+    }
+    console.log(b) //12
+</script>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+    <div id="div1">珠峰培训</div>
+</body>
+</html>
+<script>
+    /*
+    *    类                    实例
+    *    人类                  张三
+    *    狮子类                辛巴
+    * */
+    /*
+    * JS 的类
+    * 类： Object  String   Number   Boolean    Function      Array  Date...
+    *实例:   {}     'sss'    123       true   function sum()   []
+    *
+    * */
+
+    //  Array  []
+    //  原型 prototype: 每个函数都有一个原型属性prototype,指向他的一个原型对象
+    //  每个类的实例 都可以通过 __proto__ 找到他的所属类的原型对象
+
+    /*
+    * 构造函数模式； 创建一个构造函数；通过 new 去创建 这个构造函数（自定义类）的一个实例
+    * 这个实例的__proto__属性指向 这个构造函数（自定义类） 的 原型对象
+    * 这个原型对象上有一个constructor属性  指向  构造函数本身
+    *
+    * */
+
+    function Person(name,age) {
+        this.name = name;
+        this.age = age;
+        this.set = function () {
+            console.log(12)
+        }
+    };
+    // Person('jerry',18);
+    // console.log(name,age);
+
+
+    var tom = new Person('tom',18);
+    console.log(tom.name,tom.age);
+    console.log(tom.__proto__);
+    console.log(tom.__proto__.constructor == Person)
+
+
+    function person(name,age) {
+        this.name = name;
+        this.age = age;
+        this.set = function () {
+            console.log(12)
+        }
+    };
+    var lily = new person('lily',20);
+
+    /*
+    * 构造函数 的函数名 一般首字母要大写；
+    * 当这个函数通过 new  执行时；那么 他就是一个构造函数（自定义类）；也就是把它当作一个类去执行
+    *
+    * 构造函数 跟咱们的高级单例模式相似
+    *
+    * */
+
+    var obj = (function () {
+        var name = 'zfpx';
+        return {
+            name:name
+        }
+    })();
+
+    // function Person2() {
+    //     var name2 = 'zfpx';
+    //     this.name = name2;
+    //     this.age = 9;
+    // }
+    // var obj2 = new Person2();
+    // console.log(obj2);
+    // var obj3 = Person2();
+    /*
+    * new 执行函数跟普通函数执行的区别
+    *  new 执行 会在函数内部自动创建一个 对象 （this）;函数执行完成之后；会把this 默认返回
+    *  如果手动修改 return 值；  若return的是个值类型；那么 默认return的 还是 this
+    *  若 return 的是个引用数据类型；那么返回的就是 这个引用数据类型
+    * */
+    function Person3() {
+        var name2 = 'zfpx';
+        this.name = name2;
+        this.age = 9;
+        // this.getName = function () {
+        //     console.log(12)
+        // }
+        // return 9;
+        // return this;
+        // return {}
+    }
+    Person3.prototype.getName = function () {
+        console.log(this.name)
+    };
+    Person3.prototype.name = 'zhufeng';
+    var per = new Person3();
+    // var per3 = new Person3();
+    var n = Person3();//n
+    console.log(per); // {name,age}
+    per.getName();
+    /*
+    * per 是Person3（自定义类） 的一个实例
+    * 是实例的话就能调用 所属类原型上的方法和属性
+    * */
+
+</script>
