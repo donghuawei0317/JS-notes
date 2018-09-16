@@ -32,7 +32,7 @@
         methods: {
             keyup(e){
                 let code = e.keyCode;//抬起的按键对应的键值码
-                this.text=this.text.replace(/^ +| +$/g,'');
+                this.text=this.text.replace(/^ +| +$/g,'');//去除首尾空格
                 if (code == 13 && this.text) {
                     this.ary.push(this.text);//把text放到数组中
                     this.text = '';//把输入框的内容清空

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <my-name></my-name>
+    <my-name></my-name>
+    <my-name></my-name>
+</div>
+</body>
+</html>
+<template id="myName">
+    <div>
+        <button @click="fn">点击我</button>
+        我被点击了{{n}}次
+    </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let obj = {
+        n: 0,
+    };
+    Vue.component('my-name', {
+//        template: '<div><button @click="fn">点击我</button>我被点击了{{n}}次</div>',
+        template:'#myName',
+        data(){
+            return {n: 0};
+        },
+        methods: {
+            fn(){
+                this.n++;
+            }
+        }
+    });
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        component: {},
+    })
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <!--<abc></abc>-->
+    <!--<myName></myName>-->
+    <my-name></my-name>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    /*
+    * 组件：复用性高，可维护性强
+    * 组件 → 页面级模块、可复用级模块
+    *
+    * vue中的组件 → 全局组件、局部组件
+    *
+    * 全局组件的注册使用Vue.component('组件名'，{template:'<span></span>'})。DOM模板是个字符串，里边是正常的DOM标签。template只能含有一个DOM根元素
+    * */
+//    Vue.component('abc',{
+//        //abc组件名
+//        template:`<h1>BDC</h1>`
+//    });
+    /*Vue.component('myname',{
+        //abc组件名
+        template:`<h1>BDC</h1>`
+    });*/
+    Vue.component('my-name',{
+        //abc组件名
+        template:`<h1>BDC</h1>`
+    });
+    let vm = new Vue({
+        el: '#app',
+        data: {}
+    })
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <grand-p></grand-p>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let son={
+        template:'<h1>儿子</h1>'
+    };
+    let parent={
+        template:'<h1>父亲<son></son></h1>',
+        components:{
+            son,
+        }
+    };
+    let grandP={
+        template:'<h1>爷爷<parent></parent></h1>',
+        components:{
+            parent,
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components:{
+            grandP,
+        }
+    })
+</script>

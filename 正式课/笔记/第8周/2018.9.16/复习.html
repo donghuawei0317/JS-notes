@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <div :style="'color:#ccc'">ABC</div>
+    <div :style="{color:'red',fontSize:'40px'}">DEF</div>
+    <div :style="cssObj">GHI</div>
+
+    <div :class=""></div>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //directives和filters中的this不是指向vue实例的，而是指向window
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            cssObj:{
+                color:'blue'
+            }
+        },
+        directives:{},
+        filters:{},
+        computed:{
+            myData(){
+                //只要在函数中用到了实例中的某些属性，那么计算属性就依赖于那些属性
+            }
+        },
+        beforeCreate(){},
+        created(){},
+        mounted(){
+            //this.$refs是一个对象，里边存储的属性名是DOM中对应的ref的值，属性值是ref对应的DOM
+            console.log(this.$refs);
+        }
+    })
+</script>

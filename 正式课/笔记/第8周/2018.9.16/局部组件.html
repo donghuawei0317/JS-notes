@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <!--<my-name1></my-name1>-->
+    <my-name2></my-name2>
+    <my-name></my-name>
+</div>
+</body>
+</html>
+<template id="myName1">
+    <div>
+        <h2>{{name}}</h2>
+        <input type="text" v-model="name">
+    </div>
+</template>
+<template id="myName2">
+    <div>
+        <h2>{{name}}</h2>
+        <input type="text" v-model="name">
+        <name1></name1>
+    </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    /*
+     * 1、先声明一个组件（定义一个对象，对象中的属性的hivue规定好的）
+     * 2、在对应的实例中注册这个组件，在components这个对象中添加这个组件名
+     * 3、在对应的实例渲染的DOM中使用即可
+     * 【要保证组件的独立性】
+     * */
+    //———局部组件———
+    let myName1 = {
+        template:'#myName1',
+        data(){
+            return {name:'珠峰'}
+        },
+    };
+    let myName2 = {
+        template: '#myName2',
+        data(){
+            return {name:'培训'}
+        },
+        components:{
+            name1:myName1,
+        }
+    };
+    //———全局组件———
+    Vue.component('MyName', {
+        template: `<h2>{{name}}</h2>`,
+        data(){
+            return {name:'ASD'};
+        }
+    });
+    //———END———
+    let vm = new Vue({//根实例
+        el: '#app',
+        data: {
+            name: 'QWE',
+        },
+        components: {
+//            myName1,
+            myName2//注册之后
+        }
+    })
+</script>

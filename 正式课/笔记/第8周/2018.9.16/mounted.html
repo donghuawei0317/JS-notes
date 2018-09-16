@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>title</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <h3 v-for="val in ary" ref="h3">{{val}}</h3>
+    {{test}}
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            ary:[1,2,3],
+        },
+        mounted(){
+            console.log(this.$refs.h3);
+            this.ary=[4,5,6,7,8,9];//vue的DOM渲染是异步的
+            console.log(this.$refs.h3);
+            this.$nextTick(()=>{
+                console.log(this.$refs.h3);
+            })
+        },
+        computed:{
+            test(){
+                if(this.$refs.h3){
+                    console.log(this.$refs.h3.length);
+                }
+            }
+        },
+        updated(){
+            console.log(this.$refs.h3);
+            console.log(this.$refs.h3.length);
+            console.log(this.ary);
+        }
+    })
+</script>
