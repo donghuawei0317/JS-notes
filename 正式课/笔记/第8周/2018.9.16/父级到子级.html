@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <son ></son>
+</div>
+</body>
+</html>
+<template id="son">
+    <div>
+        {{money}}
+        <button>按钮</button>
+    </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let son={
+        template:'#son',
+        props:{
+            money:{
+                type:[Number,String,Array],//传过来的数据类型
+                //default:'200',//若不传，给一个默认值
+                default:function(){
+                    return [200,600]
+                },
+                //required:true,//必须传参数
+                validator(val){//判断条件，判断是否满足需求
+                    //这个函数是让开发者验证使用组件的人传进来的数据是否符和这个组件的要求
+                    console.log(val);
+                    return true;
+                },
+            }
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components:{
+            son,
+        }
+    })
+</script>

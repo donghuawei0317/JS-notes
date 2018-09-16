@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <button @click="flag=!flag">显示弹框</button>
+    <model v-show="flag" :data="modelData" @myshow="fn"></model>
+</div>
+</body>
+</html>
+<template id="mask">
+    <div >
+        <div class="content">
+            <header>{{data.title||'默认标题'}</header>
+            <main>{{data.content||'默认主体'}}</main>
+            <footer><button @click="cancel">取消</button></footer>
+        </div>
+    </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    /*
+     * 父传子，通过属性传递，子组件通过props接收
+     * 子传父，通过自定义事件@my-name='fn' ，this.$emit('my-name')
+     * */
+    let model={
+        template:'#mask',
+        data(){},
+        methods:{
+            cancel(){
+                this.$emit('myshow',false);
+            }
+        },
+        props:['data'],
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            flag:true,
+            modelData:{
+                title:'父组件传递的title',
+                content:'内容',
+            }
+        },
+        methods:{
+            fn(val){
+                //val是子组件传进来的
+                this.flag=val;
+            }
+        },
+        components:{
+            model,
+        }
+    })
+</script>
