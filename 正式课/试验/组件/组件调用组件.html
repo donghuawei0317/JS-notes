@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <demo1></demo1>
+    <demo2></demo2>
+    <demo3></demo3>
+    <demo4></demo4>
+</div>
+</body>
+</html>
+<template id="test1">
+    <div>
+        <h1>demo1</h1>
+        <demo3></demo3>
+    </div>
+</template>
+<template id="test2">
+    <div>
+        <h2>demo2</h2>
+        <!--<demo1></demo1>-->
+    </div>
+</template>
+<template id="test3">
+    <div>
+        <h3>demo3</h3>
+        <demo2></demo2>
+    </div>
+</template>
+<template id="test4">
+    <div>
+        <h4>demo4</h4>
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('demo1', {
+        template: '#test1',
+    });
+    let demo2 = {
+        template: '#test2',
+    };
+    Vue.component('demo3', {
+        template: '#test3',
+        components:{
+            demo2
+        }
+    });
+    let demo4 = {
+        template: '#test4'
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components: {
+            demo2,
+            demo4
+        }
+    })
+</script>

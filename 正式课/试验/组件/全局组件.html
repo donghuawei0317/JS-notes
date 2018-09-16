@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <h1>ABC</h1><!--VUE实例的-->
+    <demo></demo><!--组件的-->
+</div>
+</body>
+</html>
+<template id="text">
+    <h2>DEF</h2>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('demo',{
+        //template:'<h1>ABC</h1>'
+        template:'#text',
+    });
+
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+    })
+</script>

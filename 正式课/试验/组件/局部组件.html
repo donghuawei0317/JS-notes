@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <demo></demo>
+</div>
+</body>
+</html>
+<template id="text">
+    <div>
+        <h2>DEF</h2>
+        <div>{{a}}</div>
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let demo = {
+        template: '#text',
+        data(){
+            return {
+                a: 'text'
+            }
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components: {
+            demo
+        }
+    })
+</script>
