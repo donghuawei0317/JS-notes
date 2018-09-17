@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <demo_2></demo_2>
+</div>
+</body>
+</html>
+<template id="test_1">
+    <div>
+        <button @click="fn_1">子级组件的按钮</button>
+        {{n}}
+        {{a}}
+        {{o}}
+        {{s}}
+    </div>
+</template>
+<template id="test_2">
+    <div>
+        <button>父级组件的按钮</button>
+        {{N}}
+        {{A}}
+        {{O}}
+        {{S}}
+        <demo_1 @fn_1-1="fn_2"></demo_1>
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    //———子级组件———
+    let demo_1 = {
+        template: '#test_1',
+        data(){
+            return {
+                n: 1,
+                a:[1,2,3],
+                o:{name:'DEMO'},
+                s:'string'
+            }
+        },
+        methods: {
+            fn_1(){
+                this.$emit('fn_1-1', this.n,this.a,this.o,this.s)
+            }
+        },
+    };
+    //———父级组件———
+    let demo_2 = {
+        template: '#test_2',
+        data(){
+            return {
+                N:0,
+                A:[],
+                O:{},
+                S:'_'
+            }
+        },
+        methods: {
+            fn_2(){
+                console.log(arguments);
+                this.N=arguments[0];
+                this.A=arguments[1];
+                this.O=arguments[2];
+                this.S=arguments[3];
+            }
+        },
+        components: {
+            demo_1,
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components: {
+            demo_2,
+        }
+    })
+</script>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <demo_2></demo_2>
+</div>
+</body>
+</html>
+<!--子级组件-->
+<template id="test_1">
+    <div>
+        <button @click="fn_1">子级组件的按钮</button>
+        {{n}}
+        {{s}}
+        {{a}}
+        {{o}}
+    </div>
+</template>
+<!--父级组件-->
+<template id="test_2">
+    <div>
+        <button @click="fn_2">父级组件的按钮</button>
+        {{num}}
+        {{str}}
+        {{ary}}
+        {{obj}}
+        <demo_1 :s="str" s_1="str_1" :a="ary" a_1="ary_1" :o="obj" o_1="obj_1" :n="num" n_1="num_1"></demo_1><!--没有“:”的话，demo_1接收到的只是“ary”这三个字母的字符串-->
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    //———子级组件———
+    let demo_1 = {
+        template: '#test_1',
+        data(){
+            return {
+                m:0,
+            };
+        },
+        props:{
+            n:{
+//                type:[Array,String,Number,Object],
+//                type:null,
+                default:100,
+                //required:true,
+                validator(val){
+                    console.log(val);
+                    return true;
+                }
+            },
+            n_1:{
+                type:[Array,String,Number,Object],
+                default:'100',
+                //required:true,
+                validator(val){
+                    console.log(val);
+                    return true;
+                }
+            },
+            a:{
+                type:[Array,String,Number,Object],
+                default:function(){
+                    return [7,8,9]
+                },
+//                required:true,
+                validator(val){
+                    console.log(val);
+                    return true;
+                }
+            },
+            a_1:{
+                type:[Array,String,Number,Object],
+                default:function(){
+                    return [7,8,9]
+                },
+                //required:true,
+                validator(val){
+                    console.log(val);
+                    return true;
+                }
+            },
+            o:{
+                type:[Array,String,Number,Object],
+                default:function(){
+                    return {name:'DEMO'}
+                },
+                //required:true,
+                validator(val){
+                    console.log(val);
+                    return true;
+                }
+            },
+            o_1:{
+                type:[Array,String,Number,Object],
+                default:function(){
+                    return {name:'DEMO'}
+                },
+                //required:true,
+                validator(val){
+                    console.log(val);
+                    return true;
+                }
+            },
+            s:{
+                type:[Array,String,Number,Object],
+                default:'string--',
+                //required:true,
+                validator(val){
+                    console.log(val);
+                    return true;
+                }
+            },
+            s_1:{
+                type:[Array,String,Number,Object],
+                default:function(){
+                    return {name:'DEMO'}
+                },
+                //required:true,
+                validator(val){
+                    console.log(val);
+                    return true;
+                }
+            },
+        },
+        methods:{
+            fn_1(){
+                console.log(Object.prototype.toString.call(this.n));
+                console.log(Object.prototype.toString.call(this.n_1));
+                console.log(Object.prototype.toString.call(this.s));
+                console.log(Object.prototype.toString.call(this.s_1));
+                console.log(Object.prototype.toString.call(this.a));
+                console.log(Object.prototype.toString.call(this.a_1));
+                console.log(Object.prototype.toString.call(this.o));
+                console.log(Object.prototype.toString.call(this.o_1));
+            }
+        }
+    };
+    //———父级组件———
+    let demo_2 = {
+        template: '#test_2',
+        data(){
+            return {
+                num:0,
+                num_1:0,
+                str:'string',
+                str_1:'string',
+                ary:[1,2,3,4,5,6],
+                ary_1:[1,2,3,4,5,6],
+                obj:{name:'TEST'},
+                obj_1:{name:'TEST'}
+            }
+        },
+        components: {
+            demo_1,
+        },
+        methods:{
+            fn_2(){
+                this.num++;
+            }
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components: {
+            demo_2,
+        }
+    });
+</script>

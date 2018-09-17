@@ -29,7 +29,7 @@
         methods:{},
         components:{
             son:{
-                template:'<div><h1>son</h1>{{n}}{{arr2}}<button @click="fn">按钮</button></div>',
+                template:'<div><h1>son</h1>{{n}}{{arr2}}{{arr}}<button @click="fn">按钮</button></div>',
                 props:['ary','qqq','w'],
                 data(){
                     return {
@@ -50,7 +50,9 @@
                 methods:{
                     fn(){
                         //this.arr=[4,5,6]
-                        this.ary.pop();
+                        //this.ary.pop();
+                        console.log(this.arr);
+                        this.arr.pop();
                     }
                 }
             }
