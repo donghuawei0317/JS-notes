@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <son m="123" :ary="[1,2,3]"></son>
+</div>
+</body>
+</html>
+<template id="son">
+    <div>
+        <h2 v-for="val in ary">子组件{{val}}</h2>
+    </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let son={
+        template:'#son',
+        data(){
+            return {
+                //这里的属性名不能与props中的属性名重复
+            }
+        },
+        //props:['m'],
+        props:{
+           m:{
+               type:String,
+               defaule:'ABC',
+               required:false,
+               validator(val){
+                   //自定义判断条件
+                   console.log(val);
+                   return true;
+               }
+           },
+            ary:{
+               default(){
+                   return [];//若没有传ary，就默认是一个空数组
+               }
+            }
+        },
+        mounted(){
+            console.log(this);
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components:{
+            son,
+        }
+    })
+</script>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <son ref="a"></son>
+    <!--<div ref="zf">ABC1</div>
+    <div ref="zf">ABC2</div>
+    <div ref="zf">ABC3</div>
+    <div v-for="val in 'abc'" ref="qw">ABC4</div>-->
+</div>
+</body>
+</html>
+<template id="son">
+    <div>
+        <h2>子组件</h2>
+        {{name}}
+    </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //父级组件调用子级组件的方法
+    //·通过$refs获取对应的子组件的实例
+    //·通过父级组件的this.$childern获取对应的组件实例
+    let son={
+        template:'#son',
+        data(){
+            return {
+                name:'QQQ',
+            }
+        },
+        methods:{
+            fn(){
+                alert('son');
+            }
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components:{
+            son,
+        },
+        created(){
+            console.log(this.$refs.zf);
+        },
+        mounted(){
+            console.log(this.$refs);
+        },
+        methods:{
+            fn(){
+                //调用子级组件的方法
+                //this.$refs.myson 调用到子组件这个实例
+                //this.$refs.myson.name='1234';
+                //this.$refs.myson.fn();
+                //先弹出1，再去更新DOM。因为DOM渲染是异步的
+                console.log(this);
+            }
+        }
+    })
+</script>

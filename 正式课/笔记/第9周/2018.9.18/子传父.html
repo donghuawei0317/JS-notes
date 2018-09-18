@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <h1>{{name}}</h1>
+    <son @mySon="fn"></son>
+</div>
+</body>
+</html>
+<template id="son">
+    <div>
+        <h2>子组件</h2>
+        <button @click="changeName">改名</button>
+    </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let son={
+        template:'#son',
+        methods:{
+            changeName(){
+                this.$emit('myson','QWE','ASD','ZXC');
+                console.log(this);
+                console.log(this.$parent);
+                console.log(this.$parent.name);//获取父级组件中所有数据
+                console.log(this.$parent.fn);
+            }
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name:'ABC',
+        },
+        components:{
+            son,
+        },
+        methods:{
+            fn(){
+                alert(1);
+                console.log(arguments);
+            }
+        }
+    })
+</script>

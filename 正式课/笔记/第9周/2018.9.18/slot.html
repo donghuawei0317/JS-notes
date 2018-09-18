@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <style>
+        .mask {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            top: 0;
+        }
+
+        .content {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            top: 50%;
+            margin: -200px auto 0;
+            background: #fff;
+        }
+
+        header {
+            text-align: center;
+            font-size: 30px;
+        }
+
+        main {
+            text-align: center;
+            font-size: 25px;
+        }
+
+        footer {
+            text-align: right;
+            font-size: 20px;
+            position: absolute;
+            width: 100%;
+            bottom: 50px;
+            right: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id='app'>
+    <button @click="flag=!flag">显示弹框</button>
+    <model v-show="flag" :data="modelData" @myshow="fn" custom-class="qqq" title="'传进来的标题">
+        <div class="tell">这是个告知通知</div>
+        <div class="footer" slot="footer">
+            <button @click="parentFn">我知道了</button>
+        </div>
+    </model>
+</div>
+</body>
+</html>
+<template id="mask">
+    <div class="mask">
+        <div class="content" :class="customClass">
+            <!--<header>{{data.title||'默认标题'}}</header>
+            <main>{{data.content||'默认主体'}}</main>
+            <footer><button @click="cancel">取消</button></footer>-->
+            <!--slot会把这个组件包含的内容拿过来-->
+            <header>title部分</header>
+            <main>
+                <solt></solt>
+            </main>
+            <!-- <slot></slot> 这种写法其实带着一个默认的name属性-->
+
+            <footer>
+                <slot name="footer">
+                    <button @click="cancel">取消</button>
+                    <button @click="sure">确认</button>
+                </slot>
+            </footer>
+        </div>
+    </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let model = {
+        template: '#mask',
+        data(){
+            return {
+                name:'子级组件'
+            }
+        },
+        methods: {
+            cancel(){
+                this.$emit('myshow', false);
+            },
+            sure(){
+
+            }
+        },
+        //props:['data','custom-class'],
+        props: {
+            data: {},
+            'custom-class': {
+                type: String,
+                default:
+            }
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            flag: true,
+            flag1: true,
+            modelData: {
+                title: '父组件',
+                content: '<h1>自定义的结构</h1>',
+            }
+        },
+        methods: {
+            fn(val){
+                this.flag = val;
+            },
+            parentFn(){
+                console.log(this);
+                this.flag=false;
+                setTimeout(()=>{
+                    console.log('已发送给后台');
+                },3000)
+            }
+        },
+        components: {
+            model,
+        }
+    })
+</script>

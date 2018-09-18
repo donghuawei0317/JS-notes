@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <son></son>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    /*
+    * 父子组件之间，子级组件先渲染完毕，父级组件才渲染
+    *
+    * */
+    let son={
+        template:'<div>子级组件</div>',
+        data(){
+            return {
+                name:''
+            }
+        },
+        mounted(){
+            //alert('son');
+        }
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components:{
+            son,
+        },
+        mounted(){
+//            alert('parent');
+            this.$refs.son.name='ABC';
+            console.log(this.$refs.son.$el.innerHTML);
+            this.$nextTick(()=>{
+                console.log(this.$refs.son.$el.innerHTML);
+            })
+        }
+    })
+</script>

@@ -1,7 +1,7 @@
 let vm = new Vue({
     el: '#app',
     data: {
-        todo: '',
+        todo: '',//任务标题
         hash: '',
         // flag:false,
         // count:1,
@@ -57,13 +57,14 @@ let vm = new Vue({
         }
     },
     methods: {
+        //———按回车键执行的函数———
         add(){
             //用来给任务列表添加任务
             let obj = {};
             // this.todo=this.todo.replace(/^ +| +$/g,'');
             this.todo = this.todo.trim();//字符串原生的方法，去除首尾空格
-            if (!this.todo)return;
-            obj.title = this.todo;
+            if (!this.todo)return;//如果没有输入就按回车键，就不执行下面的代码
+            obj.title = this.todo;//任务标题
             obj.isSelect = false;//是否选中
             obj.show = false;//是否显示input框
             this.ary.push(obj);//新增的任务添加到列表里

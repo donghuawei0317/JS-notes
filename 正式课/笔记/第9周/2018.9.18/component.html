@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <button v-for="val in ary" @click="page=val" :style="{color:page==val?'red':''}">{{val}}</button>
+    <!--<keep-alive>&lt;!&ndash;会缓存之前的组件，不会兄安徽之前的组件&ndash;&gt;
+        <component :is="page"></component>
+    </keep-alive>-->
+    <!--——————-->
+    <keep-alive>
+        <pag1 v-if="page=='pag1'"></pag1>
+        <pag2 v-if="page=='pag2'"></pag2>
+        <pag3 v-if="page=='pag3'"></pag3>
+    </keep-alive>
+
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let pag1 = {
+        template: '<h2>page1</h2>',
+        mounted(){
+            console.log(1);
+        },
+        beforeDestory(){
+            console.log('销毁');
+        }
+    };
+    let pag2 = {
+        template: '<h2>page2</h2>'
+    };
+    let pag3 = {
+        template: '<h2>page3</h2>'
+    };
+
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            page: 'pag1',
+            ary: ['pag1', 'pag2', 'pag3']
+        },
+        components: {
+            pag1,
+            pag2,
+            pag3,
+        }
+    })
+</script>
