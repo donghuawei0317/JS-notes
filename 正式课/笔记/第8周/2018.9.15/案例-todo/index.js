@@ -3,12 +3,10 @@ let vm = new Vue({
     data: {
         todo: '',//任务标题
         hash: '',
-        // flag:false,
-        // count:1,
         ary: [{title: '示例', isSelect: false, isShow: false}],//任务列表
     },
     created(){
-        this.hash = location.hash.slice(2) || 'all';
+        this.hash = location.hash.slice(2) || 'all';//
         let arr=JSON.parse(localStorage.getItem('myTodoData'));
         this.ary=arr;
         window.onhashchange = ()=> {
