@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.css" rel="stylesheet">
+</head>
+<body>
+<div id='app'>
+    <router-link :to="{path:'/home',query:{a:1,b:2}}" tag="button">首页</router-link>
+    <router-link :to="{name:'myName',params:{c:3,d:4}}" tag="button">列表1</router-link>
+    <router-link :to="{path:'/list2',params:{c:3,d:4}}" tag="button">列表2</router-link>
+    <router-view></router-view>
+</div>
+</body>
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    /*
+    * 通过点击按钮获取后台的数据，根据后台的数据决定去跳转哪个路由
+    * */
+    //点击首页的跳转按钮，2s后跳到列表页2
+    const home={
+        template:'<h2>首页<button @click="fn">跳转到列表2</button></h2>',
+        methods:{
+            //$route：存储的是参数
+            //$router：存储的是方法
+            fn(){
+                setTimeout(()=>{
+                    console.log('跳转');
+//                    this.$router.go(-1);
+//                    this.$router.back();
+//                    this.$router.push({path:'/list2',query:{e:5}});
+//                    this.$router.push('/list2');//不需要传递参数时的简写
+                    this.$router.replace({path:'/list2',query:{e:5}});//只把当前路由替换掉了，再点击回退时，会从当前路由往回跳转
+                },2000)
+            }
+        }
+    };
+    const list={
+        template:'<h2>列表1</h2>',
+    };
+    const list2={
+        template:'<h2>列表2</h2>',
+    };
+    const routes=[
+        {
+            path:'/home',
+            component:home,
+        },
+        {
+            path:'/list/:c/:d',
+            name:'myName',
+            component:list,
+        },
+        {
+            path:'/list2',
+            component:list2,
+        }
+    ];
+    const router=new VueRouter({
+        routes,
+    });
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        router,
+    })
+</script>

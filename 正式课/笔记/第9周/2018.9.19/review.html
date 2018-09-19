@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <model>
+        <template>
+            <div>TEMPLATE</div>
+        </template>
+        <div slot="default">使用者的结构</div>
+    </model>
+</div>
+</body>
+</html>
+<template id="model">
+    <div>
+        <h2>ABC</h2>
+        <div class="content"></div>
+        <footer>
+            <slot name="default"></slot>
+            <slot name="a">
+                <div>默认的结构</div>
+            </slot>
+        </footer>
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    /*
+    * 子组件调用父组件 → 1·$emit；2·this.$parent.fn
+    * 父组件调用子组件 → 1·ref；2·childern
+    * 自定义组件的v-model
+    *   <son v-model='name'></son>
+    *   <template>
+    *       <input :value='value' @input='$emit('inout',$event.target.value)'>
+    *   </template>
+    *   props:['value']
+    *
+    *   mounted(){...},子组件先执行，父组件再执行
+    *
+    *   <component is='pag1'></component>
+    *   <component :is='page'></component>
+    *
+    *   <keep-alive></keep-alive>
+    *
+    * 插槽
+    * slot
+    * */
+    let model={
+        template:'#model'
+    };
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        components:{
+            model,
+        }
+    })
+</script>

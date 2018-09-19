@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <style>
+        .current{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div id='app'>
+    <router-link to="/home" tag="button">首页</router-link>
+    <router-link to="/list" tag="button">列表</router-link>
+    <router-view></router-view>
+</div>
+</body>
+</html>
+<template id="list">
+    <div>
+        <h2>列表</h2>
+        <!-- to后边的路径要写全，不能简写 -->
+        <router-link to="/list/detail_1" tag="button">详情1</router-link>
+        <router-link to="/list/detail_2" tag="button">详情2</router-link>
+        <router-link to="/list/detail_3" tag="button">详情3</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    let home={
+        template:'<h2>首页</h2>'
+    };
+    let list={
+        template:'#list',
+    };
+    let detail={
+        template:'<h2>详情</h2>'
+    };
+    const routes=[
+        {
+            path:'/home',
+            component:home,
+        },
+        {
+            path:'/list/detail_1',
+            component:list,
+            children:[
+                {
+                    path:'detail_1',//要么写全："/list/detail"，要么只写"detail"
+                    component:detail,
+                },
+                {
+                    path:'detail_2',//要么写全："/list/detail"，要么只写"detail"
+                    component:detail,
+                },
+                {
+                    path:'detail_3',//要么写全："/list/detail"，要么只写"detail"
+                    component:detail,
+                },
+            ]
+        }
+    ];
+    const router=new VueRouter({
+        routes,
+        linkActiveClass:'current',
+        mode:'hash',
+    });
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        router,
+    })
+</script>

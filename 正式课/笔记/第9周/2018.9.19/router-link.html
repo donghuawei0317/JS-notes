@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <style>
+        .router-link-active{
+            color:red;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id='app'>
+    <!-- router-link标签上的tag是修改展示的标签元素，默认是a标签 -->
+    <!-- active-class 是控制当前选中状态的类名，后边的值就是选中状态下的类名，不写这个属性的话，默认的选中状态下的类名是“router-link-active” -->
+    <!-- exact-active-class：精确（会把传的一些参数认成不同的路径）匹配路由；不写这个属性，默认就是“router-link-exact-active” -->
+    <!-- query是固定写法，后边的对象中的每一项会被拼接到路由后边 -->
+    <!-- params 是固定写法，对象中的参数当作路径拼接到之前的路径上 -->
+    <router-link to="/home" tag="button" active-class="current" exact-active-class="exactClass">首页</router-link>
+    <router-link :to="{path:'/home',query:{name:1,age:2}}">首页_1</router-link>
+    <router-link to="/list">列表</router-link>
+    <router-link :to="{name:'ABC',params:{a:1,b:2}}">列表_1</router-link>
+    <router-view></router-view>
+</div>
+</body>
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    let home = {
+        template: '<h2>首页</h2>',
+        mounted(){
+            console.log(this);
+            console.log(this.$route.query);//通过 $route 可以获取路径上的参数
+        }
+    };
+    let list = {
+        template: '<h2>列表</h2>',
+        mounted(){
+            console.log(this);
+            console.log(this.$route.params);
+        }
+    };
+    const routes=[
+        {
+            path:'/home',
+            component:home,
+        },
+        {
+            path:'/list/:a/:b',//若想用路径传参，则需要在路径参数对应的位置写成“：变量”的形式，这个变量会对应上在行内设置的params对象中的属性名对应的属性值
+            name:'ABC',//若想用路径传参，则必须
+            component:list,
+        }
+    ];
+    const router=new VueRouter({
+        //mode:'history',//把路由转换为路径，默认是“hash”
+        linkActiveClass:'current_1',//给全局的选中状态下的router-link修改类名
+        linkExactActiveClass:'activeClass',//修改全局的精确匹配路由类名
+        routes,
+    });
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        router,
+    })
+</script>

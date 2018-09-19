@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.css" rel="stylesheet">
+    <style>
+        .current {
+            background: red;
+            color: #0fa6ea;
+        }
+
+        .active {
+            background: green;
+            color: #33ff1d;
+        }
+    </style>
+</head>
+<body>
+<div id='app'>
+    <router-link to="/home" tag="button" active-class="current" exact-active-class="exactClass">首页</router-link>
+    <router-link to="/list1" tag="button">列表1</router-link>
+    <router-link to="/list2" tag="button">列表2</router-link>
+    <transition enter-active-class="animated bounceIn" leave-active-class="animated bounceOut">
+        <keep-alivde>
+            <router-view></router-view>
+        </keep-alivde>
+    </transition>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    const home = {
+        template: "<h2>首页</h2>",
+    };
+    const list = {
+        template: "<h2>列表1</h2>",
+    };
+    const list2 = {
+        template: "<h2>列表2</h2>",
+    };
+    const routes = [
+        {
+            path:'/',
+            redirect:'/home'//一进页面时没有对应的路由，只有一个“/”，此时我们可以利用redirect，让路由指向home
+        },
+        {
+            path: '/home',
+            component: home
+        },
+        {
+            path: '/list1',
+            component: list
+        },
+        {
+            path: '/list2',
+            component: list2
+        },
+        {
+            path:'/*',
+            redirect:'/home',
+//            component:home,
+        }
+    ];
+    const router = new VueRouter({
+        routes,
+        linkActiveClass: 'active',
+        linkExactActiveClass: 'exactC'
+    });
+    let vm = new Vue({
+        el: '#app',
+        router,
+        data: {},
+        methods: {}
+    })
+</script>

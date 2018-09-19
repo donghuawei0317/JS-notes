@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <router-link :to="{path:'/home',query:{a:1,b:2}}" tag="button">首页</router-link>
+    <router-link :to="{name:'myName',params:{c:3,d:4}}" tag="button">列表</router-link>
+    <router-view></router-view>
+</div>
+</body>
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    const home={
+        template:'<h2>首页的信息{{$route.query}}</h2>',
+        created(){
+            console.log(this);
+            //通过qyery获取参数
+            console.log(this.$route.query);
+        }
+    };
+    const list={
+        template:'<h2>列表的信息{{$route.params}}</h2>',
+        created(){
+            console.log(this);
+            //通过params获取参数
+            console.log(this.$route.params);
+        }
+    };
+    const routes=[
+        {
+            path:'/home',
+            component:home,
+        },
+        {
+            path:'/list/:c/:d',
+            name:'myName',
+            component:list,
+        }
+    ];
+    const router=new VueRouter({
+        routes,
+    });
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        router,
+    })
+</script>
