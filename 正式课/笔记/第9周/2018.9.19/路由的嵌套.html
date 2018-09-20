@@ -48,8 +48,9 @@
             component:home,
         },
         {
-            path:'/list/detail_1',
+            path:'/list',
             component:list,
+            redirect:'/list/detail_1',
             children:[
                 {
                     path:'detail_1',//要么写全："/list/detail"，要么只写"detail"
@@ -69,7 +70,7 @@
     const router=new VueRouter({
         routes,
         linkActiveClass:'current',
-        mode:'hash',
+        mode:'hash',//路由选择，默认“hash”；“history”是路径
     });
     let vm = new Vue({
         el: '#app',
