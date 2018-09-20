@@ -8,13 +8,59 @@
     <link rel="icon" href="">
 </head>
 <body>
-<div id='app'></div>
+<div id='app'>
+    <router-link :to="{name:'A',params:{name:1,age:2}}" active-class="current" tag="button">首页</router-link>
+    <router-link :to="{name:'B',params:{name:3,age:4}}" active-class="current" tag="button">列表</router-link>
+    <transition>
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
+    </transition>
+</div>
 </body>
 </html>
 <script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
 <script>
+    /*
+     * 1、声明组件
+     * 2、根据组件配置路由映射表
+     * 3、将路由注入到router实例中
+     * 4、经router实例注入到vue的根实例中
+     * */
+    const home={
+        template:'<h2>首页</h2>'
+    };
+    const list={
+        template:'<h2>列表</h2>'
+    };
+    const routes=[
+        {
+            path:'/home/:name/:age',
+           name:'A',
+            component:home,
+            meta:{
+                til:'首页',
+            }
+        },
+        {
+            path:'/list/:name/:age',
+            name:'B',
+            component:list,
+        }
+    ];
+    const router=new VueRouter({
+        routes,
+    });
+    //导航守卫：beforeEach跳转前触发回调函数；afterEach跳转后触发回调函数
+    router.beforeEach((to,from,next)=>{
+        let til=to.meta.til;
+        document.title=til;
+        next();
+    });
     let vm = new Vue({
         el: '#app',
-        data: {}
+        data: {},
+        router,
     })
 </script>

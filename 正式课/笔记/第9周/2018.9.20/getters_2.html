@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <button @click="add">增加</button>
+    <h2>count:{{count}}</h2>
+    <h2>EventCount:{{EvenCount}}</h2>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vuex/dist/vuex.js"></script>
+<script>
+    const store = new Vuex.Store({
+        state: {
+            count: 0
+        },
+        getters: {
+            EvenCount(state){
+                console.log(state);
+                let n = state.count % 2 == 0 ? state.count : '奇数';
+                return n;
+            }
+        },
+        mutations: {
+            addCount(state, obj){
+                console.log(state);
+                state.count += obj;
+            }
+        }
+    });
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        store,
+        methods: {
+            add(){
+                let n = Math.round(Math.random() * 10);//0-10
+                this.$store.commit('addCount', n)
+            }
+        },
+        computed: {
+            ...Vuex.mapState(['count']),
+            ...Vuex.mapGetters(['EvenCount']),
+           /* myCount(){
+                //当不想跟store里面的数据重名时，可以写全称
+                return this.$store.state.count;
+            }*/
+        }
+    })
+</script>
