@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <div v-for="val in this.$store.getters.arr">name:{{val.name}}---age:{{val.age}}</div>
+</div>
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vuex/dist/vuex.js"></script>
+<script>
+    const store=new Vuex.Store({
+        state:{
+            ary:[{name:'A',age:10},{name:'B',age:15},{name:'C',age:20}],
+        },
+        getters:{
+            arr(state){
+                console.log(state);
+                return state.ary;
+            }
+        }
+    });
+    let vm = new Vue({
+        el: '#app',
+        data: {},
+        store,
+    })
+</script>

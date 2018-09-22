@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta content="" name="Keywords">
-    <meta content="" name="description"/>
-    <title>笔记</title>
-    <link rel="icon" href="">
+<meta charset="UTF-8">
+<meta content="" name="Keywords">
+<meta content="" name="description"/>
+<title>笔记</title>
+<link rel="icon" href="3">
 </head>
 <body>
-<div id='app'>
-    <button @click="add">增加</button>
-    <h2>count:{{count}}</h2>
-    <h2>EventCount:{{EvenCount}}</h2>
+<div id="app">
+  <button @click="add">增加</button>
+  <h2>count:{{count}}</h2>
+  <h2>EventCount:{{EvenCount}}</h2>
 </div>
 </body>
 </html>
@@ -30,7 +30,7 @@
             }
         },
         mutations: {
-            addCount(state, obj){
+            addCount(state,obj){
                 console.log(state);
                 state.count += obj;
             }

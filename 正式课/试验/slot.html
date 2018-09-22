@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="app">
+  <test style="color:red">
+    <h3>123</h3>
+    <div slot="B"><span>文字内容3</span></div>
+  </test>
+</div>
+</body>
+</html>
+<template id="A">
+  <div>
+    <h2>文字内容1</h2>
+    <slot></slot>
+    <slot name="B">
+      <p>文字内容2</p>
+    </slot>
+  </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vuex/dist/vuex.js"></script>
+<script>
+	const test={
+		template:"#A",
+	}
+	let vm=new Vue({
+		el:'#app',
+		components:{
+			test,
+		}
+	})
+</script>

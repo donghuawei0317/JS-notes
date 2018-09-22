@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    {{$store.state.a}}
+    {{$store.state.b}}
+    <home></home>
+    <input type="text" placeholder="请输入姓名" v-model="name">
+    <input type="text" placeholder="请输入年龄" v-model="age">
+    <button @click="fn">提交</button>
+    <div>
+        <list1></list1>
+        <list2></list2>
+    </div>
+</div>
+</body>
+</html>
+<template id="A">
+    <h2>
+        <button @click="addFn">+</button>
+        <button @click="decFn">-</button>
+    </h2>
+</template>
+<template id="B">
+    <ul style="float:left">
+        <li v-for="val in arr">name:{{val.name}}---age:{{val.age}}</li>
+    </ul>
+</template>
+<template id="C">
+    <ul style="float:left">
+        <li v-for="val in arr">name:{{val.name}}---age:{{val.age}}</li>
+    </ul>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vuex/dist/vuex.js"></script>
+<script>
+    const home = {
+        template: '#A',
+        created(){
+            console.log(this);
+        },
+        methods: {
+            addFn(){
+//                this.$store.state.a++;
+                this.$store.commit('add', 123);
+            },
+            decFn(){
+//                this.$store.state.a--;
+                this.$store.commit('dec', 456);
+            }
+        }
+    };
+    const list1 = {
+        template: '#B',
+        data(){
+            return {
+                ary: this.$store.state.ary.filter((item)=> {
+                    return item.age >= 18;
+                })
+            }
+        },
+        computed: {
+            arr: {
+                get(){
+                    return this.$store.state.ary.filter((item)=> {
+                        return item.age >= 18;
+                    })
+                }
+            }
+        }
+    };
+    const list2 = {
+        template: '#C',
+        computed: {
+            arr: {
+                get(){
+                    return this.$store.state.ary.filter((item)=> {
+                        return item.age < 18;
+                    })
+                }
+            }
+        }
+    };
+    const store = new Vuex.Store({
+        state: {
+            a: 0,
+            b: 1,
+            ary: [{name: 'one', age: 10}, {name: 'two', age: 15}, {name: 'three', age: 20}]
+        },
+        mutations: {
+            add(state, obj){
+//                console.log(arguments);//第一个参数是“state”，第二个参数是“$store.commit”传的参数
+//                console.log(state);//是state
+//                console.log(obj);//是123
+                state.a++;
+            },
+            dec(state, obj){
+//                console.log(arguments);
+//                console.log(state);
+//                console.log(obj);
+                state.a--;
+            }
+        }
+    });
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: '',
+            age: '',
+        },
+        store,
+        components: {
+            home,
+            list1,
+            list2,
+        },
+        methods: {
+            fn(){
+                let obj = {};
+                obj.name = this.name;
+                obj.age = this.age;
+                console.log(obj);
+                this.$store.state.ary.push(obj);
+                console.log(this.$store.state.ary);
+                this.name = '';
+                this.age = '';
+            }
+        }
+    })
+</script>
