@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <button @click="add">+</button>
+    {{$store.state.count}}
+    {{myCount}}
+    <!--{{myGetCount}}-->
+    {{evenCount}}
+
+    <router-link to="/home1" active-class="cur">首页1</router-link>
+    <router-link to="/home2">首页2</router-link>
+    <router-link to="/home3">首页3</router-link>
+    <router-view></router-view>
+</div>
+</body>
+</html>
+<template id="home1">
+    <h2>首页1</h2>
+</template>
+<template id="home2">
+    <h2>首页2</h2>
+</template>
+<template id="home3">
+    <h2>首页3</h2>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vuex/dist/vuex.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    const state = {
+        count: 0,
+    };
+    const getters = {
+        evenCount(state, obj){
+            return state.count % 2 == 0 ? state.count : '奇数';
+        }
+    };
+    const mutations = {
+        add(state, obj){
+            state.count += obj;
+        }
+    };
+    const actions = {
+        addFn(context, obj){
+            context.commit('add', obj);
+        },
+        /*
+         * 简写形式：
+         * addFn({{commit}},obj){
+         commit('add',obj);
+         }
+         * */
+    };
+    const store = new Vuex.Store({
+        state,//用来存放数据
+        getters,//一般用来过滤state中的数据，相当于一个computed
+        mutations,//存放一些方法，官方推荐的，用来修改state中的数据
+        actions,//可以写一些异步操作，比如Ajax请求
+    });
+    const home1 = {
+        template: "#home1"
+    };
+    const home2 = {
+        template: "#home2"
+    };
+    const home3 = {
+        template: "#home3"
+    };
+    const routes=[
+        {
+            path:'/',
+            redirect:"/home1"
+        },
+        {
+            path:'/home1',
+            meta:{
+                //放置一些自己项目用的信息
+                til:'首页1'
+            }
+        },
+        {
+            path:'/home2',
+            meta:{
+                //放置一些自己项目用的信息
+                til:'首页2'
+            }
+        },
+        {
+            path:'/home3',
+            meta:{
+                //放置一些自己项目用的信息
+                til:'首页3'
+            }
+        },
+        {
+            path:'/*',
+            redirect:'/home1',
+        }
+    ];
+    const router=new VueRouter({
+        routes,
+        linkActiveClass:'current',//被选中的元素的类名
+        mode:'hash',//路由的使用方式，hash or history
+    });
+    router.beforeEach((to,from,next)=>{
+        //to是要跳到哪个路由
+        //form是从哪个路由跳转过来
+        //next接着执行跳转
+        //更改title
+        document.title=to.meta.til||"珠峰";
+        next();
+    });
+    let vm = new Vue({
+        el: '#app',
+        store,
+        router,
+        data: {},
+        methods: {
+            add(){
+                //this.$store.state.count+=1;
+                //this.$store.commit('add',2)
+                this.$store.dispatch('addFn', 1);
+            }
+        },
+        computed: {
+            myCount(){
+                let n = this.$store.state.count;
+                return n % 2 == 0 ? n : '奇数';
+            },
+            /*myGetCount(){
+             return this.$store.getters.evenCount;
+             }*/
+            ...Vuex.mapGetters(['evenCount'])
+        }
+    })
+</script>
