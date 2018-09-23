@@ -1,17 +1,40 @@
 <template>
-    <div class="banner">
-      banner
-    </div>
+  <div class="banner">
+    <!--<mySwiper :ary="arr" v-if="arr.length"></mySwiper>-->
+    <mySwiper :ary="arr"></mySwiper>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "index"
+  //import mySwiper from '@/common/myswiper.vue'
+  import mySwiper from '@/common/myswiper.vue'
+  import axios from 'axios'
+  export default {
+    name: "index",
+    data(){
+      return {
+        //arr:[]
+      }
+    },
+    components: {
+      mySwiper,
+    },
+    created(){
+      //this.$store.dispatch('getBannerData');
+    },
+    computed:{
+      arr(){
+        return this.$store.state.bannerData;
+      }
+    },
+    updated(){
+      this.$store.dispatch('getBannerData');
     }
+  }
 </script>
 
 <style scoped>
-  .banner{
+  .banner {
     height: 4rem;
     background: #0aeeaa;
     margin-top: 1.5rem;

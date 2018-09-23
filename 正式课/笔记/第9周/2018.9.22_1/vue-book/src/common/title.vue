@@ -24,5 +24,6 @@
     background: #0fa6ea;
     text-align: center;
     line-height: 1.5rem;
+    z-index: 100;
   }
 </style>

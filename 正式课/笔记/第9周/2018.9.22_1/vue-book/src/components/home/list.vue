@@ -2,7 +2,7 @@
     <div class="home_list">
       <h2>热门图书</h2>
       <div class="list_box">
-        <Book v-for="val in 10"></Book>
+        <Book v-for="val in 10" :key="val"></Book>
       </div>
     </div>
 </template>
