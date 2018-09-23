@@ -26,6 +26,7 @@
           autoplay:{
             disableOnInteraction: false,
           },
+          loop:true,
           pagination:{
             el:'.swiper-pagination',
           },

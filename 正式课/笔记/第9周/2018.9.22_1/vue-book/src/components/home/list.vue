@@ -2,7 +2,7 @@
     <div class="home_list">
       <h2>热门图书</h2>
       <div class="list_box">
-        <Book v-for="val in 10" :key="val"></Book>
+        <Book v-for="(val,index) in list" :key="index" :item="val"></Book>
       </div>
     </div>
 </template>
@@ -13,6 +13,14 @@
         name: "index",
       components:{
           Book,
+      },
+      created(){
+        this.$store.dispatch('getHomeList',{name:'A',age:9})
+      },
+      computed:{
+        list(){
+          return this.$store.state.homeList;
+        }
       }
     }
 </script>

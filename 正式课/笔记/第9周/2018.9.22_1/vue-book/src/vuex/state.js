@@ -1,6 +1,9 @@
 const state={
   count:0,
-  bannerData:[]
+  bannerData:[],
+  homeList:[],
+  dataList:[],
+  collectList:[]
 };
 export{state}
 export default state;

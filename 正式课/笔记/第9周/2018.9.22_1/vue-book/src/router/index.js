@@ -9,8 +9,10 @@ import Add from '@/components/add'
 Vue.use(Router);
 
 const routes=[
+
   {
     path: '/',
+    redirect:'/home',
     name: 'HelloWorld',
     component: HelloWorld,
     children:[

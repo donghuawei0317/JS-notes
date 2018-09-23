@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
-    <router-view></router-view>
+    <!--加keep-alive是为了保证第一次进来加载数据-->
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
     <Tab></Tab>
   </div>
 </template>
@@ -9,7 +12,7 @@
   import Tab from '@/common/tabs.vue';
   export default {
     name: 'HelloWorld',
-    components:{
+    components: {
       //注册本组件要使用的组件
       Tab,
     },

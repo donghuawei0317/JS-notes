@@ -1,15 +1,15 @@
-
 <template>
-    <div class="book_box">
-      <img src="https://img13.360buyimg.com/n1/s200x200_jfs/t5107/58/1653926146/128683/79be7ee8/5912e2fcNf9a839fc.jpg" alt="">
-      <p>node.js</p>
-    </div>
+  <div class="book_box">
+    <img :src="item.img" alt="">
+    <p>{{item.title}}</p>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "index"
-    }
+  export default {
+    name: "index",
+    props: ['item']
+  }
 </script>
 
 <style scoped>

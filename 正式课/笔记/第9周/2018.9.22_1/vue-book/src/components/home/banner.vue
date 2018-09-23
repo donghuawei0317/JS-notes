@@ -7,7 +7,7 @@
 
 <script>
   //import mySwiper from '@/common/myswiper.vue'
-  import mySwiper from '@/common/myswiper.vue'
+  import mySwiper from '@/common/myswiper_2.vue'
   import axios from 'axios'
   export default {
     name: "index",
@@ -27,7 +27,7 @@
         return this.$store.state.bannerData;
       }
     },
-    updated(){
+    created(){
       this.$store.dispatch('getBannerData');
     }
   }
