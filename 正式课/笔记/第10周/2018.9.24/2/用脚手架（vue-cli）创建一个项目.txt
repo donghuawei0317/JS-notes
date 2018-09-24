@@ -1,0 +1,16 @@
+1°¢vue init webpack vue-book
+	? Project name (vue-book) [vuebook]
+	? Project description (A Vue.js project)
+	? Author (donghuawei0317 <973674304@qq.com>)
+	? Vue build
+	? Install vue-router? (Y/n) [y]
+	? Use ESLint to lint your code? (Y/n) [n]
+	? Set up unit tests (Y/n) [n]
+	? Setup e2e tests with Nightwatch? (Y/n) [n]
+	? Should we run `npm install` for your after the project has been created? (recommended) (Use arrow keys)
+	   Yes, use NPM
+	   Yes, use Yarn
+	> No, I will handel that myself
+2°¢cd vue-book
+3°¢npm install (»Ù ß∞‹¡À£¨‘Ÿ”√yarn)
+4°¢npm run dev
