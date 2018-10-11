@@ -94,14 +94,22 @@
     canvas.onmouseleave = function(){
         ary.length == 0?clearInterval(timer):null;
     };
-    canvas.ontouchstart = function(){
+    /*canvas.ontouchstart = function(){
         clearInterval(timer);
         draw();
-    };
-    canvas.ontouchmove = function(e){
+    };*/
+    canvas.addEventListener('touchstart',function(){
+        clearInterval(timer);
+        draw();
+    });
+    /*canvas.ontouchmove = function(e){
         e.preventDefault();
         let cir = new Circle(e.touches[0].clientX,e.touches[0].clientY,40);
-    };
+    };*/
+    canvas.addEventListener('touchmove',function(e){
+        e.preventDefault();
+        let cir = new Circle(e.touches[0].clientX,e.touches[0].clientY,40);
+    });
     function draw(){
         timer = setInterval(()=>{
             ctx.clearRect(0,0,800,600);
