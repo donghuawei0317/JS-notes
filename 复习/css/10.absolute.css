@@ -1,0 +1,22 @@
+p{
+    margin:0;
+}
+.parent{
+    position:relative;
+    height:40px;
+}
+.left,.right,.center{
+    position:absolute;
+}
+.left{
+    left:0;
+    width:100px;
+}
+.right{
+    right:0;
+    width:100px;
+}
+.center{
+    left:120px;
+    right:120px;
+}

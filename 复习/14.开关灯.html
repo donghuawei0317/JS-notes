@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <style>
+        .switch{
+            width:50px;
+            height:30px;
+            text-align:center;
+            line-height:30px;
+            color:red;
+            background-color:green;
+            user-select:none;
+        }
+        .light{
+            width:200px;
+            height:200px;
+            background-color:black;
+        }
+    </style>
+</head>
+<body>
+<div class="switch">开关</div>
+<div class="light"></div>
+</body>
+</html>
+<script>
+    var a = document.getElementsByClassName('switch');
+    var b = document.getElementsByClassName('light');
+    var c = 1;
+    a[0].onclick=function(){
+        if(c==1){
+            b[0].style.backgroundColor='red';
+            c = 0;
+        }else{
+            b[0].style.backgroundColor='black';
+            c = 1;
+        }
+    }
+</script>

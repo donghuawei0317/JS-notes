@@ -1,0 +1,22 @@
+p{
+    margin: 0;
+}
+.parent{
+    font-size:0;
+}
+.left,.right,.centerWarp{
+    display:inline-block;
+    vertical-align:top;
+    font-size:16px;
+}
+.left,.right{
+    width: 100px;
+    position:relative;
+}
+.centerWarp{
+    width: 100%;
+    margin:0 -100px;
+}
+.center{
+    margin:0 120px;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div id='app'>
+    <input type="number" id="inp">
+</div>
+</body>
+</html>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script>
+    let inp = document.getElementById('inp');
+    inp.oninput = (a)=>{
+        console.log(a.target.value);
+    };
+
+    //——————
+    let app = document.getElementById('app');
+    let ary = [];
+    /*axios.get('./test.json?id=123')
+            .then((response)=>{
+                console.log(response.data);
+                ary = response.data;
+                let str = "";
+                ary.forEach((item,index)=>{
+                    console.log(item);
+                    console.log(index);
+                    str += `<h2>${item.name},${item.age}</h2>`
+                });
+                app.innerHTML = str;
+            }).catch((error)=>{
+        console.log(error);
+    });*/
+    /*axios.get('./test.json',{
+        params:{
+            id:456
+        }
+    }).then((response)=>{
+        console.log(response);
+    }).catch((error)=>{
+        console.log(error);
+    })*/
+    /*axios.post('./test.json?',{
+        id:456
+    })
+            .then((response)=>{
+                console.log(response);
+            }).catch((error)=>{
+        console.log(error);
+    })*/
+//    axios.defaults.headers.post['content-type'] = "application/x-www-form-urlencoded"
+    /*axios({
+        method:'post',
+        url:'./test.json',
+        data:{
+            id:123
+        }
+    }).then((data)=>{
+        console.log(data);
+    });*/
+    let a = axios.create({
+        timeout:1000
+    });
+    a.get('./test.json')
+            .then((data)=>{
+                console.log(data);
+            })
+            .catch((error)=>{
+                console.log(error);
+            });
+    //设置cookie
+    document.cookie = "a=1";
+    document.cookie = "b=2";
+    //获取cookie
+    console.log(document.cookie);//"a=1;b=2"【字符串】
+    //设置cookie过期时间
+    let date = new Date();
+    console.dir(date);
+    let date2 = date.setTime(date.getTime() + 5 * 1000);
+    console.log("date:",date);
+    console.log("date2:",date2);
+    console.log(date.toUTCString());
+    console.log(date);
+    document.cookie = "a = 5;expires ="+ date.toUTCString();
+    setTimeout(()=>{
+        console.log("限时：",document.cookie);
+    },10000);
+    //设置localstorage
+    localStorage.setItem("c",3);
+    localStorage.setItem('d',4);
+    //获取localStorage【sessionStorage 用法相同】
+        //指定键名获取
+    console.log(localStorage.getItem('c'));//"3"【字符串】
+    console.log(localStorage.d);//"4"
+        //获取全部数据
+    console.log(localStorage.valueOf());//Storage:{c:"3",d:"4"}【对象】
+    //删除localStorage
+        //指定键名删除
+    localStorage.removeItem('c');
+        //清空localStorage
+    localStorage.clear();
+    /*if(navigator.cookieEnabled) {
+        alert("你的浏览器支持cookie功能");//提示浏览器支持cookie
+    } else {
+        alert("你的浏览器不支持cookie");//提示浏览器不支持cookie
+    }*/
+</script>

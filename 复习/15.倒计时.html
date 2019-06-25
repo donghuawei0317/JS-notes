@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div class="clock"></div>
+</body>
+</html>
+<script>
+    function clock(){
+        var aimT = new Date('2019.6.24 22:30:00');//目标时间
+        var aimTM = aimT.getTime();//目标时间毫秒
+        var nowT = new Date();//现在时间
+        var nowTM = nowT.getTime();//现在时间毫秒
+        var time = aimTM - nowTM;//时间差
+        if(time<=0){
+            clearInterval(timer);
+            time = 0;
+        }
+        var hours = Math.floor(time/3600000);
+        time = time-hours*3600000;
+        var minutes = Math.floor(time/60000);
+        time = time-minutes*60000;
+        var seconds = Math.floor(time/1000);
+        var c = document.getElementsByClassName('clock')[0];
+        c.innerHTML = `倒计时：${hours<10?'0'+hours:hours}：${minutes<10?'0'+minutes:minutes}：${seconds<10?'0'+seconds:seconds}`;
+    }
+    var timer = window.setInterval(clock,500);
+</script>

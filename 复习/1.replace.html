@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+</head>
+<body>
+<div class="box1"></div>
+</body>
+</html>
+<script>
+    var str = 'abc123def456';
+    var reg = /\d/g;
+    var str1 = str.replace(reg,function(){
+        console.log(arguments[0]);
+        var temp = arguments[0];
+        temp = temp*1+1;
+        return temp;
+    });
+    console.log(str1);
+</script>

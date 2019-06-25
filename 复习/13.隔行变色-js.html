@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+        ul{
+            width: 200px;
+            height: 180px;
+            margin:auto;
+            border:1px solid #000;
+        }
+        li{
+            width: 100%;
+            height: 30px;
+            box-sizing:border-box;
+            border:1px solid #000;
+            text-align:center;
+            line-height:30px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+</body>
+</html>
+<script>
+    var lis = document.getElementsByTagName('li');
+//    for(var i=0;i<lis.length;i++){
+//        if(i%2==0){
+//            lis[i].style.backgroundColor='#007aff';
+//        }else{
+//            lis[i].style.backgroundColor='#00a77b';
+//        }
+//    }
+    for(var i=0;i<lis.length;i++){
+        console.log(i % 3);
+        if(i%3==0){
+            lis[i].style.backgroundColor='red';
+        }else if(i%3==1){
+            lis[i].style.backgroundColor='yellow';
+        }else{
+            lis[i].style.backgroundColor='blue';
+        }
+    }
+    var col=null;
+    for(var i=0;i<lis.length;i++){
+        lis[i].onmouseover=function(){
+            col = this.style.backgroundColor;
+            this.style.backgroundColor = '#00ff00';
+        };
+        lis[i].onmouseout=function(){
+            this.style.backgroundColor=col;
+        }
+    }
+</script>

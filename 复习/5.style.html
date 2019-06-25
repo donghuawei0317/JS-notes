@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <style>
+        #app{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id='app' style = 'background:#007aff'></div>
+</body>
+</html>
+<script>
+    var app = document.getElementById('app');
+    console.log(app.style);//只可以获取到行内样式
+    console.log(getComputedStyle(app));//可以获取到所有样式
+</script>

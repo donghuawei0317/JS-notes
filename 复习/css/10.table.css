@@ -1,0 +1,17 @@
+p{
+    margin: 0;
+}
+.parent{
+    display:table;
+    width: 100%;
+    table-layout: fixed;
+}
+.left,.right,.centerWarp{
+    display:table-cell;
+}
+.left,.right{
+    width:100px;
+}
+.center{
+    margin:0 20px;
+}

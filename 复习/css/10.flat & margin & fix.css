@@ -1,0 +1,19 @@
+p{
+    margin: 0;
+}
+.parent{
+    overflow:hidden;
+}
+.left,.right{
+    position:relative;
+    float:left;
+    width: 100px;
+}
+.centerWarp{
+    float:left;
+    width: 100%;
+    margin:0 -100px;
+}
+.centerWarp .center{
+    padding:0 100px 0 100px;
+}

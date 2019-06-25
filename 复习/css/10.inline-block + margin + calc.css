@@ -1,0 +1,18 @@
+p{
+    margin:0;
+}
+.parent{
+    font-size:0;
+}
+.left,.right,.center{
+    display:inline-block;
+    vertical-align:top;
+    font-size:16px;
+}
+.left,.right{
+    width: 100px;
+}
+.center{
+    width:calc(100% - 240px);
+    margin:0 20px;
+}
