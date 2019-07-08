@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 500px;
+            height: 2000px;
+            background: linear-gradient(#00ff00, #0aeeaa, #007aff);
+        }
+
+        .div2 {
+            position: fixed;
+            bottom: 0;
+            right: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div class="div2">
+    <a href="#div1" class="a1">锚点返回顶部</a>
+    <button class="btn1">固定步长</button>
+    <button class="btn2">固定时间</button>
+</div>
+</body>
+</html>
+<script>
+    var div1, btn1, btn2;
+    div1 = document.getElementById('div1');
+    btn1 = document.getElementsByClassName('btn1')[0];
+    btn2 = document.getElementsByClassName('btn2')[0];
+    //固定步长
+    btn1.onclick = function () {
+        if (this.timer != null)return;
+        this.timer = window.setInterval(()=> {
+            var l = document.documentElement.scrollTop || document.body.scrollTop;
+            l -= 10;
+            if (l <= 0) {
+                clearInterval(this.timer);
+                l = 0;
+                this.timer = null;
+            }
+            document.documentElement.scrollTop = document.body.scrollTop = l;
+        }, 20)
+    };
+    //固定时间
+    btn2.onclick = function () {
+        if (this.timer != null)return;
+        var t, T, v, l, s;
+        T = 5000;
+        l = document.documentElement.scrollTop || document.body.scrollTop;
+        v = l / T;
+        t = 0;
+        this.timer = window.setInterval(()=> {
+            t += 20;
+            s = t * v;
+            if (t >= T) {
+                clearInterval(this.timer);
+                this.timer = null;
+                t = T;
+                s = l;
+            }
+            document.documentElement.scrollTop = document.body.scrollTop = l - s;
+        }, 20)
+    };
+    //屏幕滚动事件
+    window.onscroll = function () {
+        var h, H;
+        h = 500;
+        H = document.documentElement.scrollTop || document.body.scrollTop;
+        if (H > h) {
+            btn1.style.opacity = btn2.style.opacity = 1;
+        } else {
+            btn1.style.opacity = btn2.style.opacity = 0;
+        }
+    };
+    //鼠标滚轮事件
+    window.onmousewheel = function () {
+        clearInterval(btn1.timer);
+        clearInterval(btn2.timer);
+        btn1.timer = null;
+        btn2.timer = null;
+    }
+</script>

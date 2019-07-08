@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        .div1{
+            width:100px;
+            height:100px;
+            background-color:#0aeeaa;
+            border:1px solid #000;
+            position:relative;
+            text-align:center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">div1</div>
+</body>
+</html>
+<script>
+    var div1,l,screenW,_w;
+    div1 = document.getElementsByClassName('div1')[0];
+    l = 0;
+    screenW = document.documentElement.clientWidth || document.body.clientWidth;
+    _w = screenW-div1.offsetWidth;
+    var timer = window.setInterval(()=>{
+        l+=10;
+        if(l>=_w){
+            clearInterval(timer);
+            l=_w;
+        }
+        div1.style.left = l+'px';
+    },20)
+</script>

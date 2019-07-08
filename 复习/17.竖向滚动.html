@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        .div1{
+            width:100px;
+            height:50px;
+            border:1px solid #000;
+            margin:auto;
+            overflow:hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</div>
+</body>
+</html>
+<script>
+    var div1 = document.getElementsByClassName('div1')[0];
+    var maxH = div1.scrollHeight - div1.clientHeight;
+    //1
+    /*var timer = window.setInterval(()=>{
+        if(div1.scrollTop>=maxH){
+            div1.scrollTop = 0;
+        }else{
+            div1.scrollTop++;
+        }
+    },50);*/
+    //2
+    /*var timer = window.setInterval(()=>{
+        var h = div1.scrollTop++;
+        if(h==div1.scrollTop){
+            div1.scrollTop = 0;
+        }
+    },20)*/
+    //2
+    var timer = null;
+    function fn(){
+        clearTimeout(timer);
+        var h = div1.scrollTop++;
+        if(h==div1.scrollTop){
+            div1.scrollTop = 0;
+        }
+        timer = window.setTimeout(()=>{
+            fn();
+        },20)
+    }
+    fn();
+</script>

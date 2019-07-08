@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        #div1{
+            margin:auto;
+            border:1px solid #000;
+            width:200px;
+            height:200px;
+            position:relative;
+            overflow:hidden;
+        }
+        #div1 ul{
+            position:absolute;
+            width:1200px;
+            height:200px;
+        }
+        #div1 ul li{
+            width:200px;
+            height:200px;
+            text-align:center;
+            line-height:200px;
+            font-size:100px;
+            float:left;
+        }
+        #div1 ul li:nth-child(5n){
+            background-color:#00ff00;
+        }
+        #div1 ul li:nth-child(5n-1){
+            background-color:#007aff;
+        }
+        #div1 ul li:nth-child(5n-2){
+            background-color:#00a77b;
+        }
+        #div1 ul li:nth-child(5n-3){
+            background-color:#00ae66;
+        }
+        #div1 ul li:nth-child(5n-4){
+            background-color:#0aeeaa;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>1</li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    var oUl = document.getElementsByTagName('ul')[0];
+    var div1 = document.getElementById('div1');
+    var timer = window.setInterval(()=>{
+        var w = div1.scrollLeft++;
+        if(w == div1.scrollLeft){
+            div1.scrollLeft = 0;
+        }
+    },10)
+</script>

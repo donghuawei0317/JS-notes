@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="" name="Keywords">
+    <meta content="" name="description"/>
+    <title>笔记</title>
+    <link rel="icon" href="">
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        .div1{
+            width:502px;
+            height:502px;
+            box-sizing:border-box;
+            margin:auto;
+            border:1px solid #000;
+            border-radius:20px;
+            overflow:hidden;
+        }
+        .clearfix:after{
+            content:'';
+            display:block;
+            clear:both;
+            overflow:hidden;
+        }
+        .div1 .title li{
+            float:left;
+            width:100px;
+            height:50px;
+            box-sizing:border-box;
+            border:1px solid #000;
+            text-align:center;
+            line-height:50px;
+            background-color:#0aeeaa;
+        }
+        .div1 .title li.select{
+            border:none;
+            background-color:#00ff00;
+        }
+        .content{
+            width:500px;
+            height:450px;
+            background-color:#00ff00;
+            text-align:center;
+            line-height:450px;
+            font-size:50px;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <ul class="title clearfix">
+        <li class="select">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <div class="content">1个人</div>
+</div>
+</body>
+</html>
+<script>
+    var div1,title,lis,content;
+    div1 = document.getElementsByClassName('div1')[0];
+    title = div1.getElementsByClassName('title')[0];
+    lis = title.getElementsByTagName('li');
+    content = div1.getElementsByClassName('content')[0];
+    div1.onclick = function(e){
+        e = e || window.event;
+        var tar = e.target || e.srcElement;
+        if(tar.nodeName.toLowerCase()=='li'){
+            [...lis].forEach((item,index)=>{
+                item.className = '';
+            });
+            tar.className = 'select';
+            var str=tar.innerHTML;
+            content.innerHTML=str+'个人';
+        }
+    }
+</script>
